@@ -1,4 +1,4 @@
-// Slide 49, left: explicit copies with cudaMemcpy. Prints 55.
+// Slide 48, left: explicit copies with cudaMemcpy. Prints 55.
 #include <cstdio>
 #include <cstdlib>
 

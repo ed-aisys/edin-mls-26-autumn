@@ -1,4 +1,4 @@
-// Slide 48, program 2: a device (cudaMalloc) pointer dereferenced on the host.
+// Slide 47, program 2: a device (cudaMalloc) pointer dereferenced on the host.
 // Expected: Segmentation fault (core dumped), at the first host write.
 #include <cstdio>
 

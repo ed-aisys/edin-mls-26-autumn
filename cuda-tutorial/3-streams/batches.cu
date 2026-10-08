@@ -1,4 +1,4 @@
-// Example 1, slides 64-66: copies and computation across batches.
+// Example 1, slides 63-65: copies and computation across batches.
 // Each batch runs the slide-63 sequence (H2D copy, kernel, D2H copy) in its own stream,
 // from pinned host memory, so batch k+1's copy can overlap batch k's kernel.
 // The same work in one stream is timed for comparison. The gain depends on the
@@ -27,7 +27,7 @@ void run(const float *h_in_all, float *h_out_all, float *d_in_all, float *d_out_
         const float *h_in = h_in_all + (size_t)b * n;
         float *h_out = h_out_all + (size_t)b * n;
         float *d_in = d_in_all + (size_t)b * n, *d_out = d_out_all + (size_t)b * n;
-        // ---- slide 66: one batch ----
+        // ---- slide 65: one batch ----
         cudaMemcpyAsync(d_in, h_in, bytes,
             cudaMemcpyHostToDevice, s);
         kernel<<<grid, block, 0, s>>>(

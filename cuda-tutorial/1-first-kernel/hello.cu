@@ -1,4 +1,4 @@
-// Slides 19 and 34: "A first CUDA kernel".
+// Slide 19: "A first CUDA kernel".
 #include <cstdio>
 
 __global__ void kernel() {

@@ -1,4 +1,4 @@
-// Example 1, slides 61-63: two independent chains in two streams, joined by an event.
+// Example 1, slides 60-62: two independent chains in two streams, joined by an event.
 //   step 1: x = x1 * x1        chain A, stream s1
 //   step 2: y = x2 * x2        chain B, stream s2
 //   step 3: z = x * sin(x1)    chain A
@@ -40,7 +40,7 @@ int main() {
     checkCudaErrors(cudaMemcpy(x1, h_x1.data(), bytes, cudaMemcpyHostToDevice));
     checkCudaErrors(cudaMemcpy(x2, h_x2.data(), bytes, cudaMemcpyHostToDevice));
 
-    // ---- slide 62: independent branches ----
+    // ---- slide 61: independent branches ----
     cudaStream_t s1, s2;
     cudaStreamCreate(&s1);
     cudaStreamCreate(&s2);
@@ -49,7 +49,7 @@ int main() {
     left<<<g,b,0,s1>>>(x1, x, z, n);
     right<<<g,b,0,s2>>>(x2, y, w, n);
 
-    // ---- slide 63: joining the branches ----
+    // ---- slide 62: joining the branches ----
     cudaEvent_t ready;
     cudaEventCreate(&ready);
     cudaEventRecord(ready, s2);

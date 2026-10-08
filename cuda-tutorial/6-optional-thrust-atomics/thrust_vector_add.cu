@@ -1,4 +1,4 @@
-// Optional, slides 56-57: thrust containers, vector add. Prints 752851072.000000.
+// Optional, slides 55-56: thrust containers, vector add. Prints 752851072.000000.
 // Build with --extended-lambda (device lambda).
 #include <cstdio>
 #include <cstdlib>

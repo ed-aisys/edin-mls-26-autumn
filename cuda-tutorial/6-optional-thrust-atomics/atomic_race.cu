@@ -1,4 +1,4 @@
-// Optional, slide 58: a race on a shared sum. The GPU value is wrong and changes per run.
+// Optional, slide 57: a race on a shared sum. The GPU value is wrong and changes per run.
 // Build with --extended-lambda (device lambda).
 #include <cmath>
 #include <cstdio>

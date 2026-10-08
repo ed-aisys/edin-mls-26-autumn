@@ -1,4 +1,4 @@
-// Slide 48, program 1: a host (malloc) pointer handed to a kernel.
+// Slide 47, program 1: a host (malloc) pointer handed to a kernel.
 // Expected on the teaching cluster:
 //   CUDA error at pointer_mistake1.cu:21 code=700(cudaErrorIllegalAddress) "cudaDeviceSynchronize()"
 // Remove the checkCudaErrors(...) wrapper and the program silently prints 0 instead.

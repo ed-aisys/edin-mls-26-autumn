@@ -1,4 +1,4 @@
-// Slides 39 and 50: Example 0, vector add, the complete host path.
+// Slides 38 and 49: Example 0, vector add, the complete host path.
 // The code below is the slide code; only n and size are added (the slide leaves them out).
 // As the slide notes say: real code should also check the launch (see vector_add.cu),
 // and the cudaDeviceSynchronize() after the blocking cudaMemcpy is redundant.

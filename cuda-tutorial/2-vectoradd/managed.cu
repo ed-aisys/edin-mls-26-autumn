@@ -1,4 +1,4 @@
-// Slide 49, right: managed memory with cudaMallocManaged. Prints 55.
+// Slide 48, right: managed memory with cudaMallocManaged. Prints 55.
 #include <cstdio>
 
 __global__ void kernel(int *arr) {

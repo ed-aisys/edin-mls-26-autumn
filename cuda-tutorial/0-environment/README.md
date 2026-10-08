@@ -1,6 +1,6 @@
 # 0. Environment: the Teaching Cluster
 
-Slides 28–33 and 44. Logging in and receiving a GPU allocation are separate steps. The head node is for preparing files and submitting jobs, so seeing no GPU there is normal. GPU work runs on a compute node that Slurm allocates to you.
+Slides 28–33 (skipped in class; read them before the practical). Logging in and receiving a GPU allocation are separate steps. The head node is for preparing files and submitting jobs, so seeing no GPU there is normal. GPU work runs on a compute node that Slurm allocates to you.
 
 ## 1. Log in: two ssh hops (slide 29)
 

@@ -6,7 +6,7 @@ More material (tutorials, assignments) will be added during the term.
 
 ## Quick Start
 
-The commands are the ones on slides 29–33 and 52.
+The commands are the ones on slides 29–33 and 51.
 
 ```bash
 # 1. Log in: two ssh hops (campus network or approved VPN)
@@ -49,12 +49,12 @@ edin-mls-26-autumn/
 | Phase | What to do | Slides | Goal |
 |-------|------------|--------|------|
 | **1. Setup** | `0-environment`: log in, get a GPU shell, check node, GPU and `nvcc` | 28–33 | A working GPU allocation |
-| **2. First kernel** | `1-first-kernel` | 19, 34, 37–38 | Grid, block, thread; host vs device code |
-| **3. Example 0** | `2-vectoradd`, then the checkpoint `vector_add.cu` | 39–54 | Indexing, memory, launch configuration |
-| **4. Example 1** | `3-streams` | 60–66 | Streams, events, overlapping copies |
-| **5. Example 2** | `4-shared-memory` | 67–77 | Data reuse and `__shared__` |
-| **6. Example 3** | `5-tiled-gemm` | 78–83, 86 | Tiling, barriers, timing against a baseline |
-| **Optional** | `6-optional-thrust-atomics` | 56–59 | thrust, atomics |
+| **2. First kernel** | `1-first-kernel` | 19, 36–37 | Grid, block, thread; host vs device code |
+| **3. Example 0** | `2-vectoradd`, then the checkpoint `vector_add.cu` | 38–53 | Indexing, memory, launch configuration |
+| **4. Example 1** | `3-streams` | 59–65 | Streams, events, overlapping copies |
+| **5. Example 2** | `4-shared-memory` | 66–76 | Data reuse and `__shared__` |
+| **6. Example 3** | `5-tiled-gemm` | 77–82, 85 | Tiling, barriers, timing against a baseline |
+| **Optional** | `6-optional-thrust-atomics` | 55–58 | thrust, atomics |
 
 ## GPU Compatibility
 

@@ -1,8 +1,8 @@
-// Example 2, slides 67-70: matrix-vector multiplication y = A x, A is M x K (row-major).
-//   matvec         slide 68: one thread per output row
-//   matvec_stride  slide 69: grid-stride loop over rows
-//   matvec_shared  slide 70: tiles of x staged in shared memory (slides 76-77)
-// Every version is checked against the CPU reference of slide 67.
+// Example 2, slides 66-69: matrix-vector multiplication y = A x, A is M x K (row-major).
+//   matvec         slide 67: one thread per output row
+//   matvec_stride  slide 68: grid-stride loop over rows
+//   matvec_shared  slide 69: tiles of x staged in shared memory (slides 75-76)
+// Every version is checked against the CPU reference of slide 66.
 #include <cmath>
 #include <cstdio>
 #include <vector>
@@ -10,7 +10,7 @@
 
 constexpr int TILE = 256;   // = blockDim.x for matvec_shared
 
-// slide 68
+// slide 67
 __global__ void matvec(
     const float* A, const float* x,
     float* y, int M, int K) {
@@ -23,7 +23,7 @@ __global__ void matvec(
   y[row] = sum;
 }
 
-// slide 69
+// slide 68
 __global__ void matvec_stride(
     const float* A, const float* x,
     float* y, int M, int K) {
@@ -40,7 +40,7 @@ __global__ void matvec_stride(
   }
 }
 
-// slide 70
+// slide 69
 __global__ void matvec_shared(
     const float* A, const float* x,
     float* y, int M, int K) {
@@ -69,7 +69,7 @@ int main() {
   for (size_t i = 0; i < A.size(); ++i) A[i] = (int(i % 13) - 6) * 0.125f;
   for (int k = 0; k < K; ++k) x[k] = (k % 7 - 3) * 0.25f;
 
-  // slide 67: CPU reference
+  // slide 66: CPU reference
   for (int row = 0; row < M; ++row) {
     float sum = 0.0f;
     for (int k = 0; k < K; ++k)

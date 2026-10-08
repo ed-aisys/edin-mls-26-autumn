@@ -1,4 +1,4 @@
-// Slide 38: "Function qualifiers: one program".
+// Slide 37: "Function qualifiers: one program".
 #include <cstdio>
 
 __device__ void gpu_hello() {

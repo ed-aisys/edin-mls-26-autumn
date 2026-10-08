@@ -1,8 +1,8 @@
 # 1. A First CUDA Kernel
 
-Slides 19, 34 and 37–38.
+Slides 19 and 36–37.
 
-## `hello.cu` (slides 19 and 34)
+## `hello.cu` (slide 19)
 
 ```cuda
 __global__ void kernel() {
@@ -36,7 +36,7 @@ Questions from the slide:
 2. What does `<<<4, 3>>>` launch?
 3. Why `cudaDeviceSynchronize()`?
 
-## `qualifiers.cu` (slides 37–38)
+## `qualifiers.cu` (slides 36–37)
 
 | Qualifier | Runs on | Called from |
 |-----------|---------|-------------|

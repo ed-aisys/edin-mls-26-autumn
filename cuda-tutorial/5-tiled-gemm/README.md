@@ -1,8 +1,8 @@
 # 5. Example 3: Tiled GEMM
 
-Slides 78–83 and 86. `C = A × B` with `A: M × K`, `B: K × N`, row-major. `gemm.cu` runs the tiled kernel from the slides (16 × 16 tiles of A and B in shared memory), checks it against a CPU reference and times it with CUDA events.
+Slides 77–82 and 85. `C = A × B` with `A: M × K`, `B: K × N`, row-major. `gemm.cu` runs the tiled kernel from the slides (16 × 16 tiles of A and B in shared memory), checks it against a CPU reference and times it with CUDA events.
 
-## Tiling and the two barriers (slides 81–82)
+## Tiling and the two barriers (slides 80–81)
 
 Each block loads an A tile and a B tile cooperatively, synchronizes, computes, and moves along K. For one 16 × 16 tile pair, 512 input values serve 4,096 multiply-adds.
 
@@ -18,7 +18,7 @@ __syncthreads();                 // 2: consumers finish before the tile is overw
 
 Edge tiles load zeros. Never return early: every thread must reach both barriers.
 
-## Timing GPU work with events (slide 83)
+## Timing GPU work with events (slide 82)
 
 ```cuda
 cudaEventRecord(start, stream);
@@ -36,4 +36,4 @@ M=1000 N=777 K=513
 tiled 0.596 ms per launch (kernel only)  failures=0  PASS
 ```
 
-`./gemm M N K` picks other sizes. Exercise (slide 86, task 2): a non-square GEMM exposes swapped row and column indices. Swap them on purpose and watch `failures`. A handwritten kernel teaches indexing and reuse; it does not generally beat cuBLAS, which is the baseline to compare with (slides 78–79).
+`./gemm M N K` picks other sizes. Exercise (slide 85, task 2): a non-square GEMM exposes swapped row and column indices. Swap them on purpose and watch `failures`. A handwritten kernel teaches indexing and reuse; it does not generally beat cuBLAS, which is the baseline to compare with (slides 77–78).
