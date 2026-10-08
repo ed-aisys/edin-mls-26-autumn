@@ -1,8 +1,8 @@
 # 3. Example 1: CUDA Streams
 
-Slides 59–65. A stream is a queue of GPU operations that run in the order they are issued. Within a stream, work runs in order. Across streams there is no ordering, so work can overlap.
+Slides 61–67. A stream is a queue of GPU operations that run in the order they are issued. Within a stream, work runs in order. Across streams there is no ordering, so work can overlap.
 
-## `branches.cu`: independent branches, then a join (slides 60–62)
+## `branches.cu`: independent branches, then a join (slides 62–64)
 
 ```
 x = x1 * x1       # step 1   chain A
@@ -12,7 +12,7 @@ w = y * cos(x2)   # step 4   chain B
 z = z + w         # step 5   waits for both
 ```
 
-Slide 61: one stream per chain. The 4th launch argument picks the stream, `<<<grid, block, smem, stream>>>`.
+Slide 63: one stream per chain. The 4th launch argument picks the stream, `<<<grid, block, smem, stream>>>`.
 
 ```cuda
 cudaStream_t s1, s2;
@@ -24,7 +24,7 @@ left<<<g,b,0,s1>>>(x1, x, z, n);
 right<<<g,b,0,s2>>>(x2, y, w, n);
 ```
 
-Slide 62: an event is how one stream waits for another.
+Slide 64: an event is how one stream waits for another.
 
 ```cuda
 cudaEvent_t ready;
@@ -44,9 +44,9 @@ PASS streams
 
 Try removing `cudaStreamWaitEvent`. Step 5 may then read `w` before step 4 has written it.
 
-## `batches.cu`: copies and computation across batches (slides 63–65)
+## `batches.cu`: copies and computation across batches (slides 65–67)
 
-Each batch runs the slide-63 sequence in its stream:
+Each batch runs the slide-65 sequence in its stream:
 
 ```cuda
 cudaMemcpyAsync(d_in, h_in, bytes,

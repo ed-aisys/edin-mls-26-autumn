@@ -1,4 +1,4 @@
-// Slide 47, program 2: a device (cudaMalloc) pointer dereferenced on the host.
+// Slide 48: a device (cudaMalloc) pointer dereferenced on the host.
 // Expected: Segmentation fault (core dumped), at the first host write.
 #include <cstdio>
 
@@ -13,7 +13,7 @@ int main() {
   cudaMalloc(&a, 12 * sizeof(int));
   // a now points into GPU memory
   for (int i = 1; i <= 10; ++i)
-    a[i] = i;     // host write: crash
+    a[i] = i;           // host write
   kernel<<<1, 1>>>(a);
   printf("%d\n", a[0]);  // host read
   return 0;

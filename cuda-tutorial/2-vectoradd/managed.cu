@@ -1,4 +1,4 @@
-// Slide 48, right: managed memory with cudaMallocManaged. Prints 55.
+// Slide 50: managed memory with cudaMallocManaged. Prints 55.
 #include <cstdio>
 
 __global__ void kernel(int *arr) {
@@ -15,7 +15,7 @@ int main() {
   a[11] = 0;          // end marker
   kernel<<<1, 1>>>(a);
   cudaDeviceSynchronize();
-  printf("%d\n", a[0]);   // 55
+  printf("%d\n", a[0]);
   cudaFree(a);
   return 0;
 }

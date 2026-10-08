@@ -1,9 +1,9 @@
 # 4. Example 2: Matrix-Vector Multiplication and Shared Memory
 
-Slides 66–76. `y = A x` with `A: M × K`, `x: K`, `y: M`. One output is one row of A dotted with x:
+Slides 68–78. `y = A x` with `A: M × K`, `x: K`, `y: M`. One output is one row of A dotted with x:
 
 ```cuda
-for (int row = 0; row < M; ++row) {      // slide 66: CPU reference
+for (int row = 0; row < M; ++row) {      // slide 68: CPU reference
   float sum = 0.0f;
   for (int k = 0; k < K; ++k)
     sum += A[row*K+k] * x[k];
@@ -15,11 +15,11 @@ for (int row = 0; row < M; ++row) {      // slide 66: CPU reference
 
 | Kernel | Slide | Idea |
 |--------|-------|------|
-| `matvec` | 67 | One thread computes one output row; spare threads in the last block exit |
-| `matvec_stride` | 68 | Grid-stride loop: rows `first, first + stride, …`, so any grid size covers all M rows |
-| `matvec_shared` | 69 | Tiles of `x` are loaded into `__shared__ float sx[TILE]` once per block and reused by all its rows |
+| `matvec` | 69 | One thread computes one output row; spare threads in the last block exit |
+| `matvec_stride` | 70 | Grid-stride loop: rows `first, first + stride, …`, so any grid size covers all M rows |
+| `matvec_shared` | 71 | Tiles of `x` are loaded into `__shared__ float sx[TILE]` once per block and reused by all its rows |
 
-Every row reads all of `x`, the input that is reused. A new work assignment (slide 68) is not data reuse. Shared memory must be loaded explicitly:
+Every row reads all of `x`, the input that is reused. A new work assignment (slide 70) is not data reuse. Shared memory must be loaded explicitly:
 
 ```cuda
 __shared__ float sx[TILE];
@@ -45,4 +45,4 @@ matvec_stride  failures=0  PASS
 matvec_shared  failures=0  PASS
 ```
 
-Slides 70–75 compare this with a cache. A cache manages reuse in hardware and may evict `x`; shared memory keeps it until the program overwrites it.
+Slides 72–77 compare this with a cache. A cache manages reuse in hardware and may evict `x`; shared memory keeps it until the program overwrites it.

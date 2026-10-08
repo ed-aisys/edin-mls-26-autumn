@@ -1,4 +1,4 @@
-// Optional, slide 58: fix the race with atomicAdd, or build the same atomic from atomicCAS.
+// Optional, slide 60: fix the race with atomicAdd, or build the same atomic from atomicCAS.
 // Both GPU values now differ from the CPU only by floating-point summation order.
 // Build with --extended-lambda (device lambda).
 #include <cmath>

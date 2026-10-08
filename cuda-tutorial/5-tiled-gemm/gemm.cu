@@ -1,7 +1,7 @@
-// Example 3, slides 76 and 80-82: tiled GEMM C = A x B with 16 x 16 shared-memory tiles,
+// Example 3, slides 78 and 82-84: tiled GEMM C = A x B with 16 x 16 shared-memory tiles,
 // timed with CUDA events.  A is M x K, B is K x N, C is M x N, all row-major.
 // Non-square sizes that are not multiples of TILE exercise the edge tiles and catch
-// swapped row/column indices (slide 85, task 2). The result is checked on the CPU.
+// swapped row/column indices (slide 87, task 2). The result is checked on the CPU.
 #include <cmath>
 #include <cstdio>
 #include <cstdlib>
@@ -19,7 +19,7 @@ __global__ void gemm_tiled(const float* a, const float* b, float* c, int M, int 
     int a_col = t * TILE + tx, b_row = t * TILE + ty;
     bool valid_a = row < M && a_col < K, valid_b = b_row < K && col < N;
     int a_index = row * K + a_col, b_index = b_row * N + col;
-    // ---- slide 81: the two barriers ----
+    // ---- slide 83: the two barriers ----
     // Every thread loads a valid value or zero.
     as[ty][tx] = valid_a ? a[a_index] : 0;
     bs[ty][tx] = valid_b ? b[b_index] : 0;
@@ -63,7 +63,7 @@ int main(int argc, char** argv) {
   checkCudaErrors(cudaGetLastError());
   const int repeats = 20;
   float ms = 0;
-  // ---- slide 82: timing GPU work with events ----
+  // ---- slide 84: timing GPU work with events ----
   cudaEventRecord(start, stream);
   // Launch the measured work in this stream.
   for (int r = 0; r < repeats; ++r)

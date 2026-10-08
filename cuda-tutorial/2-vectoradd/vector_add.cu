@@ -1,4 +1,4 @@
-// Slide 51 "Student checkpoint: vector add" (and smoke.sbatch, slide 83).
+// Slide 53 "Student checkpoint: vector add" (and smoke.sbatch, slide 85).
 // Build on the GPU node:  nvcc -O2 -std=c++17 -arch=native vector_add.cu -o vector_add
 // Run:  ./vector_add 1003 256   then   ./vector_add 257 128
 #include <cuda_runtime.h>

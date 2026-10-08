@@ -1,6 +1,6 @@
 # 2. Example 0: Vector Add
 
-Slides 38–53 (and 83 for the batch job). One thread per element, `c[idx] = a[idx] + b[idx]`.
+Slides 38–55 (and 85 for the batch job). One thread per element, `c[idx] = a[idx] + b[idx]`.
 
 ```cuda
 __global__ void vector_add(const float* a, const float* b, float* c, int n) {
@@ -17,17 +17,17 @@ vector_add<<<gridSize, blockSize>>>(a, b, c, n);
 
 | File | Slide | Run | Expected |
 |------|-------|-----|----------|
-| `host_path.cu` | 49 | `./host_path` | `3.000000` ten times |
-| `pointer_mistake1.cu` | 47 (1) | `./pointer_mistake1` | `CUDA error at pointer_mistake1.cu:21 code=700(cudaErrorIllegalAddress) "cudaDeviceSynchronize()"` |
-| `pointer_mistake2.cu` | 47 (2) | `./pointer_mistake2` | `Segmentation fault (core dumped)` |
-| `memcpy.cu` | 48 (left) | `./memcpy` | `55` |
-| `managed.cu` | 48 (right) | `./managed` | `55` |
-| `vector_add.cu` | 51 | `./vector_add 1003 256` | `PASS vector add` |
-| `smoke.sbatch` | 83 | `sbatch smoke.sbatch` | job `COMPLETED`, `PASS` twice in `smoke-JOB_ID.out` |
+| `host_path.cu` | 51 | `./host_path` | `3.000000` ten times |
+| `pointer_mistake1.cu` | 47 | `./pointer_mistake1` | `CUDA error at pointer_mistake1.cu:21 code=700(cudaErrorIllegalAddress) "cudaDeviceSynchronize()"` |
+| `pointer_mistake2.cu` | 48 | `./pointer_mistake2` | `Segmentation fault (core dumped)` |
+| `memcpy.cu` | 49 | `./memcpy` | `55` |
+| `managed.cu` | 50 | `./managed` | `55` |
+| `vector_add.cu` | 53 | `./vector_add 1003 256` | `PASS vector add` |
+| `smoke.sbatch` | 85 | `sbatch smoke.sbatch` | job `COMPLETED`, `PASS` twice in `smoke-JOB_ID.out` |
 
 Build everything with `make` in `cuda-tutorial/`, then run from this directory.
 
-## The complete host path (`host_path.cu`, slides 38 and 49)
+## The complete host path (`host_path.cu`, slides 38 and 51)
 
 1. Allocate host and device buffers (`malloc`, `cudaMalloc`).
 2. Copy inputs to the GPU (`cudaMemcpy ... cudaMemcpyHostToDevice`).
@@ -37,7 +37,7 @@ Build everything with `make` in `cuda-tutorial/`, then run from this directory.
 
 The program is the slide code. As the slide notes say, real code should also check the launch, and the `cudaDeviceSynchronize()` after the blocking `cudaMemcpy` is redundant. `vector_add.cu` does both properly.
 
-## Host and device memory (slides 45–48)
+## Host and device memory (slides 45–50)
 
 - `pointer_mistake1.cu`: a `malloc` pointer handed to a kernel. The kernel faults; `checkCudaErrors` reports error 700. Without the check, the program silently prints 0, and a wrong answer is worse than a crash. On systems with HMM or ATS (`nvidia-smi -q | grep "Addressing Mode"`), the GPU can read `malloc` memory and the program prints 55. The teaching cluster GPUs report `None`.
 - `pointer_mistake2.cu`: `cudaMalloc` fills in a device address. Dereferencing it on the host crashes.
@@ -46,7 +46,7 @@ The program is the slide code. As the slide notes say, real code should also che
 
 The kernel adds `arr[1]`, `arr[2]`, ... until it reads a 0, so `a[11]` must be 0. `malloc` and `cudaMallocManaged` do not zero memory; the files use `calloc` or set `a[11] = 0`.
 
-## Student checkpoint (`vector_add.cu`, slide 51)
+## Student checkpoint (`vector_add.cu`, slide 53)
 
 On the GPU node, in this directory:
 
@@ -73,7 +73,7 @@ Then:
 
 Why do both configurations produce the same answer?
 
-## Batch job (`smoke.sbatch`, slide 83)
+## Batch job (`smoke.sbatch`, slide 85)
 
 From the head node, in this directory:
 

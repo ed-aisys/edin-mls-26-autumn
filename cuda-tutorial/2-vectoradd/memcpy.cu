@@ -1,4 +1,4 @@
-// Slide 48, left: explicit copies with cudaMemcpy. Prints 55.
+// Slide 49: explicit copies with cudaMemcpy. Prints 55.
 #include <cstdio>
 #include <cstdlib>
 
@@ -19,7 +19,7 @@ int main() {
   kernel<<<1, 1>>>(d_a);
   cudaMemcpy(a, d_a, bytes,
              cudaMemcpyDeviceToHost);
-  printf("%d\n", a[0]);   // 55
+  printf("%d\n", a[0]);
   free(a); cudaFree(d_a);
   return 0;
 }
