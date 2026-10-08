@@ -26,7 +26,7 @@ The thrust and atomics examples pass device lambdas to kernels and need `--exten
 
 | Directory | File | Slides | What it shows |
 |-----------|------|--------|---------------|
-| `0-environment` | `check.cu` | 28–33, 44 | Which GPU you got, its limits, a kernel that runs |
+| `0-environment` | `README.md` | 28–33 | Login and Slurm commands from the slides (no code) |
 | `1-first-kernel` | `hello.cu` | 19, 34 | `<<<4, 3>>>`: 4 blocks × 3 threads |
 | | `qualifiers.cu` | 37–38 | `__global__`, `__device__`, `__host__`; asynchronous launch |
 | `2-vectoradd` (Example 0) | `host_path.cu` | 39, 50 | The complete host path: allocate, copy, launch, copy back, free |
@@ -37,7 +37,7 @@ The thrust and atomics examples pass device lambdas to kernels and need `--exten
 | `3-streams` (Example 1) | `branches.cu` | 61–63 | Two chains in two streams, joined by an event |
 | | `batches.cu` | 64–66 | Batched copies and kernels overlapping across streams |
 | `4-shared-memory` (Example 2) | `matvec.cu` | 67–70, 76–77 | Matrix-vector multiply: per-row, grid-stride, shared tiles of x |
-| `5-tiled-gemm` (Example 3) | `gemm.cu` | 80–83, 86 | Naive vs tiled GEMM, two barriers, event timing |
+| `5-tiled-gemm` (Example 3) | `gemm.cu` | 80–83, 86 | Tiled GEMM, two barriers, event timing |
 | `6-optional-thrust-atomics` | `thrust_vector_add.cu` | 56–57 | thrust `host_vector` / `device_vector` |
 | | `atomic_race.cu` | 58 | A data race on one `__device__` variable |
 | | `atomic_add.cu` | 59 | `atomicAdd` and an `atomicCAS` loop |

@@ -20,11 +20,10 @@ cd edin-mls-26-autumn/cuda-tutorial
 # 3. Ask Slurm for a GPU shell (the head node has no GPU)
 srun -p Teaching --gres=gpu:1 --cpus-per-task=1 --mem=2G --time=00:40:00 --pty bash
 
-# 4. On the compute node: put nvcc on PATH, check the GPU, build and run
+# 4. On the compute node: put nvcc on PATH, build and run
 export PATH=/opt/cuda-12.8.0/bin:$PATH
 make
-./0-environment/check
-./1-first-kernel/hello
+cd 1-first-kernel && ./hello
 ```
 
 Leave the GPU shell with `exit` when you are done, so the GPU goes back to the pool.
@@ -34,7 +33,7 @@ Leave the GPU shell with `exit` when you are done, so the GPU goes back to the p
 ```
 edin-mls-26-autumn/
 └── cuda-tutorial/                 # CUDA C++ examples from the lecture (slide numbers in each README)
-    ├── 0-environment/             # Teaching cluster: login, Slurm allocation, GPU check
+    ├── 0-environment/             # Teaching cluster: login and Slurm allocation (commands from the slides)
     ├── 1-first-kernel/            # First kernel, function qualifiers
     ├── 2-vectoradd/               # Example 0: vector add, host/device memory, student checkpoint
     ├── 3-streams/                 # Example 1: CUDA streams and event dependencies
@@ -49,7 +48,7 @@ edin-mls-26-autumn/
 
 | Phase | What to do | Slides | Goal |
 |-------|------------|--------|------|
-| **1. Setup** | `0-environment`: log in, get a GPU shell, run `check` | 28–33 | A working GPU allocation |
+| **1. Setup** | `0-environment`: log in, get a GPU shell, check node, GPU and `nvcc` | 28–33 | A working GPU allocation |
 | **2. First kernel** | `1-first-kernel` | 19, 34, 37–38 | Grid, block, thread; host vs device code |
 | **3. Example 0** | `2-vectoradd`, then the checkpoint `vector_add.cu` | 39–54 | Indexing, memory, launch configuration |
 | **4. Example 1** | `3-streams` | 60–66 | Streams, events, overlapping copies |

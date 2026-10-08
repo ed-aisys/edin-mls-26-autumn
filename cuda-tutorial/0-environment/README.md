@@ -38,31 +38,6 @@ nvcc --version
 3. `hostname` and `nvidia-smi -L` show which node and which GPU you got. It may be an RTX 2080 Ti, an A6000, or a MIG slice of an H200.
 4. `nvcc --version` confirms the CUDA 12.8 compiler is on PATH.
 
-## 3. Check the GPU
-
-```bash
-cd edin-mls-26-autumn/cuda-tutorial
-make 0-environment/check
-./0-environment/check
-```
-
-Output on an RTX 2080 Ti:
-
-```
-GPU             NVIDIA GeForce RTX 2080 Ti
-compute cap.    7.5 (sm_75)
-CUDA runtime    12.8, driver supports up to 13.0
-SMs             68
-memory          10.6 GiB
-threads / SM    1024
-threads / block 1024
-block (x,y,z)   1024, 1024, 64
-grid  (x,y,z)   2147483647, 65535, 65535
-kernel launch   OK
-```
-
-These are the limits on slide 44. Threads per SM differ between GPU generations: 1024 on the 2080 Ti (Turing), 2048 on the GTX 1080 Ti in the slide screenshot and on the H200.
-
-## 4. Leave the shell
+## 3. Leave the shell
 
 `exit` releases the allocation. Do not keep a GPU shell open when you are not using it.

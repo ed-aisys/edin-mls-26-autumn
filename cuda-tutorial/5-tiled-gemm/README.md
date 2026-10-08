@@ -1,6 +1,6 @@
 # 5. Example 3: Tiled GEMM
 
-Slides 78–83 and 86. `C = A × B` with `A: M × K`, `B: K × N`, row-major. `gemm.cu` runs a naive kernel (one thread per output, all inputs from global memory) and a tiled kernel (16 × 16 tiles of A and B in shared memory). It checks both against a CPU reference and times them with CUDA events.
+Slides 78–83 and 86. `C = A × B` with `A: M × K`, `B: K × N`, row-major. `gemm.cu` runs the tiled kernel from the slides (16 × 16 tiles of A and B in shared memory), checks it against a CPU reference and times it with CUDA events.
 
 ## Tiling and the two barriers (slides 81–82)
 
@@ -28,13 +28,12 @@ cudaEventSynchronize(stop);
 cudaEventElapsedTime(&ms, start, stop);
 ```
 
-A CPU timer around an asynchronous launch mostly measures the submission. Measure honestly: warm up, repeat, check the results, and state what the interval includes (here: kernels only, no copies).
+A CPU timer around an asynchronous launch mostly measures the submission. Measure honestly: warm up, repeat, check the results, and state what the interval includes (here: the kernel only, no copies).
 
 ```
-$ ./gemm                         # RTX 2080 Ti
+$ ./gemm
 M=1000 N=777 K=513
-naive     0.728 ms   1094.5 GFLOP/s  failures=0  PASS
-tiled     0.596 ms   1338.6 GFLOP/s  failures=0  PASS
+tiled 0.596 ms per launch (kernel only)  failures=0  PASS
 ```
 
 `./gemm M N K` picks other sizes. Exercise (slide 86, task 2): a non-square GEMM exposes swapped row and column indices. Swap them on purpose and watch `failures`. A handwritten kernel teaches indexing and reuse; it does not generally beat cuBLAS, which is the baseline to compare with (slides 78–79).

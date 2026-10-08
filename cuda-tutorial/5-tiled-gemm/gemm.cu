@@ -1,7 +1,7 @@
-// Example 3, slides 77 and 80-83: tiled GEMM C = A x B with 16 x 16 shared-memory tiles,
+// Example 3, slides 77 and 81-83: tiled GEMM C = A x B with 16 x 16 shared-memory tiles,
 // timed with CUDA events.  A is M x K, B is K x N, C is M x N, all row-major.
 // Non-square sizes that are not multiples of TILE exercise the edge tiles and catch
-// swapped row/column indices (slide 86, task 2). Every result is checked on the CPU.
+// swapped row/column indices (slide 86, task 2). The result is checked on the CPU.
 #include <cmath>
 #include <cstdio>
 #include <cstdlib>
@@ -9,16 +9,6 @@
 #include "../common/check.h"
 
 constexpr int TILE = 16;
-
-__global__ void gemm_naive(const float* a, const float* b, float* c, int M, int N, int K) {
-  int row = blockIdx.y * blockDim.y + threadIdx.y;
-  int col = blockIdx.x * blockDim.x + threadIdx.x;
-  if (row < M && col < N) {
-    float acc = 0;
-    for (int q = 0; q < K; ++q) acc += a[row*K+q] * b[q*N+col];
-    c[row*N+col] = acc;
-  }
-}
 
 __global__ void gemm_tiled(const float* a, const float* b, float* c, int M, int N, int K) {
   __shared__ float as[TILE][TILE], bs[TILE][TILE];
@@ -69,36 +59,27 @@ int main(int argc, char** argv) {
   dim3 block(TILE, TILE), grid((N + TILE - 1) / TILE, (M + TILE - 1) / TILE);
   printf("M=%d N=%d K=%d\n", M, N, K);
 
-  int bad = 0;
-  for (int version = 0; version < 2; ++version) {
-    auto launch = [&] {
-      if (version == 0) gemm_naive<<<grid, block, 0, stream>>>(da, db, dc, M, N, K);
-      else              gemm_tiled<<<grid, block, 0, stream>>>(da, db, dc, M, N, K);
-    };
-    launch();                                  // warm up
-    checkCudaErrors(cudaGetLastError());
-    const int repeats = 20;
-    float ms = 0;
-    // ---- slide 83: timing GPU work with events ----
-    cudaEventRecord(start, stream);
-    // Launch the measured work in this stream.
-    for (int r = 0; r < repeats; ++r) launch();
-    cudaEventRecord(stop, stream);
-    cudaEventSynchronize(stop);
-    cudaEventElapsedTime(&ms, start, stop);
-    checkCudaErrors(cudaGetLastError());
+  gemm_tiled<<<grid, block, 0, stream>>>(da, db, dc, M, N, K);   // warm up
+  checkCudaErrors(cudaGetLastError());
+  const int repeats = 20;
+  float ms = 0;
+  // ---- slide 83: timing GPU work with events ----
+  cudaEventRecord(start, stream);
+  // Launch the measured work in this stream.
+  for (int r = 0; r < repeats; ++r)
+    gemm_tiled<<<grid, block, 0, stream>>>(da, db, dc, M, N, K);
+  cudaEventRecord(stop, stream);
+  cudaEventSynchronize(stop);
+  cudaEventElapsedTime(&ms, start, stop);
+  checkCudaErrors(cudaGetLastError());
 
-    // Check results.
-    checkCudaErrors(cudaMemcpy(c.data(), dc, c.size() * sizeof(float), cudaMemcpyDeviceToHost));
-    int failures = 0;
-    for (size_t i = 0; i < c.size(); ++i)
-      if (std::fabs(c[i] - ref[i]) > 1e-3f * (1 + std::fabs(ref[i]))) ++failures;
-    double gflops = 2.0 * M * N * K / (ms / repeats * 1e-3) / 1e9;
-    printf("%-6s %8.3f ms  %7.1f GFLOP/s  failures=%d  %s\n", version ? "tiled" : "naive",
-           ms / repeats, gflops, failures, failures ? "FAIL" : "PASS");
-    bad += failures;
-    checkCudaErrors(cudaMemset(dc, 0, c.size() * sizeof(float)));
-  }
+  // Check results.
+  checkCudaErrors(cudaMemcpy(c.data(), dc, c.size() * sizeof(float), cudaMemcpyDeviceToHost));
+  int failures = 0;
+  for (size_t i = 0; i < c.size(); ++i)
+    if (std::fabs(c[i] - ref[i]) > 1e-3f * (1 + std::fabs(ref[i]))) ++failures;
+  printf("tiled %.3f ms per launch (kernel only)  failures=%d  %s\n",
+         ms / repeats, failures, failures ? "FAIL" : "PASS");
 
   checkCudaErrors(cudaEventDestroy(start));
   checkCudaErrors(cudaEventDestroy(stop));
@@ -106,5 +87,5 @@ int main(int argc, char** argv) {
   checkCudaErrors(cudaFree(da));
   checkCudaErrors(cudaFree(db));
   checkCudaErrors(cudaFree(dc));
-  return bad != 0;
+  return failures != 0;
 }
