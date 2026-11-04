@@ -35,6 +35,8 @@ __global__ void rope_kernel(float* q, float* k, const float* inv_freq, int seq_l
   // Set idx to this thread's global index. Threads without a pair
   // (q_pairs + k_pairs in total) do nothing.
   // YOUR CODE HERE
+  idx = blockIdx.x * blockDim.x + threadIdx.x;
+  if (idx >= q_pairs + k_pairs) return;
   // ============================================================
 
   float* x = q;               // the tensor this thread works on
@@ -43,6 +45,11 @@ __global__ void rope_kernel(float* q, float* k, const float* inv_freq, int seq_l
   // Threads past q's pairs work on k: make x, num_heads and idx describe the
   // tensor this thread works on, with idx counting from 0 inside it.
   // YOUR CODE HERE
+  if (idx >= q_pairs) {
+      x = k;
+      num_heads = num_k_heads;
+      idx -= q_pairs;
+  }
   // ============================================================
 
   int row = 0;  // which row (one head of one token) of x
@@ -51,12 +58,22 @@ __global__ void rope_kernel(float* q, float* k, const float* inv_freq, int seq_l
   // ======================== BLANK 1.3 =========================
   // Set row, i (the pair inside the row) and pos (the token position of the row).
   // YOUR CODE HERE
+  row = idx / half;
+  i = idx % half;
+  pos = (row / num_heads) % seq_len;
   // ============================================================
 
   float* v = x + static_cast<size_t>(row) * head_dim;  // start of this row
   // ======================== BLANK 1.4 =========================
   // Rotate the pair (v[i], v[i + half]) in place.
   // YOUR CODE HERE
+  float a = v[i];
+  float b = v[i + half];
+  float angle = pos * inv_freq[i];
+  float cos_val = cosf(angle);
+  float sin_val = sinf(angle);
+  v[i]          = a * cos_val - b * sin_val;
+  v[i + half]   = b * cos_val + a * sin_val;
   // ============================================================
 }
 
