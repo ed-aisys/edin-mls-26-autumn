@@ -1,0 +1,24 @@
+nvcc -O3 -std=c++17 -lineinfo -diag-suppress 177 -arch=sm_90 -Xcompiler -fPIC -Icsrc -c csrc/task4_attention.cu -o build/task4_only/obj/task4_attention.o
+nvcc -O3 -std=c++17 -lineinfo -diag-suppress 177 -arch=sm_90 -Xcompiler -fPIC -Icsrc tests/test_task4_attention.cu build/task4_only/obj/task4_attention.o -o build/task4_only/test_task4_attention -lcublas -Xlinker -rpath -Xlinker /opt/cuda-12.8.0/lib64
+build/task4_only/test_task4_attention
+GPU: NVIDIA H200 MIG 1g.18gb (sm_90), 16 SMs, peak memory bandwidth about 563 GB/s
+
+tiny, one tile (4 queries, 5 keys)   FAIL  max_err=8.20e-01
+    128 of 128 checked values are wrong. First: index 0, got -0.00669273, expected -0.125057
+several tiles, peaky scores          FAIL  max_err=1.26e+00
+    576 of 576 checked values are wrong. First: index 0, got 0.36966, expected -0.102027
+GQA 4 heads / 2 kv heads             FAIL  max_err=8.74e-01
+    8699 of 8704 checked values are wrong. First: index 0, got 0.00723966, expected -0.178458
+causal, seq_q = seq_k                FAIL  max_err=1.74e+00
+    17899 of 17920 checked values are wrong. First: index 1, got -0.50298, expected 0.379365
+causal, 5 new queries, 37 keys       FAIL  max_err=9.20e-01
+    1279 of 1280 checked values are wrong. First: index 0, got 0.0642802, expected -0.155761
+causal, one new query                FAIL  max_err=8.95e-01
+    2047 of 2048 checked values are wrong. First: index 0, got -0.202096, expected -0.20001
+text decoder (GQA 16/4, causal)      FAIL  max_err=1.93e+00
+    43722 of 43776 checked values are wrong. First: index 1, got -0.50298, expected 0.379365
+audio encoder (20 heads, 1500)       FAIL  max_err=2.99e-01
+    19220 of 19264 checked values are wrong. First: index 0, got 0.00615202, expected -0.0236655
+
+Task 4 (attention): SOME CASES FAILED
+make: *** [Makefile:61: test4] Error 1

@@ -1,0 +1,11 @@
+nvcc -O3 -std=c++17 -lineinfo -diag-suppress 177 -arch=sm_90 -Xcompiler -fPIC -Icsrc -c csrc/task1_rope.cu -o build/task1_only/obj/task1_rope.o
+nvcc -O3 -std=c++17 -lineinfo -diag-suppress 177 -arch=sm_90 -Xcompiler -fPIC -Icsrc tests/test_task1_rope.cu build/task1_only/obj/task1_rope.o -o build/task1_only/test_task1_rope -lcublas -Xlinker -rpath -Xlinker /opt/cuda-12.8.0/lib64
+build/task1_only/test_task1_rope
+GPU: NVIDIA H200 MIG 1g.18gb (sm_90), 16 SMs, peak memory bandwidth about 563 GB/s
+
+tiny (2 x 3 tokens, Hq=3, Hk=1)      PASS  max_err=1.03e-07     0.002 ms      0.7 GB/s ( 0% of peak)
+odd sizes, partial rotation          PASS  max_err=1.02e-07     0.002 ms      7.6 GB/s ( 1% of peak)
+audio encoder (partial, 32/64)       PASS  max_err=1.91e-07     0.053 ms    290.0 GB/s (51% of peak)
+text decoder (GQA 16/4, full)        PASS  max_err=1.73e-07     0.006 ms    211.2 GB/s (37% of peak)
+
+Task 1 (RoPE): ALL PASS

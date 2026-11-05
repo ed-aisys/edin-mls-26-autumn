@@ -113,8 +113,8 @@ __global__ void attention_kernel(const float* q, const float* k, const float* v,
         else
             v_tile[r * head_dim + c] = 0.0f;
     }
+    __syncthreads();
     // ============================================================
-
     float s = -INFINITY;  // this lane's score for key j0 + lane
     // ======================== BLANK 4.3 =========================
     // Set s to this query's score for key j0 + lane, if the query may see that
@@ -136,8 +136,8 @@ __global__ void attention_kernel(const float* q, const float* k, const float* v,
     // YOUR CODE HERE
     float tile_max = warp_reduce_max(s);
     float m_new = fmaxf(m, tile_max);
-    float corr = expf(m - m_new);
-    p = expf(s - m_new);
+    float corr = (m_new == -INFINITY) ? 1.0f : expf(m - m_new);
+    p = (m_new == -INFINITY) ? 0.0f : expf(s - m_new);
     float sum_exp = warp_reduce_sum(p);
     l = l * corr + sum_exp;
     for (int d = 0; d < dims; ++d) acc[d] *= corr;
@@ -147,10 +147,12 @@ __global__ void attention_kernel(const float* q, const float* k, const float* v,
     // ======================== BLANK 4.5 =========================
     // Add this tile's values, weighted by p, to acc.
     // YOUR CODE HERE
-    for (int d = 0; d < dims; ++d) {
-        int dim = lane + d * WARP_SIZE;
-        float val = p * v_tile[lane * head_dim + dim];
-        acc[d] += warp_reduce_sum(val);
+    for (int r = 0; r < KV_TILE; ++r) {
+        float pr = __shfl_sync(FULL_MASK, p, r);
+        for (int d = 0; d < dims; ++d) {
+            int dim = lane + d * WARP_SIZE;
+            acc[d] += pr * v_tile[r * head_dim + dim];
+        }
     }
     // ============================================================
 
