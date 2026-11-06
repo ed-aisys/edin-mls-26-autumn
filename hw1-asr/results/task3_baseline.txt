@@ -1,0 +1,27 @@
+nvcc -O3 -std=c++17 -lineinfo -diag-suppress 177 -arch=sm_90 -Xcompiler -fPIC -Icsrc -c csrc/task3_gemm.cu -o build/task3_only/obj/task3_gemm.o
+nvcc -O3 -std=c++17 -lineinfo -diag-suppress 177 -arch=sm_90 -Xcompiler -fPIC -Icsrc tests/test_task3_gemm.cu build/task3_only/obj/task3_gemm.o -o build/task3_only/test_task3_gemm -lcublas -Xlinker -rpath -Xlinker /opt/cuda-12.8.0/lib64
+build/task3_only/test_task3_gemm
+GPU: NVIDIA H200 MIG 1g.18gb (sm_90), 16 SMs, peak memory bandwidth about 563 GB/s
+
+tiny 3 x 5, K = 7                    PASS  max_err=9.76e-09     0.002 ms        0 GFLOP/s
+    for comparison: naive      0 GFLOP/s, cuBLAS      0 GFLOP/s (CPU reference)
+odd sizes 37 x 100, K = 33, bias     PASS  max_err=1.55e-07     0.003 ms       80 GFLOP/s
+    for comparison: naive     63 GFLOP/s, cuBLAS     43 GFLOP/s (CPU reference)
+odd sizes, bias + GELU               PASS  max_err=7.70e-07     0.005 ms      188 GFLOP/s
+    for comparison: naive    129 GFLOP/s, cuBLAS    154 GFLOP/s (CPU reference)
+decoder q_proj (64x2048x2048)        PASS  max_err=1.14e-05     0.611 ms      879 GFLOP/s
+    for comparison: naive    111 GFLOP/s, cuBLAS   4255 GFLOP/s (cuBLAS reference)
+decoder gate_proj (64x6144x2048)     PASS  max_err=0.00e+00     1.766 ms      912 GFLOP/s
+    for comparison: naive    111 GFLOP/s, cuBLAS   4141 GFLOP/s (cuBLAS reference)
+decoder down_proj (64x2048x6144)     PASS  max_err=3.72e-05     1.827 ms      882 GFLOP/s
+    for comparison: naive    109 GFLOP/s, cuBLAS   5166 GFLOP/s (cuBLAS reference)
+lm_head, last token (1x59264x2048)   PASS  max_err=1.24e-05     4.058 ms       60 GFLOP/s
+    for comparison: naive     58 GFLOP/s, cuBLAS    264 GFLOP/s (cuBLAS reference)
+encoder q_proj (1500x1280x1280)      PASS  max_err=1.01e-05     5.256 ms      935 GFLOP/s
+    for comparison: naive    111 GFLOP/s, cuBLAS   4996 GFLOP/s (cuBLAS reference)
+encoder fc1 + GELU (1500x5120x1280)  PASS  max_err=6.92e-07    21.110 ms      931 GFLOP/s
+    for comparison: naive    110 GFLOP/s, cuBLAS   6184 GFLOP/s (cuBLAS reference)
+conv2 via im2col (1500x1280x3840)    PASS  max_err=2.57e-05    16.017 ms      921 GFLOP/s
+    for comparison: naive    110 GFLOP/s, cuBLAS   5865 GFLOP/s (cuBLAS reference)
+
+Task 3 (tiled GEMM): ALL PASS

@@ -1,0 +1,15 @@
+nvcc -O3 -std=c++17 -lineinfo -diag-suppress 177 -arch=sm_90 -Xcompiler -fPIC -Icsrc -c csrc/task4_attention.cu -o build/task4_only/obj/task4_attention.o
+nvcc -O3 -std=c++17 -lineinfo -diag-suppress 177 -arch=sm_90 -Xcompiler -fPIC -Icsrc tests/test_task4_attention.cu build/task4_only/obj/task4_attention.o -o build/task4_only/test_task4_attention -lcublas -Xlinker -rpath -Xlinker /opt/cuda-12.8.0/lib64
+build/task4_only/test_task4_attention
+GPU: NVIDIA H200 MIG 1g.18gb (sm_90), 16 SMs, peak memory bandwidth about 563 GB/s
+
+tiny, one tile (4 queries, 5 keys)   PASS  max_err=1.11e-07     0.008 ms        0 GFLOP/s
+several tiles, peaky scores          PASS  max_err=4.97e-07     0.038 ms        6 GFLOP/s
+GQA 4 heads / 2 kv heads             PASS  max_err=1.30e-07     0.018 ms       34 GFLOP/s
+causal, seq_q = seq_k                PASS  max_err=4.86e-07     0.090 ms       28 GFLOP/s
+causal, 5 new queries, 37 keys       PASS  max_err=1.78e-07     0.019 ms       10 GFLOP/s
+causal, one new query                PASS  max_err=3.39e-07     0.090 ms        6 GFLOP/s
+text decoder (GQA 16/4, causal)      PASS  max_err=5.21e-07     0.323 ms       52 GFLOP/s
+audio encoder (20 heads, 1500)       PASS  max_err=2.68e-07    79.208 ms      145 GFLOP/s
+
+Task 4 (attention): ALL PASS
