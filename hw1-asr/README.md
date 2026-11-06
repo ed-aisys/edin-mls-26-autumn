@@ -190,9 +190,9 @@ Python cannot call CUDA C++ directly. `make` compiles `csrc/` into a shared libr
 
 ## What to hand in
 
-- The five files you edited: `csrc/task1_rope.cu`, `csrc/task2_reduce.cuh`, `csrc/task2_reduce.cu`, `csrc/task3_gemm.cu` and `csrc/task4_attention.cu`.
-- The output of `make test` and of `./run.sh --profile`, both from the same GPU node, and the GPU name (`nvidia-smi -L`).
-- A short report with your answers to the questions at the end of each guide, and at least one "Try this" experiment per task: what you changed, the numbers before and after, and your explanation.
+- The five files you edited: `csrc/task1_rope.cu`, `csrc/task2_reduce.cuh`, `csrc/task2_reduce.cu`, `csrc/task3_gemm.cu` and `csrc/task4_attention.cu`. Put these files into the final code zip file you hand in.
+- The output of `make test` and of `./run.sh --profile`, both from the same GPU node, and the GPU name (`nvidia-smi -L`). (If this is too long, put things you consider the most important into the main body of the report, and the remaining into the appendix.)
+- The final report should contain your answers to the questions at the end of each guide, preferably together in a same place (e.g., a subsection). If you choose to focus your extra exploration point on the ASR part, please develop your system and demonstrate in the report as described in the related requirement files.
 
 ## When something goes wrong
 
