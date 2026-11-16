@@ -17,6 +17,10 @@ These extensions operate on saved ASR transcripts and candidates; they do not ru
 - [measure_e2e_latency.py](measure_e2e_latency.py): audio-to-answer wall-clock breakdown on a GPU node.
 - [collect_dual_transcripts.py](collect_dual_transcripts.py) / [asr_rag_four_condition.py](asr_rag_four_condition.py): CUDA vs reference transcript × dense5 vs budget recall.
 - [prepare_blind_review.py](prepare_blind_review.py): anonymised packets for manual answer review.
+- [compare_reranker_models.py](compare_reranker_models.py): matched practice-only
+  L6/L12 replacement control, with frozen candidates, synchronised timings,
+  paired query-bootstrap intervals and all-query outputs (no generation/judge).
+  Protocol and results: [RERANK_MODEL_CONTROL.md](../experiments/RERANK_MODEL_CONTROL.md).
 
 For the completed frozen dev run and its summary-only audit, see
 [DEV_VALIDATION.md](../experiments/DEV_VALIDATION.md).

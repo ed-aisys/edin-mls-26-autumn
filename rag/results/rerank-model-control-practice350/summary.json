@@ -1,0 +1,175 @@
+{
+  "split": "practice",
+  "queries": 350,
+  "exploratory": true,
+  "per_arm": {
+    "dense": {
+      "recall_at_5": 0.42133725005153577,
+      "mrr_at_10": 0.48874603174603176,
+      "ndcg_at_10": 0.4204605115536774
+    },
+    "l6": {
+      "recall_at_5": 0.38768872397443827,
+      "mrr_at_10": 0.453453514739229,
+      "ndcg_at_10": 0.39521947940695773,
+      "mean_reranking_ms": 167.34972101237094,
+      "median_reranking_ms": 168.77487022429705,
+      "min_reranking_ms": 121.3124692440033,
+      "max_reranking_ms": 186.21825985610485
+    },
+    "l12": {
+      "recall_at_5": 0.41023520923520923,
+      "mrr_at_10": 0.45274943310657595,
+      "ndcg_at_10": 0.39666366572277123,
+      "mean_reranking_ms": 292.92769165443525,
+      "median_reranking_ms": 295.61751428991556,
+      "min_reranking_ms": 205.15853352844715,
+      "max_reranking_ms": 323.211919516325
+    }
+  },
+  "paired": {
+    "l6 minus dense": {
+      "recall_at_5": {
+        "mean_delta": -0.03364852607709751,
+        "query_bootstrap_95_interval": [
+          -0.06864909297052153,
+          0.0006421201814058901
+        ],
+        "improved": 35,
+        "worsened": 63,
+        "unchanged": 252
+      },
+      "mrr_at_10": {
+        "mean_delta": -0.03529251700680272,
+        "query_bootstrap_95_interval": [
+          -0.06973854875283447,
+          -0.0008075396825397618
+        ],
+        "improved": 61,
+        "worsened": 85,
+        "unchanged": 204
+      },
+      "ndcg_at_10": {
+        "mean_delta": -0.025241032146719734,
+        "query_bootstrap_95_interval": [
+          -0.0528273095614065,
+          0.0026252637258919174
+        ],
+        "improved": 73,
+        "worsened": 113,
+        "unchanged": 164
+      },
+      "evidence_replacement": {
+        "removed_relevant_pairs": 83,
+        "added_relevant_pairs": 47
+      }
+    },
+    "l12 minus dense": {
+      "recall_at_5": {
+        "mean_delta": -0.011102040816326531,
+        "query_bootstrap_95_interval": [
+          -0.04266751700680272,
+          0.020109013605442174
+        ],
+        "improved": 31,
+        "worsened": 47,
+        "unchanged": 272
+      },
+      "mrr_at_10": {
+        "mean_delta": -0.035996598639455785,
+        "query_bootstrap_95_interval": [
+          -0.0690530328798186,
+          -0.0011724206349206499
+        ],
+        "improved": 55,
+        "worsened": 85,
+        "unchanged": 210
+      },
+      "ndcg_at_10": {
+        "mean_delta": -0.023796845830906202,
+        "query_bootstrap_95_interval": [
+          -0.05078518943424571,
+          0.0034925271911117966
+        ],
+        "improved": 69,
+        "worsened": 112,
+        "unchanged": 169
+      },
+      "evidence_replacement": {
+        "removed_relevant_pairs": 67,
+        "added_relevant_pairs": 42
+      }
+    },
+    "l12 minus l6": {
+      "recall_at_5": {
+        "mean_delta": 0.022546485260770976,
+        "query_bootstrap_95_interval": [
+          0.002165192743764173,
+          0.04272386621315192
+        ],
+        "improved": 26,
+        "worsened": 15,
+        "unchanged": 309
+      },
+      "mrr_at_10": {
+        "mean_delta": -0.0007040816326530612,
+        "query_bootstrap_95_interval": [
+          -0.02075280612244898,
+          0.019550878684807246
+        ],
+        "improved": 54,
+        "worsened": 48,
+        "unchanged": 248
+      },
+      "ndcg_at_10": {
+        "mean_delta": 0.001444186315813533,
+        "query_bootstrap_95_interval": [
+          -0.01305310101092706,
+          0.014995901108879488
+        ],
+        "improved": 72,
+        "worsened": 65,
+        "unchanged": 213
+      },
+      "evidence_replacement": {
+        "removed_relevant_pairs": 17,
+        "added_relevant_pairs": 28
+      }
+    }
+  },
+  "l6_reproduction": {
+    "identical_full_rankings": 350,
+    "max_absolute_score_difference": 0.0
+  },
+  "gpu_before": "index, uuid, name, memory.used [MiB], utilization.gpu [%]\n0, GPU-2eea4b8b-d9b5-8b04-e426-c8d0617dc87a, NVIDIA RTX A6000, 1 MiB, 0 %\n1, GPU-cc1fade4-7632-01cc-a9ea-77e9dcb519cd, NVIDIA RTX A6000, 5 MiB, 0 %\n2, GPU-75ff33de-3366-d7fc-88a2-be025af94bed, NVIDIA RTX A6000, 38288 MiB, 69 %\n3, GPU-6cf865f5-d572-f772-67d0-50037b7884af, NVIDIA RTX A6000, 17042 MiB, 27 %\n",
+  "model_architecture": {
+    "l6": {
+      "layers": 6,
+      "hidden_size": 384,
+      "attention_heads": 12
+    },
+    "l12": {
+      "layers": 12,
+      "hidden_size": 384,
+      "attention_heads": 12
+    }
+  },
+  "tokenizer_file_hash_equal": {
+    "tokenizer.json": true,
+    "vocab.txt": true,
+    "tokenizer_config.json": true
+  },
+  "limitations": [
+    "Exploratory: motivated by observed L6 failures, not held-out confirmation",
+    "No repeated-run uncertainty, judge scores or answer-quality comparison",
+    "Qrels may be incomplete; qrel-negative does not imply irrelevant",
+    "Changing checkpoints also changes learned weights/training; not capacity identification",
+    "Shared GPU/host conditions and single-pass timing do not establish stable throughput"
+  ],
+  "output_sha256": {
+    "config.json": "2a15879657e6c9b833a5430790ba140a80e44c4aea52a9d368bb9f0c24b834c6",
+    "scores.jsonl": "80863887985b568ed5fb41facd95e5d8ebf4f678accb830541d63c2285c4219a",
+    "per_query.json": "cf4de51cdfb70b6fee00881f19682b7ec423f63bb4924a78f352035c757b6a18",
+    "cases.json": "8a2891b5b70ab09337a56087997a45cde253e5f24161ef54fa25ffe1e6d997f4"
+  }
+}

@@ -97,7 +97,9 @@ each with \texttt{make test1}--\texttt{make test4}, and checked the full model w
 retrieval baseline and a complete five-arm practice experiment (350 queries),
 following a controlled pilot, and completed a
 held-out \textbf{dev validation} (125 queries, five evidence-selection
-configurations) without tuning on dev after observing scores.
+configurations) without tuning on dev after observing scores. A separate
+post-hoc, practice-only L6/L12 reranker comparison probes whether the retrieval
+failure is specific to the original checkpoint; it does not evaluate answer quality.
 
 The selected ASR answers are Task 1, Question 1 (Section~\ref{sec:q1}),
 Task 2, Question 3 (Section~\ref{sec:q2}), Task 3, Question 2
@@ -291,6 +293,24 @@ the earlier pilot's 26~s/query is on two CPU cores, so these are not like-for-li
 speed comparisons. BM25 and RRF give dev Recall@5 of 0.208/0.303,
 below dense's 0.379; we do not infer answer-quality differences from those recalls.
 
+\textbf{Exploratory model replacement.} After observing L6 failures, we compared
+\texttt{ms-marco-MiniLM-L12-v2} with the original L6 on all 350 practice queries,
+fixing transcripts, dense top-100 candidates, query/document order, 512-token
+document-only truncation and top-five selection. Both used the same GPU and
+synchronised timing protocol; the matched L6 run exactly reproduced the saved
+rankings and scores. L12 improved Recall@5 over L6 by 0.0225
+(95\% query-bootstrap interval $[0.0022,0.0427]$), but did not demonstrate an
+advantage over dense: $-0.0111$ $[-0.0427,0.0201]$.
+MRR/NDCG differences from L6 remained uncertain, while median reranking latency
+increased from 169 to 296~ms. Relative to dense, L12 removed 67 and added 42
+qrel-positive document pairs, versus L6's 83 and 47: fewer losses, not more
+recoveries, in these pair counts (not an exact macro-recall decomposition).
+Neither preselected CAGR nor TaxAct case recovered its lost top-five coverage.
+Thus the observed failure is not confined to L6, although model choice affects
+coverage. This is not a capacity-only ablation or an answer-quality comparison;
+intervals are exploratory and unadjusted for multiple comparisons. Full results
+and configuration are in Appendix~\ref{app:model-control}.
+
 \textbf{ASR--RAG connection and latency.} In the 30-question four-condition
 comparison, custom CUDA and PyTorch-reference transcripts differ on zero queries,
 and downstream dense5/budget recalls are identical across ASR implementations.
@@ -390,9 +410,13 @@ measured large shapes. End to end, all-CUDA execution takes 1986.1~ms versus
 \textbf{RAG.} Increasing context changes recall and input cost, but every reported
 paired answer-score interval crosses zero. The negative dev budget-reranking
 difference is not reproduced at the same magnitude on practice. The candidate-pool
-ablation provides clearer retrieval-level evidence against this reranker than the
-noisy judge scores provide about answer quality. This does not establish that
-reranking in general is ineffective.
+ablation provides clearer retrieval-level evidence about L6's limitations than
+the noisy judge scores provide about answer quality. The practice-only L12
+control partially recovers coverage but does not establish an advantage over
+dense sufficient to justify its added computation. Both checkpoints retain the
+inspected failure patterns. This does not establish that reranking in general is
+ineffective or identify training mismatch, missing document context, ASR text
+formatting, or insufficient capacity as the cause.
 
 \textbf{Limitations.} ASR correctness is evidenced by provided tests and a reference
 audio case, not exhaustive dataset-level transcription evaluation. RAG conclusions
@@ -400,7 +424,9 @@ use completed practice and one held-out dev run, automatic judge/qrel proxies, a
 partial cost measurements. Selected-ID recall can credit a truncated document
 without the useful span. Query bootstrap captures neither repeated-generation
 nor judge uncertainty; the small ASR--RAG and latency probes do not establish
-dataset-wide equivalence or fully matched end-to-end timing.
+dataset-wide equivalence or fully matched end-to-end timing. The model-replacement
+control was motivated by observed failures; its unadjusted intervals are
+exploratory, and changing checkpoints cannot isolate model capacity.
 
 \textbf{Overall.} The combined system work shows that local kernel optimisations and
 downstream RAG design choices must be evaluated with both quality and cost in mind:
@@ -483,6 +509,52 @@ To recompute summaries only, without invoking generation or judge:
 python3 rag/extensions/audit_report_evidence.py
 \end{verbatim}
 
+\section{Exploratory reranker model control}
+\label{app:model-control}
+The protocol and complete metric/interval tables are in
+\path{rag/experiments/RERANK_MODEL_CONTROL.md}; implementation:
+\path{rag/extensions/compare_reranker_models.py}.
+Only practice retrieval was run; no new answers or judge scores were produced.
+Both models used float32, batch size 32, the same RTX A6000, and identical
+tokenizer files. Three full-query warmups per model were excluded. Models
+alternated execution order across queries; each timed pass included tokenization,
+transfer, inference and score materialization, with CUDA synchronisation at both
+boundaries, excluding model loading and sorting.
+Recall uses five selected documents; MRR/NDCG diagnose the first ten ranks
+of the same full candidate ordering.
+
+\begin{center}
+\small
+\begin{tabular}{@{}lrrrr@{}}
+\toprule
+Method & Recall@5 & MRR@10 & NDCG@10 & Median rerank ms \\
+\midrule
+Dense & .421337 & .488746 & .420461 & --- \\
+L6 & .387689 & .453454 & .395219 & 169 \\
+L12 & .410235 & .452749 & .396664 & 296 \\
+\bottomrule
+\end{tabular}
+\end{center}
+L12 minus L6 MRR@10 is $-0.0007$ $[-0.0208,0.0196]$ and NDCG@10 is
+$0.0014$ $[-0.0131,0.0150]$; neither interval excludes zero.
+L12 minus dense MRR@10 is $-0.0360$ $[-0.0691,-0.0012]$ and NDCG@10 is
+$-0.0238$ $[-0.0508,0.0035]$. These are unadjusted exploratory intervals,
+not confirmatory tests across several comparisons and metrics.
+For CAGR, the displaced documents move from L6 ranks 11/38 to L12 ranks 7/14;
+for TaxAct they move from 74/60 to 76/50. Neither repairs top-five coverage.
+
+All-query outputs (repository-relative) are committed as
+\path{rag/results/rerank-model-control-practice350/config.json},
+\path{rag/results/rerank-model-control-practice350/summary.json},
+\path{rag/results/rerank-model-control-practice350/per_query.json},
+\path{rag/results/rerank-model-control-practice350/scores.jsonl} and
+\path{rag/results/rerank-model-control-practice350/cases.json}.
+The frozen input rankings/transcripts are
+\path{rag/results/selection-rankings-practice-full/rankings.jsonl}.
+Configurations record model revisions and asset/input hashes; the summary records
+output hashes. Raw generated answers and judge outputs remain uncommitted.
+These retrieval-level results do not establish answer-quality or deployment gains.
+
 % Keep this line unchanged.
 \newpage
 
@@ -501,7 +573,9 @@ GPU/RAG experiments, derive bandwidth and cost summaries, analyse saved
 dev-validation results, and draft/edit LaTeX text for this report. During this
 revision, an OpenAI coding agent reran the default ASR checks, recomputed saved
 RAG summaries without new dev generation or judging, and cross-checked report
-measurements against repository artifacts. This describes automated checks, not
+measurements against repository artifacts. The agent also implemented and ran
+the exploratory practice-only L6/L12 retrieval comparison and audited its saved
+metrics, without new answer generation or judging. This describes automated checks, not
 an assertion that the authors independently verified every number. Final author
 review remains outstanding. The group remains
 responsible for the submitted work.

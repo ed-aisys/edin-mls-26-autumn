@@ -1,0 +1,342 @@
+[
+  {
+    "query_id": "q_65e52727cacd73bb",
+    "transcript": "What are the main differences between Tax Act and TurboTax?",
+    "metrics": {
+      "dense": {
+        "recall_at_5": 0.75,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 0.8318724637288826
+      },
+      "l6": {
+        "recall_at_5": 0.25,
+        "mrr_at_10": 0.5,
+        "ndcg_at_10": 0.24630238874073
+      },
+      "l12": {
+        "recall_at_5": 0.25,
+        "mrr_at_10": 0.5,
+        "ndcg_at_10": 0.24630238874073
+      }
+    },
+    "documents": [
+      {
+        "record_id": "r_7002e7dd3903891c",
+        "text": "I have used TurboTax for years with no problems. I clicked on the TaxAct link in an ad and decided to see if there was much different. Using the free version of Taxact, and inputting the exact same information, my federal taxes came out with a $1500 difference while my state taxes (NJ) came out almost identically. I rechecked my inputs twice and could find no typos in either program. While I would make out better with the TaxAct program in my wallet, I find the detailed questioning and directions in TurboTax to be superior. Somehow I am thinking that TaxAct has missed something but I can't figure out what. And the only way to actually print out your forms with TaxAct is to get the paid version, so comparing the final forms side bybside isn't a free option.",
+        "qrel_positive": true,
+        "ranks": {
+          "dense": 1,
+          "l6": 2,
+          "l12": 2
+        },
+        "scores": {
+          "l6": 1.984112024307251,
+          "l12": 2.237504243850708
+        }
+      },
+      {
+        "record_id": "r_081707bacebda833",
+        "text": "I prefer TaxAct. I find it simpler to use and more helpful in helping answer the questionnaire. I have a fairly complex tax return and it handles it just fine.",
+        "qrel_positive": true,
+        "ranks": {
+          "dense": 2,
+          "l6": 74,
+          "l12": 76
+        },
+        "scores": {
+          "l6": -10.791031837463379,
+          "l12": -10.887434005737305
+        }
+      },
+      {
+        "record_id": "r_7bea87189ae85b3e",
+        "text": "I typed my information into both last year, and while they were not exactly the same, they were within $10 of each other. For my simple 2009 taxes they were not different in any meaningful way.",
+        "qrel_positive": true,
+        "ranks": {
+          "dense": 3,
+          "l6": 60,
+          "l12": 50
+        },
+        "scores": {
+          "l6": -10.478784561157227,
+          "l12": -10.115499496459961
+        }
+      },
+      {
+        "record_id": "r_ef92d6badbed596c",
+        "text": "The difference is whether or not you have a contract that stipulates the payment plan, interest, and late payment penalties. If you have one then the IRS treats the transaction as a load/loan servicing. If not the IRS sees the money transfer as a gift.",
+        "qrel_positive": false,
+        "ranks": {
+          "dense": 4,
+          "l6": 33,
+          "l12": 40
+        },
+        "scores": {
+          "l6": -8.496816635131836,
+          "l12": -9.155289649963379
+        }
+      },
+      {
+        "record_id": "r_bd19407ce71ff018",
+        "text": "All questions regarding why is activity X taxed but activity Y taxed differently boils down to: The legislature wanted to promote or discourage the activity. By making employer provided healthcare tax free to the employee, the average worker like the plan. Not only is a significant portion not coming out of my paycheck, I also don't have to pay taxes on the benefit. Some organization pushed for this and the legislature agreed.",
+        "qrel_positive": false,
+        "ranks": {
+          "dense": 5,
+          "l6": 50,
+          "l12": 55
+        },
+        "scores": {
+          "l6": -9.984991073608398,
+          "l12": -10.314401626586914
+        }
+      },
+      {
+        "record_id": "r_e55a58f6e2852459",
+        "text": "\"I don't live in Pennsylvania and I don't know anything about this particular tax, but just the name says that it is a \"\"local\"\" tax. TurboTax covers federal and state taxes, not local taxes. Many places have city, township, and/or county taxes that you are required to pay in addition to state and federal taxes.\"",
+        "qrel_positive": false,
+        "ranks": {
+          "dense": 19,
+          "l6": 1,
+          "l12": 1
+        },
+        "scores": {
+          "l6": 3.4812166690826416,
+          "l12": 3.856471061706543
+        }
+      },
+      {
+        "record_id": "r_c96025532a19b20b",
+        "text": "Federal income taxes are indeed expenses, they're just not DEDUCTIBLE expenses on your 1120. Federal Income Tax Expense is usually a subcategory under Taxes. This is one of the items that will be a book-to-tax difference on Schedule M-1. I am presuming you are talking about a C corporation, as an S corporation is not likely to be paying federal taxes itself, but would pass the liability through to the members. If you're paying your personal 1040 taxes out of an S-corporation bank account, that's an owner's draw just like paying any of your personal non-business expenses. I would encourage you to get a tax professional to prepare your corporate tax returns. It's not quite as simple as TurboTax Business makes it out to be. ;) Mariette IRS Circular 230 Notice: Please note that any tax advice contained in this communication is not intended to be used, and cannot be used, by anyone to avoid penalties that may be imposed under federal tax law.",
+        "qrel_positive": false,
+        "ranks": {
+          "dense": 45,
+          "l6": 3,
+          "l12": 3
+        },
+        "scores": {
+          "l6": -0.5512429475784302,
+          "l12": 0.2708795666694641
+        }
+      },
+      {
+        "record_id": "r_96e7729722e6fb68",
+        "text": "\"Turbox Tax states the following: \"\"For 2015, the AMT exemption amounts are $53,600 for individual taxpayers, $83,400 for married taxpayers filing jointly and surviving spouses, and $41,700 for married persons filing separately. This is the amount you're allowed to deduct from your taxable income before applying the AMT.\"\"\"",
+        "qrel_positive": false,
+        "ranks": {
+          "dense": 10,
+          "l6": 4,
+          "l12": 9
+        },
+        "scores": {
+          "l6": -1.3425594568252563,
+          "l12": -2.0429306030273438
+        }
+      },
+      {
+        "record_id": "r_d391fc560b1686f4",
+        "text": "Advantage of filing online (at least with TurboTax) is that they keep a record of your prior year taxes on their servers. Also, you could fill some stuff out at work, and then go home and continue where you left off. You also wouldn't have to mess with installing software. File online.",
+        "qrel_positive": false,
+        "ranks": {
+          "dense": 14,
+          "l6": 5,
+          "l12": 4
+        },
+        "scores": {
+          "l6": -1.413097858428955,
+          "l12": -0.3147561252117157
+        }
+      },
+      {
+        "record_id": "r_685fa4ab2d1da2ff",
+        "text": "Regarding #1: use the free online version of turbotax and start to play with the numbers for the different options for filing. It can make a difference, based on the imbalance between the couples income. Also filing married but separate can eleiminate some deductions/credits. Regarding #2: when you submit your taxes use the forecasting tool in turbotax to see if you should adjust your withholding. 2012 will be tricky because unless you changed your withholding in early 2011 to account for the change in status, your refund/owe number for 2011 will be unrelated to what will happen in 2012. Make sure you meet the safe harbor requirements, enough withheld to equal the previous years tax. Joe Taxpayer tried to give you a formula regarding exemptions, here is another explanation: Each exemption is worth a percent of $3800. If you are in the 10% bracket that means it is worth $380 per year. If you got a big refund or wrote a big check, adjust accordingly. Regarding #4: getting a match is great. Make sure you leave nothing on the table. Other than that it won't make a difference which one you pick. Look at the funds available, investment types, expenses and go with the one that makes the most sense to maximize. Remember you are not getting interest on the 401Ks you are investing and getting returns. There is no way to know which investment fund will be better in 2012.",
+        "qrel_positive": false,
+        "ranks": {
+          "dense": 26,
+          "l6": 7,
+          "l12": 5
+        },
+        "scores": {
+          "l6": -2.409924030303955,
+          "l12": -0.650873064994812
+        }
+      }
+    ]
+  },
+  {
+    "query_id": "q_b7390fb1b4a9ad79",
+    "transcript": "What is the correct pronunciation of C A G R?",
+    "metrics": {
+      "dense": {
+        "recall_at_5": 1.0,
+        "mrr_at_10": 1.0,
+        "ndcg_at_10": 1.0
+      },
+      "l6": {
+        "recall_at_5": 0.0,
+        "mrr_at_10": 0.0,
+        "ndcg_at_10": 0.0
+      },
+      "l12": {
+        "recall_at_5": 0.0,
+        "mrr_at_10": 0.14285714285714285,
+        "ndcg_at_10": 0.20438239758848611
+      }
+    },
+    "documents": [
+      {
+        "record_id": "r_9eb81457b715a5e7",
+        "text": "\"I always hear people pronounce it to rhyme with \"\"bagger\"\".\"",
+        "qrel_positive": true,
+        "ranks": {
+          "dense": 1,
+          "l6": 11,
+          "l12": 7
+        },
+        "scores": {
+          "l6": -8.958661079406738,
+          "l12": -8.741751670837402
+        }
+      },
+      {
+        "record_id": "r_2f63d2cdbd9b62fb",
+        "text": "Most readers probably know that an acronym is an invented word made up of the initial letters or syllables of other words, like NASA or NATO. Fewer probably know that an initialism is a type of acronym that cannot be pronounced as a word, but must be read letter-by-letter, like FBI or UCLA. A quote from Daily Writing Tips. CAGR is an initialism, and should not be pronounced.",
+        "qrel_positive": true,
+        "ranks": {
+          "dense": 2,
+          "l6": 38,
+          "l12": 14
+        },
+        "scores": {
+          "l6": -10.662590026855469,
+          "l12": -9.675882339477539
+        }
+      },
+      {
+        "record_id": "r_1c9aac26abb74af6",
+        "text": "\">Problem is that those \"\"other guys\"\" ARE sourcing mediocre warez from China at a much lower cost. Woah. Just realised that \"\"warez\"\" is pronounced \"\"wares\"\". I've been pronouncing it \"\"where-ez\"\" in my head for about 12 years now.\"",
+        "qrel_positive": false,
+        "ranks": {
+          "dense": 3,
+          "l6": 16,
+          "l12": 19
+        },
+        "scores": {
+          "l6": -9.653533935546875,
+          "l12": -9.811408996582031
+        }
+      },
+      {
+        "record_id": "r_17b68d4fc179aa47",
+        "text": "skills and ATL, not often used in one sentence. this might sound racist, which I'm seriously not but out of experience if I hear a black person on the support line with an ATL swing in their voice, I hang up until I hear someone with an Indian accent.",
+        "qrel_positive": false,
+        "ranks": {
+          "dense": 4,
+          "l6": 72,
+          "l12": 63
+        },
+        "scores": {
+          "l6": -11.202520370483398,
+          "l12": -11.014458656311035
+        }
+      },
+      {
+        "record_id": "r_6b6f4dbc7b81ea5f",
+        "text": "\"Instead of \"\"stocks\"\" I would refer to that asset class as \"\"equity.\"\" Instead of bonds, I would refer to that asset class as \"\"fixed income.\"\" Given that more general terminology, GICs would fit into fixed income.\"",
+        "qrel_positive": false,
+        "ranks": {
+          "dense": 5,
+          "l6": 37,
+          "l12": 61
+        },
+        "scores": {
+          "l6": -10.62996768951416,
+          "l12": -11.005599975585938
+        }
+      },
+      {
+        "record_id": "r_7c6a4dc332258982",
+        "text": "\"Beta is the correct answer. It is THE measure of the risk relationship of a stock with the broad market. R squared is incorrect unless you mean something very odd by \"\"co-efficiency.\"\" A stock that goes up each time the market goes down has very low co-efficiency (negative risk as you have defined it) but very high R squared. A stock that goes the same direction as the market but twice as far (with a lot of noise) has a very low R squared but contains a lot of market risk. A stock that always goes in the same direction as the market but only a 100th as far is very safe but has a very high R squared. You can calculate beta using \"\"slope\"\" in excel or doing a regression, but the easiest thing is just to look up the beta in yahoo finance or elsewhere. You don't need to calculate it for yourself normally.\"",
+        "qrel_positive": false,
+        "ranks": {
+          "dense": 32,
+          "l6": 1,
+          "l12": 1
+        },
+        "scores": {
+          "l6": -4.957067489624023,
+          "l12": -4.02364444732666
+        }
+      },
+      {
+        "record_id": "r_00969f3c37ec6564",
+        "text": "Yes, that's correct.",
+        "qrel_positive": false,
+        "ranks": {
+          "dense": 6,
+          "l6": 2,
+          "l12": 2
+        },
+        "scores": {
+          "l6": -5.655414581298828,
+          "l12": -5.003205299377441
+        }
+      },
+      {
+        "record_id": "r_7346228999aff4ab",
+        "text": "##Vitamin C Vitamin C, also known as ascorbic acid and L-ascorbic acid, is a vitamin found in food and used as a dietary supplement. As a supplement it is used to treat and prevent scurvy. Evidence does not support use in the general population for the prevention of the common cold. It may be taken by mouth or by injection. *** ^[ [^PM](https://www.reddit.com/message/compose?to=kittens_from_space) ^| [^Exclude ^me](https://reddit.com/message/compose?to=WikiTextBot&message=Excludeme&subject=Excludeme) ^| [^Exclude ^from ^subreddit](https://np.reddit.com/r/economy/about/banned) ^| [^FAQ ^/ ^Information](https://np.reddit.com/r/WikiTextBot/wiki/index) ^] ^Downvote ^to ^remove",
+        "qrel_positive": false,
+        "ranks": {
+          "dense": 64,
+          "l6": 3,
+          "l12": 3
+        },
+        "scores": {
+          "l6": -6.634767055511475,
+          "l12": -6.601700305938721
+        }
+      },
+      {
+        "record_id": "r_251d100c07c5ab73",
+        "text": "\"The \"\"c.\"\" is probably circa, or \"\"about.\"\" Regulatory settlements is in blue because it's negative; the amount is in parentheses, which indicates a loss. WB and CB might be wholesale banking and commercial banking? BAU probably means \"\"business as usual\"\" or things that don't directly apply to the project. Incremental investment is the additional cash a company puts towards its long-term capital assets. FX is probably foreign exchange.\"",
+        "qrel_positive": false,
+        "ranks": {
+          "dense": 45,
+          "l6": 4,
+          "l12": 4
+        },
+        "scores": {
+          "l6": -6.888860702514648,
+          "l12": -7.066828727722168
+        }
+      },
+      {
+        "record_id": "r_d56531ccb29482eb",
+        "text": "Neue und gebrauchte Gerüste bei GH-Gerüsthandel kaufen --Gerüste, die in Unternehmen zum Einsatz kommen, müssen nicht neu gekauft werden, sondern können auch gebraucht noch sehr hochwertig sein. Einen Anbieter finden Interessenten unter http://www.gh-geruesthandel.de. Hier kann hochwertige Qualität gebraucht erworben werden.",
+        "qrel_positive": false,
+        "ranks": {
+          "dense": 74,
+          "l6": 5,
+          "l12": 8
+        },
+        "scores": {
+          "l6": -7.449014663696289,
+          "l12": -8.773722648620605
+        }
+      },
+      {
+        "record_id": "r_5d16086c8683a886",
+        "text": "I second the above poster, but would suggest R over SAS or SPSS if you choose to do a stat focused language. Similarly, Python may be more useful than Java. As the chopsticks said though, really anything is good just to enter the frame of thinking.",
+        "qrel_positive": false,
+        "ranks": {
+          "dense": 54,
+          "l6": 26,
+          "l12": 5
+        },
+        "scores": {
+          "l6": -10.287155151367188,
+          "l12": -8.517032623291016
+        }
+      }
+    ]
+  }
+]
