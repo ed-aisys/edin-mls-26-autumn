@@ -1,0 +1,71 @@
+{
+  "model": {
+    "repo": "Qwen/Qwen3-Reranker-0.6B",
+    "revision": "e61197ed45024b0ed8a2d74b80b4d909f1255473",
+    "files_sha256": {
+      "1_LogitScore/config.json": "73e3156450564d8a98b7e47bcf5aace0f29600828b51937da545571e84db3ff3",
+      "chat_template.jinja": "6f682162495ec5b39fd9005c01b6aa2a74669379fe967039f1e2cbbe8752369d",
+      "config.json": "d479c427a9ca5295218063d4f9aca4f297ab4ac27487cca7af42c84643d51ef0",
+      "config_sentence_transformers.json": "6a153d6696f78fd588c1c728967f0b773ea869d3c6028f151ce71ebe49140762",
+      "generation_config.json": "81051cd3f6e77013827148d0b8a6ead93f8ac390d5ab805f849199f0af6a08db",
+      "merges.txt": "8831e4f1a044471340f7c0a83d7bd71306a5b867e95fd870f74d0c5308a904d5",
+      "model.safetensors": "27cd75a405b9c1b46b59abfd88aaa209e6fed2a1972cde9b70e7659537c5e65b",
+      "modules.json": "6f13b6b4a89e577b591b2077bca40c67c26541a6740a8809267cb474f90806a9",
+      "sentence_bert_config.json": "3234ebd224d492cbe8d55d5ec80a3f408451c4db3005bafb64fe1c51c763e01e",
+      "tokenizer.json": "aeb13307a71acd8fe81861d94ad54ab689df773318809eed3cbe794b4492dae4",
+      "tokenizer_config.json": "253153d0738ceb4c668d2eff957714dd2bea0b56de772a9fdccd96cbf517e6a0",
+      "vocab.json": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910"
+    }
+  },
+  "minilm": {
+    "repo": "cross-encoder/ms-marco-MiniLM-L6-v2",
+    "revision": "233902d25c440f23af6f7d6e94d2946bac0bee0a",
+    "files_sha256": {
+      "config.json": "380e02c93f431831be65d99a4e7e5f67c133985bf2e77d9d4eba46847190bacc",
+      "model.safetensors": "821d1aa69520101d6e0737f78a042ae25b19e5cb9160701909d10434f4aeb0ae",
+      "special_tokens_map.json": "3c3507f36dff57bce437223db3b3081d1e2b52ec3e56ee55438193ecb2c94dd6",
+      "tokenizer.json": "d241a60d5e8f04cc1b2b3e9ef7a4921b27bf526d9f6050ab90f9267a1f9e5c66",
+      "tokenizer_config.json": "a5c2e5a7b1a29a0702cd28c08a399b5ecc110c263009d17f7e3b415f25905fd8",
+      "vocab.txt": "07eced375cec144d27c900241f3e339478dec958f92fddbc551f295c992038a3"
+    }
+  },
+  "split": "practice",
+  "queries": 350,
+  "full_split": true,
+  "candidate_pool": 100,
+  "arms": [
+    "dense",
+    "minilm_512",
+    "qwen_matched",
+    "qwen_native2048"
+  ],
+  "primary_qwen_arm": "qwen_matched",
+  "instruction": "Given a web search query, retrieve relevant passages that answer the query",
+  "prefix": "<|im_start|>system\nJudge whether the Document meets the requirements based on the Query and the Instruct provided. Note that the answer can only be \"yes\" or \"no\".<|im_end|>\n<|im_start|>user\n",
+  "suffix": "<|im_end|>\n<|im_start|>assistant\n<think>\n\n</think>\n\n",
+  "input_policy": {
+    "minilm_512": "Original document; only_second pair truncation at 512",
+    "qwen_matched": "Original character prefix visible under MiniLM 512-token pair; no second truncation",
+    "qwen_native2048": "Original document; 2048 Qwen tokens including template; keep question"
+  },
+  "batch_size": 8,
+  "python": "3.11.18",
+  "torch": "2.10.0+cu128",
+  "transformers": "5.0.0",
+  "device": "NVIDIA RTX A6000",
+  "qwen_dtype": "bfloat16",
+  "minilm_dtype": "float32",
+  "scoring": "Qwen last-position yes logit minus no logit; descending, ties use frozen dense order",
+  "timing_scope": "Tokenization, transfer, inference, score copy; warmed; excludes model loading and file IO",
+  "no_asr_or_elm_calls": true,
+  "no_qrels_in_scoring": true,
+  "bootstrap_seed": 20261116,
+  "bootstrap_replicates": 2000,
+  "input_sha256": {
+    "rankings": "9b7982cde774cea800cf9eedada0dd5e81b94341f451d2e93a4ee97bb8fbdb22",
+    "corpus": "2c83ce85867aa3ca100ab58698f22138bc0012d944cd22ad4305d12a25c25ac5",
+    "qrels": "063dbbaa9ca522fd6ab74df6b1f9c7c6e568d383fc56d8cb83eb8f0a75a620c8",
+    "script": "a5095af678928392380b4227cdff3430d27bfd1cdd647e5a244220b988858fa6",
+    "metrics": "330dae0c2e68d485e601bdbf0890051caa71fb358b6d26fb9e0cfc1cc2e04470"
+  }
+}

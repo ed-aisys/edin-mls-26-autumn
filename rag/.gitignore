@@ -20,3 +20,7 @@ data/rag_corpus/*
 !data/rag_corpus/README.md
 models/enc_a/*
 !models/enc_a/README.md
+
+# Downloaded rerankers/tokenizers; publish pinned manifests with experiment data.
+models/selection/
+models/qwen3-reranker-*/

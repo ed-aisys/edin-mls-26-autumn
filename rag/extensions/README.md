@@ -3,6 +3,38 @@ to place all modifications here; substantive changes may naturally involve src/.
 
 ## Evidence-selection investigation
 
+### Qwen retrieval and answer experiments
+
+[The Qwen retrieval report](../experiments/qwen06-retrieval.md) includes the
+completed 350-query 0.6B and 4B comparisons. Both runs preserve the same frozen
+top-100 candidates; the primary Qwen arm uses source-text prefixes matched to
+MiniLM's visible input. The secondary arm allows longer input. Record quality
+and latency separately.
+
+- [evaluate_qwen_reranker.py](evaluate_qwen_reranker.py): download a pinned
+  0.6B/4B checkpoint, then score frozen candidates on an allocated GPU.
+- [audit_qwen_retrieval.py](audit_qwen_retrieval.py): recompute retrieval metrics
+  from published rankings and verify query coverage and stable tie ordering.
+- [compare_qwen_sizes.py](compare_qwen_sizes.py): verify shared inputs and
+  reproduce paired size/input comparisons from the two completed runs.
+- [run_qwen_answer_experiment.py](run_qwen_answer_experiment.py): freeze dense5
+  and 4B top-5 contexts, generate/resume answers, and summarise results from the
+  unchanged public answer evaluator. The
+  [answer protocol](../experiments/qwen4-answer-evaluation.md) records the live
+  job and a labelled partial checkpoint.
+
+From the repository root, the published retrieval data supports these offline
+checks without model downloads or ELM calls:
+
+```bash
+python rag/extensions/audit_qwen_retrieval.py rag/results/qwen06-retrieval-3724137/full/summary.json --audit
+python rag/extensions/audit_qwen_retrieval.py rag/results/qwen4-retrieval-3724174/full/summary.json --audit
+python rag/extensions/compare_qwen_sizes.py
+```
+
+Downloaded weights and tokenizer caches stay outside Git. Frozen result files
+preserve their original bytes so checksum checks work across platforms.
+
 The [pilot report](../experiments/selection-pilot-results.md) records the fixed sample,
 five configurations, model revisions, input budget and evaluation limitations.
 These extensions operate on saved ASR transcripts and candidates; they do not run ASR.

@@ -1,0 +1,111 @@
+{
+  "queries": 350,
+  "completed": true,
+  "metrics": {
+    "Recall@5": 0.4213372500515358,
+    "Recall@10": 0.47959389816532677,
+    "Recall@20": 0.5785236033807462,
+    "Recall@100": 0.7698559059987632,
+    "MRR@10": 0.4887460317460317,
+    "NDCG@10": 0.4204605115536775
+  },
+  "counts": {
+    "additional_positive_evidence_at_6_to_100": 197,
+    "no_positive_at_5_but_some_at_100": 101,
+    "no_positive_at_100": 42,
+    "all_positive_at_5": 95
+  },
+  "saved_top5_comparison": [
+    {
+      "query_id": "q_7e9a0f2716c017d2",
+      "same_ordered_top5": true,
+      "saved_top5": [
+        "r_53736721cc137da0",
+        "r_e5b65dad238e9ce2",
+        "r_08e4c7b8ff7f8a35",
+        "r_d3d616d42b2a83b4",
+        "r_0f6650dd9e3bc5cb"
+      ],
+      "current_top5": [
+        "r_53736721cc137da0",
+        "r_e5b65dad238e9ce2",
+        "r_08e4c7b8ff7f8a35",
+        "r_d3d616d42b2a83b4",
+        "r_0f6650dd9e3bc5cb"
+      ]
+    },
+    {
+      "query_id": "q_ea0be00eda6ea088",
+      "same_ordered_top5": true,
+      "saved_top5": [
+        "r_61e09fab82cd453e",
+        "r_ec7485f03d843ac6",
+        "r_813356907759376d",
+        "r_9704de10515c33a9",
+        "r_ced0f0a1cac151f1"
+      ],
+      "current_top5": [
+        "r_61e09fab82cd453e",
+        "r_ec7485f03d843ac6",
+        "r_813356907759376d",
+        "r_9704de10515c33a9",
+        "r_ced0f0a1cac151f1"
+      ]
+    },
+    {
+      "query_id": "q_9cd791a970ab648f",
+      "same_ordered_top5": true,
+      "saved_top5": [
+        "r_52e8f77b3a20286f",
+        "r_3da43f755ff1fd0f",
+        "r_a9f492a705972ea7",
+        "r_b6c5fdc34686781b",
+        "r_488964109a38437e"
+      ],
+      "current_top5": [
+        "r_52e8f77b3a20286f",
+        "r_3da43f755ff1fd0f",
+        "r_a9f492a705972ea7",
+        "r_b6c5fdc34686781b",
+        "r_488964109a38437e"
+      ]
+    },
+    {
+      "query_id": "q_20e98c45013f6cc6",
+      "same_ordered_top5": true,
+      "saved_top5": [
+        "r_11484cb7a7bae2a8",
+        "r_b2729fcacb8d7dae",
+        "r_3b8c9aa5476d8760",
+        "r_d3bb19372bf2d1f2",
+        "r_2287082583ce4062"
+      ],
+      "current_top5": [
+        "r_11484cb7a7bae2a8",
+        "r_b2729fcacb8d7dae",
+        "r_3b8c9aa5476d8760",
+        "r_d3bb19372bf2d1f2",
+        "r_2287082583ce4062"
+      ]
+    },
+    {
+      "query_id": "q_e3f1cef46917a2a5",
+      "same_ordered_top5": true,
+      "saved_top5": [
+        "r_e8b594dcf8f60067",
+        "r_16fe3af4a382d30b",
+        "r_a0fd4c5234c35253",
+        "r_8513aaf4fbfd30bf",
+        "r_0854b02733dd8569"
+      ],
+      "current_top5": [
+        "r_e8b594dcf8f60067",
+        "r_16fe3af4a382d30b",
+        "r_a0fd4c5234c35253",
+        "r_8513aaf4fbfd30bf",
+        "r_0854b02733dd8569"
+      ]
+    }
+  ],
+  "interpretation": "These counts describe positive qrels, not human-assessed evidence sufficiency"
+}

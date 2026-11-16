@@ -1,0 +1,12 @@
+{
+  "toy_batched_logits": [
+    2.5,
+    -9.65625
+  ],
+  "toy_single_logits": [
+    2.5,
+    -9.875
+  ],
+  "positive_above_negative": true,
+  "limitation": "Implementation sanity only, not domain accuracy validation"
+}

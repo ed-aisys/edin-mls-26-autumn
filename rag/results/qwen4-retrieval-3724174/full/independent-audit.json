@@ -1,0 +1,12 @@
+{
+  "passed": true,
+  "queries": 350,
+  "unique_candidates_each": 100,
+  "frozen_transcripts_and_dense_rankings_match": true,
+  "all_metrics_recomputed_from_saved_rankings": true,
+  "stable_tie_order_verified": true,
+  "qwen_matched_native_same_top5_order": 223,
+  "matched_shortened_documents": 3272,
+  "native_truncated_documents": 4,
+  "matched_truncated_again_documents": 0
+}

@@ -1,1 +1,12 @@
 rag-assets.zip filter=lfs diff=lfs merge=lfs -text
+
+# Preserve hashes in frozen experiment evidence across Windows/Linux checkouts.
+rag/results/qwen06-retrieval-3724137/** -text
+rag/results/qwen4-retrieval-3724174/** -text
+rag/results/qwen4-answers-3724290/** -text
+rag/results/diagnostic-retrieval-3713758/rankings.jsonl -text
+
+# Keep the new reproducibility entry points directly runnable on ICF.
+rag/extensions/*qwen*.py text eol=lf
+rag/scripts/icf_qwen*.sbatch text eol=lf
+rag/tests/test_qwen*.py text eol=lf
