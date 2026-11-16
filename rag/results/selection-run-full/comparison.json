@@ -6474,7 +6474,7 @@
     "rag/results/selection-run-full/answers/judge_json_rerank_budget/answer_judge_per_query.jsonl": "10cd71c60ff019e96a54cf2246dacc39625e1d948dcf3c9f95452c459af55dbd"
   },
   "limitations": [
-    "Exploratory practice sample; single generation and single judge per answer",
+    "Practice split evaluation (350 queries); single generation and single judge per answer",
     "Query bootstrap excludes repeated-generation/judge uncertainty",
     "Timing is single-pass CPU/API observation; no steady-state speedup claim",
     "With reused scores, selection-plus-generation is an attributed sum; stages may come from different nodes/runs",

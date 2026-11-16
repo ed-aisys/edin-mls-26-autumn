@@ -94,7 +94,8 @@ The ASR baseline is the supplied skeleton with empty blanks and PyTorch fallback
 (\texttt{./run.sh --cuda none}). We implemented all four kernel groups, verified
 each with \texttt{make test1}--\texttt{make test4}, and checked the full model with
 \texttt{./run.sh} (all CUDA groups). For RAG, we established a practice-split
-retrieval baseline (350 queries), ran a controlled practice pilot, and completed a
+retrieval baseline and a complete five-arm practice experiment (350 queries),
+following a controlled pilot, and completed a
 held-out \textbf{dev validation} (125 queries, five evidence-selection
 configurations) without tuning on dev after observing scores.
 
@@ -202,6 +203,10 @@ latency is load-dependent, so timing/cost results are interpreted as partial.
 \label{sec:results}
 
 \subsection{RAG: practice and held-out dev evidence selection}
+The practice retrieval baseline has Recall@5 of 0.421 versus Recall@100 of 0.770
+(350 queries; \texttt{baseline-3713067.md}). This gap indicates that relevant
+documents often occur below the initial evidence cutoff, motivating evidence
+selection from a deeper candidate pool under a limited context budget.
 Table~\ref{tab:rag-dev} puts the completed practice study beside held-out dev,
 using the same enc\_a sentence embeddings~\cite{reimers2019sbert} and
 ELM EuroLLM generator~\cite{martins2024eurollm}. Saved transcripts isolate
@@ -301,7 +306,8 @@ All four task suites report \textbf{ALL PASS}. All-CUDA, Task-1-only and
 PyTorch-only runs reproduce \emph{Concord returned to its place amidst the tents.}
 with the harness reporting 100.0\% word accuracy on this reference clip.
 Their measured transcription times are respectively 1986.1, 483.1 and 521.3~ms.
-Thus \emph{enabling all custom CUDA groups is slower than enabling only Task 1}.
+Thus all-CUDA execution takes about $3.8\times$ as long as the PyTorch baseline
+($1986.1/521.3$), and is also slower than enabling only Task 1.
 The all-CUDA profile attributes 83.8\% to \texttt{linear} and 15.4\% to
 \texttt{attention}; encoder attention tests report 8.641~ms and 1333~GFLOP/s.
 The GEMM gap below identifies a concrete bottleneck rather than assuming that
@@ -341,10 +347,11 @@ not measured DRAM transactions; cache hits can reduce actual DRAM traffic.
 \begin{quote}
 Your kernel reaches only a fraction of cuBLAS's speed on the large cases. Name one thing cuBLAS does differently that explains part of the gap. You do not have to implement it.
 \end{quote}
-cuBLAS uses more sophisticated hierarchical tiling and register-level reuse,
-computing multiple outputs per thread rather than our single-output
-$16\times16$ shared-memory tile. This increases reuse and arithmetic intensity;
-library implementations can also dispatch architecture-specific kernels.
+A plausible explanation is that cuBLAS likely uses more sophisticated
+hierarchical tiling and register-level reuse, computing multiple outputs per
+thread rather than our single-output $16\times16$ shared-memory tile.
+Such strategies increase reuse and arithmetic intensity; however, cuBLAS is
+closed-source and we did not inspect the particular kernel dispatched here.
 Our encoder \texttt{q\_proj} reaches 2967~GFLOP/s versus cuBLAS's 20305;
 \texttt{fc1 + GELU} reaches 2870 versus 21346~GFLOP/s.
 The comparison is not a pure epilogue match (our \texttt{fc1} fuses GELU),
@@ -377,7 +384,8 @@ cost but benefits from tiled/online-softmax execution. Key implementation lesson
 include correct index arithmetic for fused RoPE, warp/block synchronisation for
 reductions and softmax, and cross-lane probability broadcasting in Task~4.
 Correct custom GEMM is nevertheless substantially slower than cuBLAS in the
-measured large shapes, so all-CUDA execution is not an end-to-end acceleration.
+measured large shapes. End to end, all-CUDA execution takes 1986.1~ms versus
+521.3~ms for the PyTorch baseline: about $3.8\times$ the latency, not an acceleration.
 
 \textbf{RAG.} Increasing context changes recall and input cost, but every reported
 paired answer-score interval crosses zero. The negative dev budget-reranking

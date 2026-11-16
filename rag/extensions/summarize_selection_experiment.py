@@ -136,7 +136,7 @@ def main():
               "judge_directory_prefix": args.judge_prefix,
               "reranking_cost_provenance": config.get("reused_reranking"),
               "input_files_sha256": hashes,
-              "limitations": [("Exploratory practice sample" if split == "practice" else "Held-out dev validation")
+              "limitations": [(f"Practice split evaluation ({len(coverage)} queries)" if split == "practice" else "Held-out dev validation")
                                + "; single generation and single judge per answer",
                               "Query bootstrap excludes repeated-generation/judge uncertainty",
                               "Timing is single-pass CPU/API observation; no steady-state speedup claim",

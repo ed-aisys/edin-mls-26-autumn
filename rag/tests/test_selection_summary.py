@@ -58,7 +58,7 @@ class SummaryTests(unittest.TestCase):
                 result = json.loads(output.read_text())
                 self.assertTrue(result["judge_available"])
                 self.assertEqual(result["split"], split)
-                expected = "Exploratory practice" if split == "practice" else "Held-out dev"
+                expected = "Practice split evaluation (2 queries)" if split == "practice" else "Held-out dev"
                 self.assertTrue(result["limitations"][0].startswith(expected))
                 self.assertEqual(result["per_arm"]["dense5"]["median_generation_ms"], 20)
                 self.assertEqual(result["paired"]["dense20 minus dense5"]
