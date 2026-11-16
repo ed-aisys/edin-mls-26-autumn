@@ -1,0 +1,9 @@
+{
+  "completed": true,
+  "generated": 700,
+  "expected": 700,
+  "per_arm": {
+    "dense5": 350,
+    "qwen4_matched5": 350
+  }
+}

@@ -1,0 +1,79 @@
+{
+  "queries": 350,
+  "completed": true,
+  "arms": {
+    "dense5": {
+      "mean_correctness": 1.4257142857142857,
+      "mean_grounding": 1.4485714285714286,
+      "mean_completeness": 1.1742857142857144,
+      "mean_normalised_answer_score": 0.3373809523809524,
+      "mean_local_input_tokens": 1289.7114285714285,
+      "server_usage_coverage": 350,
+      "mean_server_input_tokens": 1289.7114285714285,
+      "mean_generation_ms": 4755.37230460705,
+      "median_generation_ms": 4336.427581554744,
+      "mean_attributed_selection_plus_generation_ms": 4757.312715891749
+    },
+    "qwen4_matched5": {
+      "mean_correctness": 1.5857142857142856,
+      "mean_grounding": 1.6485714285714286,
+      "mean_completeness": 1.3485714285714285,
+      "mean_normalised_answer_score": 0.381904761904762,
+      "mean_local_input_tokens": 1267.3085714285714,
+      "server_usage_coverage": 350,
+      "mean_server_input_tokens": 1267.3085714285714,
+      "mean_generation_ms": 5033.504413075944,
+      "median_generation_ms": 5034.821362933144,
+      "mean_attributed_selection_plus_generation_ms": 10778.9643490075
+    }
+  },
+  "paired_qwen4_minus_dense": {
+    "correctness": {
+      "mean_delta": 0.16,
+      "query_bootstrap_95pct_interval": [
+        0.02857142857142857,
+        0.29714285714285715
+      ],
+      "improved": 81,
+      "worse": 56,
+      "tied": 213
+    },
+    "grounding": {
+      "mean_delta": 0.2,
+      "query_bootstrap_95pct_interval": [
+        0.05142857142857143,
+        0.3514285714285714
+      ],
+      "improved": 102,
+      "worse": 74,
+      "tied": 174
+    },
+    "completeness": {
+      "mean_delta": 0.1742857142857143,
+      "query_bootstrap_95pct_interval": [
+        0.04285714285714286,
+        0.30857142857142855
+      ],
+      "improved": 107,
+      "worse": 72,
+      "tied": 171
+    },
+    "normalised_answer_score": {
+      "mean_delta": 0.04452380952380953,
+      "query_bootstrap_95pct_interval": [
+        0.011190476190476192,
+        0.07880952380952382
+      ],
+      "improved": 115,
+      "worse": 80,
+      "tied": 155
+    }
+  },
+  "limitations": [
+    "Practice exploratory comparison",
+    "One generation and one judge call per answer",
+    "Same model generates and judges; public qrel evidence is not exhaustive",
+    "Query bootstrap excludes generation/judge rerun uncertainty",
+    "Attributed rerank cost is not measured end-to-end latency"
+  ]
+}

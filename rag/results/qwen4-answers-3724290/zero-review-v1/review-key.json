@@ -1,0 +1,866 @@
+[
+  {
+    "label": "Q01-A",
+    "query_id": "q_e302092a98b3897a",
+    "arm": "qwen4_matched5",
+    "review_stratum": "zero_none",
+    "original_judge": {
+      "query_id": "q_e302092a98b3897a",
+      "split": "practice",
+      "question_mode": "transcript",
+      "correctness": 0.0,
+      "grounding": 0.0,
+      "completeness": 0.0,
+      "normalised_answer_score": 0.0,
+      "judge_explanations": [
+        "The candidate answer discusses trailing limit orders and their behavior, but this information is not present in the provided gold evidence. The gold evidence only mentions that modifying an existing order is treated as a Cancel/Replace Order, which may affect priority position, but it does not address how to adjust the price in a limit order. Therefore, the candidate answer is not grounded in the evidence and fails to answer the question."
+      ]
+    }
+  },
+  {
+    "label": "Q01-B",
+    "query_id": "q_e302092a98b3897a",
+    "arm": "dense5",
+    "review_stratum": "zero_none",
+    "original_judge": {
+      "query_id": "q_e302092a98b3897a",
+      "split": "practice",
+      "question_mode": "transcript",
+      "correctness": 0.0,
+      "grounding": 0.0,
+      "completeness": 0.0,
+      "normalised_answer_score": 0.0,
+      "judge_explanations": [
+        "The candidate answer does not accurately reflect the information provided in the gold evidence. The gold evidence states that modifying an existing order, including a GTC (Good 'Til Canceled) order, is treated as a Cancel/Replace Order. This means that the original order is canceled and replaced with a new one, which may result in losing the time priority position. The candidate answer incorrectly suggests that a new limit order can be placed with the desired price, which is not supported by the gold evidence. Additionally, the candidate answer does not mention the potential loss of time priority position, which is an important point from the gold evidence."
+      ]
+    }
+  },
+  {
+    "label": "Q02-A",
+    "query_id": "q_1bffc3d815eb1df8",
+    "arm": "qwen4_matched5",
+    "review_stratum": "zero_none",
+    "original_judge": {
+      "query_id": "q_1bffc3d815eb1df8",
+      "split": "practice",
+      "question_mode": "transcript",
+      "correctness": 0.0,
+      "grounding": 0.0,
+      "completeness": 0.0,
+      "normalised_answer_score": 0.0,
+      "judge_explanations": [
+        "The candidate answer does not accurately reflect the information provided in the gold evidence. The gold evidence emphasizes that company payment cards are strictly for business use and not for personal expenses, even if the intent is to re-pay in full. The candidate answer incorrectly states that the cardholder provides a personal guarantee and is liable for charges, which contradicts the evidence that the company is responsible for the charges made on the card. Additionally, the candidate answer does not mention the importance of segregating business and personal expenses, which is a key point highlighted in the gold evidence."
+      ]
+    }
+  },
+  {
+    "label": "Q02-B",
+    "query_id": "q_1bffc3d815eb1df8",
+    "arm": "dense5",
+    "review_stratum": "zero_none",
+    "original_judge": {
+      "query_id": "q_1bffc3d815eb1df8",
+      "split": "practice",
+      "question_mode": "transcript",
+      "correctness": 0.0,
+      "grounding": 0.0,
+      "completeness": 0.0,
+      "normalised_answer_score": 0.0,
+      "judge_explanations": [
+        "The candidate answer contains several inaccuracies and unsupported claims. It incorrectly states that the revenue for credit card companies comes from transaction fees charged to the business that accepts the card, which is not mentioned in the gold evidence. Additionally, the candidate answer does not address the key point from the gold evidence that the company's employer determines the card's appropriate use policy, not the credit card provider. The candidate answer also introduces the concept of 'limitation of liability' and 'monetary risk' without any support from the gold evidence."
+      ]
+    }
+  },
+  {
+    "label": "Q03-A",
+    "query_id": "q_071078c6a43f6ed1",
+    "arm": "qwen4_matched5",
+    "review_stratum": "zero_none",
+    "original_judge": {
+      "query_id": "q_071078c6a43f6ed1",
+      "split": "practice",
+      "question_mode": "transcript",
+      "correctness": 0.0,
+      "grounding": 0.0,
+      "completeness": 0.0,
+      "normalised_answer_score": 0.0,
+      "judge_explanations": [
+        "The candidate answer discusses index and accumulation tracker funds, but the provided gold evidence is completely unrelated to this topic. The evidence only mentions dividend reinvestment and dividend payments, which are not relevant to distinguishing index and accumulation tracker funds. Therefore, the candidate answer is incorrect, unsupported by the evidence, and incomplete."
+      ]
+    }
+  },
+  {
+    "label": "Q03-B",
+    "query_id": "q_071078c6a43f6ed1",
+    "arm": "dense5",
+    "review_stratum": "zero_none",
+    "original_judge": {
+      "query_id": "q_071078c6a43f6ed1",
+      "split": "practice",
+      "question_mode": "transcript",
+      "correctness": 0.0,
+      "grounding": 0.0,
+      "completeness": 0.0,
+      "normalised_answer_score": 0.0,
+      "judge_explanations": [
+        "The candidate answer discusses various factors that distinguish index and accumulation tracker funds, such as expense ratio, tracking error, demand/supply, liquidity, account requirements, fees, and index tracking. However, the provided gold evidence does not contain any information related to these topics. The gold evidence only mentions the reinvestment of dividends in the context of hypothetical growth calculations, which is not relevant to the question about index and accumulation tracker funds. Therefore, the candidate answer is not grounded in the given evidence and fails to address the question accurately."
+      ]
+    }
+  },
+  {
+    "label": "Q04-A",
+    "query_id": "q_365103453d0e9a96",
+    "arm": "qwen4_matched5",
+    "review_stratum": "zero_none",
+    "original_judge": {
+      "query_id": "q_365103453d0e9a96",
+      "split": "practice",
+      "question_mode": "transcript",
+      "correctness": 0.0,
+      "grounding": 0.0,
+      "completeness": 0.0,
+      "normalised_answer_score": 0.0,
+      "judge_explanations": [
+        "The candidate answer does not accurately reflect the information provided in the gold evidence. The evidence suggests that the individual should first verify their credit products and report to credit bureaus, and if issues persist, they should contact the credit bureaus directly or visit an Experian office with documentation. The candidate answer, however, focuses on steps like putting a fraud alert, pulling credit reports annually, disputing invalid debts, and considering a security freeze, which are not mentioned in the gold evidence. Additionally, the candidate answer does not address the specific advice given in the evidence about verifying credit products and contacting the bureaus directly."
+      ]
+    }
+  },
+  {
+    "label": "Q04-B",
+    "query_id": "q_365103453d0e9a96",
+    "arm": "dense5",
+    "review_stratum": "zero_none",
+    "original_judge": {
+      "query_id": "q_365103453d0e9a96",
+      "split": "practice",
+      "question_mode": "transcript",
+      "correctness": 0.0,
+      "grounding": 0.0,
+      "completeness": 0.0,
+      "normalised_answer_score": 0.0,
+      "judge_explanations": [
+        "The candidate answer contains several inaccuracies and unsupported claims compared to the gold evidence. For example, it incorrectly states that you should wait six months if your credit history is less than six months old, while the evidence only mentions waiting if it's less than one year. It also suggests contacting the credit bureaus directly by phone, which the evidence explicitly advises against. Additionally, the answer mentions sending a copy of your social security card, which is not supported by the evidence. The evidence only mentions using other credit bureaus or going to an Experian office in person with documentation."
+      ]
+    }
+  },
+  {
+    "label": "Q05-A",
+    "query_id": "q_32f3c54de6e72487",
+    "arm": "qwen4_matched5",
+    "review_stratum": "zero_none",
+    "original_judge": {
+      "query_id": "q_32f3c54de6e72487",
+      "split": "practice",
+      "question_mode": "transcript",
+      "correctness": 0.0,
+      "grounding": 0.0,
+      "completeness": 0.0,
+      "normalised_answer_score": 0.0,
+      "judge_explanations": [
+        "The candidate answer does not align with the provided gold evidence. The gold evidence suggests that combining negotiations for trade-in and new car purchase should be avoided, as dealers can trade off one against the other to increase their profit. However, the candidate answer does not mention this key point and instead provides a different set of negotiation strategies that are not supported by the gold evidence."
+      ]
+    }
+  },
+  {
+    "label": "Q05-B",
+    "query_id": "q_32f3c54de6e72487",
+    "arm": "dense5",
+    "review_stratum": "zero_none",
+    "original_judge": {
+      "query_id": "q_32f3c54de6e72487",
+      "split": "practice",
+      "question_mode": "transcript",
+      "correctness": 2.0,
+      "grounding": 1.0,
+      "completeness": 1.0,
+      "normalised_answer_score": 0.3333333333333333,
+      "judge_explanations": [
+        "The candidate answer provides some relevant negotiation strategies, but it is not fully grounded in the provided gold evidence. The gold evidence focuses on the importance of separating the negotiations for the trade-in and the purchase of a new car, as dealers can trade off one against the other to increase their profit. The candidate answer does not mention this key point, which is an important omission. Additionally, the candidate answer includes strategies that are not directly supported by the gold evidence, such as third-party valuation and avoiding advertising maximum terms. While the answer covers some important points, it is incomplete and lacks the specific guidance provided in the gold evidence."
+      ]
+    }
+  },
+  {
+    "label": "Q06-A",
+    "query_id": "q_3441588ec9334471",
+    "arm": "dense5",
+    "review_stratum": "zero_none",
+    "original_judge": {
+      "query_id": "q_3441588ec9334471",
+      "split": "practice",
+      "question_mode": "transcript",
+      "correctness": 0.0,
+      "grounding": 0.0,
+      "completeness": 0.0,
+      "normalised_answer_score": 0.0,
+      "judge_explanations": [
+        "The candidate answer does not address the question of patenting or selling a trading strategy. Instead, it discusses the importance of expectancy per trade, win rate, and win size to loss size ratio, as well as the potential benefits of sharing trading results publicly. These points are not relevant to the question of patenting or selling a trading strategy, and the answer does not provide any substantive information on the topic."
+      ]
+    }
+  },
+  {
+    "label": "Q06-B",
+    "query_id": "q_3441588ec9334471",
+    "arm": "qwen4_matched5",
+    "review_stratum": "zero_none",
+    "original_judge": {
+      "query_id": "q_3441588ec9334471",
+      "split": "practice",
+      "question_mode": "transcript",
+      "correctness": 0.0,
+      "grounding": 0.0,
+      "completeness": 0.0,
+      "normalised_answer_score": 0.0,
+      "judge_explanations": [
+        "The candidate answer does not align with the provided gold evidence. The gold evidence focuses on the importance of expectancy per trade and the need to actively trade a profitable system, rather than discussing ideas for patenting or selling a trading strategy. The candidate answer introduces concepts not present in the gold evidence, such as patenting, selling strategies, and using NDAs, which are not supported by the given evidence."
+      ]
+    }
+  },
+  {
+    "label": "Q07-A",
+    "query_id": "q_70395695d015396f",
+    "arm": "dense5",
+    "review_stratum": "zero_partial",
+    "original_judge": {
+      "query_id": "q_70395695d015396f",
+      "split": "practice",
+      "question_mode": "transcript",
+      "correctness": 0.0,
+      "grounding": 0.0,
+      "completeness": 0.0,
+      "normalised_answer_score": 0.0,
+      "judge_explanations": [
+        "The candidate answer incorrectly states that short selling is possible in a regular non-margin account, contradicting the gold evidence which clearly states that short sales occur only through a margin account in the US and Canada. The candidate answer also introduces unsupported claims about regulations and requirements, which are not mentioned in the gold evidence. The gold evidence does not support the candidate's assertion about short selling being possible in a non-margin account."
+      ]
+    }
+  },
+  {
+    "label": "Q07-B",
+    "query_id": "q_70395695d015396f",
+    "arm": "qwen4_matched5",
+    "review_stratum": "zero_partial",
+    "original_judge": {
+      "query_id": "q_70395695d015396f",
+      "split": "practice",
+      "question_mode": "transcript",
+      "correctness": 0.0,
+      "grounding": 0.0,
+      "completeness": 0.0,
+      "normalised_answer_score": 0.0,
+      "judge_explanations": [
+        "The candidate answer incorrectly states that it is possible to short sell securities in a regular non-margin account, which contradicts the gold evidence. The gold evidence clearly states that short sales occur only through a margin account, and shares held in a cash account are not available for shorting. The candidate answer also makes unsupported claims about earning interest on short proceeds and using the proceeds for another transaction, which are not mentioned in the gold evidence."
+      ]
+    }
+  },
+  {
+    "label": "Q08-A",
+    "query_id": "q_6a8ec9fb4e2ddd91",
+    "arm": "qwen4_matched5",
+    "review_stratum": "zero_partial",
+    "original_judge": {
+      "query_id": "q_6a8ec9fb4e2ddd91",
+      "split": "practice",
+      "question_mode": "transcript",
+      "correctness": 0.0,
+      "grounding": 0.0,
+      "completeness": 0.0,
+      "normalised_answer_score": 0.0,
+      "judge_explanations": [
+        "The candidate answer discusses tax implications of residency, but the gold evidence provided is about residency for tuition purposes, not tax purposes. The evidence does not support the tax-related claims made in the candidate answer."
+      ]
+    }
+  },
+  {
+    "label": "Q08-B",
+    "query_id": "q_6a8ec9fb4e2ddd91",
+    "arm": "dense5",
+    "review_stratum": "zero_partial",
+    "original_judge": {
+      "query_id": "q_6a8ec9fb4e2ddd91",
+      "split": "practice",
+      "question_mode": "transcript",
+      "correctness": 0.0,
+      "grounding": 0.0,
+      "completeness": 0.0,
+      "normalised_answer_score": 0.0,
+      "judge_explanations": [
+        "The candidate answer contains several unsupported claims not present in the gold evidence. For example, it mentions Sweden and physicians, which are not mentioned in the evidence. Additionally, the answer discusses Oregon tax residency rules in detail, but the evidence only provides a brief overview of Oregon's tax residency rules and does not cover the other examples provided in the candidate answer."
+      ]
+    }
+  },
+  {
+    "label": "Q09-A",
+    "query_id": "q_3e6c648684d79f73",
+    "arm": "dense5",
+    "review_stratum": "zero_partial",
+    "original_judge": {
+      "query_id": "q_3e6c648684d79f73",
+      "split": "practice",
+      "question_mode": "transcript",
+      "correctness": 0.0,
+      "grounding": 0.0,
+      "completeness": 0.0,
+      "normalised_answer_score": 0.0,
+      "judge_explanations": [
+        "The candidate answer correctly identifies that the gold evidence does not provide a direct answer to the question. However, the evidence does contain some relevant information about IPO trading times, even though it does not explicitly state the exact time when a company's stock will be available for trading on the secondary market. The candidate answer could have acknowledged this partial information and provided a more nuanced response."
+      ]
+    }
+  },
+  {
+    "label": "Q09-B",
+    "query_id": "q_3e6c648684d79f73",
+    "arm": "qwen4_matched5",
+    "review_stratum": "zero_partial",
+    "original_judge": {
+      "query_id": "q_3e6c648684d79f73",
+      "split": "practice",
+      "question_mode": "transcript",
+      "correctness": 0.0,
+      "grounding": 0.0,
+      "completeness": 0.0,
+      "normalised_answer_score": 0.0,
+      "judge_explanations": [
+        "The candidate answer does not address the specific question about finding the time when a particular company's stock will be available for trading on the secondary market. The provided evidence also does not contain relevant information to answer the question. The candidate answer instead discusses general concepts about primary and secondary markets, which are not directly related to the question."
+      ]
+    }
+  },
+  {
+    "label": "Q10-A",
+    "query_id": "q_888759d4b14e5e7a",
+    "arm": "dense5",
+    "review_stratum": "zero_partial",
+    "original_judge": {
+      "query_id": "q_888759d4b14e5e7a",
+      "split": "practice",
+      "question_mode": "transcript",
+      "correctness": 2.0,
+      "grounding": 2.0,
+      "completeness": 2.0,
+      "normalised_answer_score": 0.5,
+      "judge_explanations": [
+        "The candidate answer partially addresses the question but contains some unsupported claims and omits key points from the evidence. The answer correctly notes that leasing might be better if you want a new car every 2-3 years (Document 1) and buying is better if you plan to keep the car for a long time (Documents 2, 4, 5, 7, 8). However, it incorrectly suggests that buying a used car might be more cost-effective for low-mileage drivers (15 miles/day), which is not explicitly supported by the evidence. The answer also fails to mention the tax advantages of leasing (Document 2) and the importance of considering maintenance costs (Document 9)."
+      ]
+    }
+  },
+  {
+    "label": "Q10-B",
+    "query_id": "q_888759d4b14e5e7a",
+    "arm": "qwen4_matched5",
+    "review_stratum": "zero_partial",
+    "original_judge": {
+      "query_id": "q_888759d4b14e5e7a",
+      "split": "practice",
+      "question_mode": "transcript",
+      "correctness": 0.0,
+      "grounding": 0.0,
+      "completeness": 0.0,
+      "normalised_answer_score": 0.0,
+      "judge_explanations": [
+        "The candidate answer contains several inaccuracies and misrepresentations of the gold evidence. It incorrectly states that leasing is not the best option for low mileage drivers, while the evidence actually suggests leasing can be better for those who want new cars every 2-3 years. The answer also overstates the case against leasing for long-term ownership, when the evidence shows leasing can be advantageous for frequent car upgrades. Additionally, the answer misrepresents the tax implications of leasing, which are not discussed in the evidence. Overall, the answer is not grounded in the provided evidence and contains significant factual errors."
+      ]
+    }
+  },
+  {
+    "label": "Q11-A",
+    "query_id": "q_90bbdbd2ad85463a",
+    "arm": "qwen4_matched5",
+    "review_stratum": "zero_partial",
+    "original_judge": {
+      "query_id": "q_90bbdbd2ad85463a",
+      "split": "practice",
+      "question_mode": "transcript",
+      "correctness": 0.0,
+      "grounding": 0.0,
+      "completeness": 0.0,
+      "normalised_answer_score": 0.0,
+      "judge_explanations": [
+        "The candidate answer incorrectly states that inflation is the primary way to measure a currency's valuation or devaluation relative to itself, contradicting the gold evidence which states that inflation is the measure of change in the value of a currency in relation to itself. The candidate answer also introduces the Big Mac Index as a way to measure currency valuation, which is not mentioned in the gold evidence. Additionally, the candidate answer does not address the concept of Special Drawing Rights (SDR) as a potential way to measure currency valuation, which is mentioned in the gold evidence."
+      ]
+    }
+  },
+  {
+    "label": "Q11-B",
+    "query_id": "q_90bbdbd2ad85463a",
+    "arm": "dense5",
+    "review_stratum": "zero_partial",
+    "original_judge": {
+      "query_id": "q_90bbdbd2ad85463a",
+      "split": "practice",
+      "question_mode": "transcript",
+      "correctness": 2.0,
+      "grounding": 2.0,
+      "completeness": 1.0,
+      "normalised_answer_score": 0.4166666666666667,
+      "judge_explanations": [
+        "The candidate answer correctly identifies inflation as the measure of a currency's change in value relative to itself, which is supported by the gold evidence. However, the answer omits the mention of commodities like oil and gold as indicators of currency value change, which is present in the gold evidence. Additionally, the candidate answer introduces the concept of the Special Drawing Rights (SDR) as a potential measure, which is not mentioned in the gold evidence. While the core idea of using inflation is correct, the answer is incomplete and includes some unsupported claims."
+      ]
+    }
+  },
+  {
+    "label": "Q12-A",
+    "query_id": "q_097f349a793ff892",
+    "arm": "qwen4_matched5",
+    "review_stratum": "zero_partial",
+    "original_judge": {
+      "query_id": "q_097f349a793ff892",
+      "split": "practice",
+      "question_mode": "transcript",
+      "correctness": 0.0,
+      "grounding": 0.0,
+      "completeness": 0.0,
+      "normalised_answer_score": 0.0,
+      "judge_explanations": [
+        "The candidate answer contains several factual errors and unsupported claims. It incorrectly states that fuel prices are artificially maintained at a certain level, which contradicts the gold evidence. The evidence clearly explains that fuel prices are not artificially maintained but are influenced by market fluctuations and the need to maintain a buffer profit. Additionally, the candidate answer mentions factors like increasing demand from China and economic factors influencing fuel prices, which are not directly supported by the provided evidence. The gold evidence focuses on the role of refining companies, market fluctuations, and regulatory mechanisms in determining fuel prices, but the candidate answer introduces unsupported claims and misrepresents the evidence."
+      ]
+    }
+  },
+  {
+    "label": "Q12-B",
+    "query_id": "q_097f349a793ff892",
+    "arm": "dense5",
+    "review_stratum": "zero_partial",
+    "original_judge": {
+      "query_id": "q_097f349a793ff892",
+      "split": "practice",
+      "question_mode": "transcript",
+      "correctness": 0.0,
+      "grounding": 0.0,
+      "completeness": 0.0,
+      "normalised_answer_score": 0.0,
+      "judge_explanations": [
+        "The candidate answer contains several factual errors and contradictions when compared to the gold evidence. The gold evidence explicitly states that fuel prices are not artificially maintained at a level, but rather fluctuate based on market conditions. The candidate answer incorrectly claims that fuel prices are regulated to maintain a certain level of profit for producers. Additionally, the candidate answer mentions a 'grey market' and 'distribution channels' which are not supported by the gold evidence. The gold evidence also does not mention Australia specifically, but the candidate answer attempts to apply the general factors to Australia, which is not supported by the evidence."
+      ]
+    }
+  },
+  {
+    "label": "Q13-A",
+    "query_id": "q_097d0bdeed34e8e9",
+    "arm": "dense5",
+    "review_stratum": "zero_full",
+    "original_judge": {
+      "query_id": "q_097d0bdeed34e8e9",
+      "split": "practice",
+      "question_mode": "transcript",
+      "correctness": 2.0,
+      "grounding": 2.0,
+      "completeness": 2.0,
+      "normalised_answer_score": 0.5,
+      "judge_explanations": [
+        "The candidate answer correctly identifies that the dividend represents ownership in the credit union and the APY is a calculated figure for comparison purposes. However, it makes an unsupported claim that the account is 'structured similarly to a mutual fund', which is not mentioned in the gold evidence. The explanation of the APY is also incomplete, as it does not mention that the APY is typically a slightly different number than the interest rate to reflect compounding, as stated in the gold evidence."
+      ]
+    }
+  },
+  {
+    "label": "Q13-B",
+    "query_id": "q_097d0bdeed34e8e9",
+    "arm": "qwen4_matched5",
+    "review_stratum": "zero_full",
+    "original_judge": {
+      "query_id": "q_097d0bdeed34e8e9",
+      "split": "practice",
+      "question_mode": "transcript",
+      "correctness": 0.0,
+      "grounding": 0.0,
+      "completeness": 0.0,
+      "normalised_answer_score": 0.0,
+      "judge_explanations": [
+        "The candidate answer incorrectly states that the dividend and APY represent separate income streams, when in fact the APY is just another way to express the dividend yield in the money market fund. The gold evidence clearly explains that the dividend is the actual earnings per share, and the APY is simply a standardized way to represent that interest rate. The candidate answer also misrepresents the nature of money market funds as a hybrid of a mutual fund and a savings account, when the evidence states they are an 'odd hybrid of 'fund' and 'savings'. The answer is therefore incorrect and contradicts the gold evidence."
+      ]
+    }
+  },
+  {
+    "label": "Q14-A",
+    "query_id": "q_f78418e691979c64",
+    "arm": "dense5",
+    "review_stratum": "zero_full",
+    "original_judge": {
+      "query_id": "q_f78418e691979c64",
+      "split": "practice",
+      "question_mode": "transcript",
+      "correctness": 0.0,
+      "grounding": 0.0,
+      "completeness": 0.0,
+      "normalised_answer_score": 0.0,
+      "judge_explanations": [
+        "The candidate answer does not address the specific question of whether the dealership is willing to accept the vehicle back for a full refund. The gold evidence does not mention anything about the dealership's willingness to accept the vehicle back, so the candidate answer is unsupported and incorrect in this regard. Additionally, the candidate answer introduces unrelated information about refinancing and depreciation, which is not directly relevant to the question."
+      ]
+    }
+  },
+  {
+    "label": "Q14-B",
+    "query_id": "q_f78418e691979c64",
+    "arm": "qwen4_matched5",
+    "review_stratum": "zero_full",
+    "original_judge": {
+      "query_id": "q_f78418e691979c64",
+      "split": "practice",
+      "question_mode": "transcript",
+      "correctness": 0.0,
+      "grounding": 0.0,
+      "completeness": 0.0,
+      "normalised_answer_score": 0.0,
+      "judge_explanations": [
+        "The candidate answer does not address the specific question of whether a new vehicle can be returned after a month. The gold evidence provided does not mention anything about returning a new vehicle, so the candidate's answer is not grounded in the evidence. Additionally, the candidate's answer discusses the financial aspects of car ownership and the consequences of depreciation, which are not directly relevant to the question of returning a new vehicle."
+      ]
+    }
+  },
+  {
+    "label": "Q15-A",
+    "query_id": "q_bc4ef8e0d0976c17",
+    "arm": "dense5",
+    "review_stratum": "zero_full",
+    "original_judge": {
+      "query_id": "q_bc4ef8e0d0976c17",
+      "split": "practice",
+      "question_mode": "transcript",
+      "correctness": 2.0,
+      "grounding": 3.0,
+      "completeness": 2.0,
+      "normalised_answer_score": 0.5833333333333334,
+      "judge_explanations": [
+        "The candidate answer correctly identifies that the main purpose of the trip must be to attend the seminar for the expenses to be deductible. It also mentions the need to apportion expenses where both work-related and private activities occur. However, the answer is incomplete as it does not address the specific scenario of a two-week vacation with a two-day conference, which is mentioned in the gold evidence. Additionally, the candidate answer does not provide the specific reasons that would be needed to justify the conference as a necessary business expense, which is a key point in the gold evidence."
+      ]
+    }
+  },
+  {
+    "label": "Q15-B",
+    "query_id": "q_bc4ef8e0d0976c17",
+    "arm": "qwen4_matched5",
+    "review_stratum": "zero_full",
+    "original_judge": {
+      "query_id": "q_bc4ef8e0d0976c17",
+      "split": "practice",
+      "question_mode": "transcript",
+      "correctness": 0.0,
+      "grounding": 0.0,
+      "completeness": 0.0,
+      "normalised_answer_score": 0.0,
+      "judge_explanations": [
+        "The candidate answer contains several inaccuracies and overgeneralizations not supported by the gold evidence. For example, it claims that travel expenses are deductible if the primary purpose of the trip is to attend the seminar, but Document 3 states that if the company pays for the trip, a self-employed person should be able to expense it regardless of the primary purpose. The candidate answer also suggests that the vacation should not be the main focus of the trip, but Document 2 does not make this clear distinction. Additionally, the candidate answer does not accurately represent the nuanced position of Document 4, which warns that if the conference is incidental to a vacation, the travel expenses may not be deductible."
+      ]
+    }
+  },
+  {
+    "label": "Q16-A",
+    "query_id": "q_586e11c383215c6b",
+    "arm": "dense5",
+    "review_stratum": "zero_full",
+    "original_judge": {
+      "query_id": "q_586e11c383215c6b",
+      "split": "practice",
+      "question_mode": "transcript",
+      "correctness": 0.0,
+      "grounding": 0.0,
+      "completeness": 0.0,
+      "normalised_answer_score": 0.0,
+      "judge_explanations": [
+        "The candidate answer incorrectly states that PMI is not tax deductible based on the provided evidence. The evidence only mentions that Kay Bell will answer in detail about PMI deductibility, but it does not explicitly state whether PMI is tax deductible or not. The candidate answer makes an unsupported claim about the tax deductibility of PMI."
+      ]
+    }
+  },
+  {
+    "label": "Q16-B",
+    "query_id": "q_586e11c383215c6b",
+    "arm": "qwen4_matched5",
+    "review_stratum": "zero_full",
+    "original_judge": {
+      "query_id": "q_586e11c383215c6b",
+      "split": "practice",
+      "question_mode": "transcript",
+      "correctness": 0.0,
+      "grounding": 0.0,
+      "completeness": 0.0,
+      "normalised_answer_score": 0.0,
+      "judge_explanations": [
+        "The candidate answer incorrectly states that PMI is not tax deductible, contradicting the gold evidence which explicitly says 'No. And I'll let my good friend and fellow blogger Kay Bell answer in some detail, in her article Deducting private mortgage insurance.' The candidate answer also misrepresents the evidence by claiming that mortgage payments are not deductible and that the interest on a second loan is deductible, which is not supported by the provided evidence."
+      ]
+    }
+  },
+  {
+    "label": "Q17-A",
+    "query_id": "q_45ce8f0db1865a56",
+    "arm": "qwen4_matched5",
+    "review_stratum": "zero_full",
+    "original_judge": {
+      "query_id": "q_45ce8f0db1865a56",
+      "split": "practice",
+      "question_mode": "transcript",
+      "correctness": 0.0,
+      "grounding": 0.0,
+      "completeness": 0.0,
+      "normalised_answer_score": 0.0,
+      "judge_explanations": [
+        "The candidate answer does not address the specific scenario described in the gold evidence, which involves a gross salary of 7 lakhs, a taxable amount of 47K, and specific deductions and contributions. The candidate answer provides general methods for estimating take-home pay, but none of these methods are applicable to the specific case in the gold evidence. Therefore, the answer is incorrect and unsupported by the evidence."
+      ]
+    }
+  },
+  {
+    "label": "Q17-B",
+    "query_id": "q_45ce8f0db1865a56",
+    "arm": "dense5",
+    "review_stratum": "zero_full",
+    "original_judge": {
+      "query_id": "q_45ce8f0db1865a56",
+      "split": "practice",
+      "question_mode": "transcript",
+      "correctness": 0.0,
+      "grounding": 0.0,
+      "completeness": 0.0,
+      "normalised_answer_score": 0.0,
+      "judge_explanations": [
+        "The candidate answer does not address the specific question about estimating monthly take-home pay after taxes and deductions. The gold evidence provides a detailed calculation for a specific individual's take-home pay, but the candidate answer does not relate to this evidence or provide a general method for estimation. The answer is also not grounded in the evidence, as it does not reference the specific numbers or calculations provided in the gold evidence."
+      ]
+    }
+  },
+  {
+    "label": "Q18-A",
+    "query_id": "q_ce474d8f8d548797",
+    "arm": "dense5",
+    "review_stratum": "zero_full",
+    "original_judge": {
+      "query_id": "q_ce474d8f8d548797",
+      "split": "practice",
+      "question_mode": "transcript",
+      "correctness": 0.0,
+      "grounding": 0.0,
+      "completeness": 0.0,
+      "normalised_answer_score": 0.0,
+      "judge_explanations": [
+        "The candidate answer does not align with the provided gold evidence. The gold evidence states that car dealerships do not care where you get the cash for the car, as long as it becomes their money immediately and with no risk or complications. The candidate answer, however, suggests that the car dealership may prefer certain financing options, such as bank/credit union loans or employer assistance, which is not supported by the gold evidence. Additionally, the candidate answer includes several options not mentioned in the gold evidence, such as employer assistance and auto title loans, making it unsupported and incorrect."
+      ]
+    }
+  },
+  {
+    "label": "Q18-B",
+    "query_id": "q_ce474d8f8d548797",
+    "arm": "qwen4_matched5",
+    "review_stratum": "zero_full",
+    "original_judge": {
+      "query_id": "q_ce474d8f8d548797",
+      "split": "practice",
+      "question_mode": "transcript",
+      "correctness": 0.0,
+      "grounding": 0.0,
+      "completeness": 0.0,
+      "normalised_answer_score": 0.0,
+      "judge_explanations": [
+        "The candidate answer does not align with the provided gold evidence. The gold evidence states that the car dealership does not care where you get the cash, as long as it becomes their money immediately and with no risk or complications. The candidate answer, however, suggests that borrowing from a bank or credit union is advisable, which is not supported by the gold evidence. Additionally, the candidate answer introduces several other options (cash purchase, employer assistance, investment strategy) that are not mentioned in the gold evidence, making the answer unsupported and incorrect."
+      ]
+    }
+  },
+  {
+    "label": "Q19-A",
+    "query_id": "q_85da6e74da0df100",
+    "arm": "dense5",
+    "review_stratum": "positive_control",
+    "original_judge": {
+      "query_id": "q_85da6e74da0df100",
+      "split": "practice",
+      "question_mode": "transcript",
+      "correctness": 0.0,
+      "grounding": 0.0,
+      "completeness": 0.0,
+      "normalised_answer_score": 0.0,
+      "judge_explanations": [
+        "The candidate answer is incorrect and contradicts the gold evidence. The gold evidence does not mention any specific recommendations for a 30-year-old single individual with $30,000, such as maximizing RRSPs, saving 10% of income, or considering a 401(k). Instead, the gold evidence discusses investing in stocks, bonds, and mutual funds, and suggests using an IRA, but does not provide the specific recommendations made in the candidate answer."
+      ]
+    }
+  },
+  {
+    "label": "Q19-B",
+    "query_id": "q_85da6e74da0df100",
+    "arm": "qwen4_matched5",
+    "review_stratum": "positive_control",
+    "original_judge": {
+      "query_id": "q_85da6e74da0df100",
+      "split": "practice",
+      "question_mode": "transcript",
+      "correctness": 2.0,
+      "grounding": 2.0,
+      "completeness": 1.0,
+      "normalised_answer_score": 0.4166666666666667,
+      "judge_explanations": [
+        "The candidate answer provides some relevant information about retirement and asset allocation for a 30-year-old single individual with $30,000 to invest. However, it contains some unsupported claims and omits important details from the gold evidence. For example, the candidate mentions the Roth IRA contribution limit for 2014 ($5,500) and the option to contribute for 2013 until April 15, but the gold evidence does not mention these specific contribution limits or deadlines. Additionally, the candidate suggests a 70% stocks and 30% bonds asset allocation, which is partially supported by the gold evidence, but the gold evidence does not explicitly recommend this allocation. The candidate also mentions target retirement date funds and S&P 500 trackers, which are not directly addressed in the gold evidence. Overall, the answer is partly correct but incomplete and contains some unsupported claims."
+      ]
+    }
+  },
+  {
+    "label": "Q20-A",
+    "query_id": "q_c760dc8ec74b5215",
+    "arm": "qwen4_matched5",
+    "review_stratum": "positive_control",
+    "original_judge": {
+      "query_id": "q_c760dc8ec74b5215",
+      "split": "practice",
+      "question_mode": "transcript",
+      "correctness": 1.0,
+      "grounding": 3.0,
+      "completeness": 2.0,
+      "normalised_answer_score": 0.5,
+      "judge_explanations": [
+        "The candidate answer correctly identifies the \"Bank on Yourself\" strategy as potentially shady and not a good financial choice, which aligns with the gold evidence. However, the evidence does not definitively label it as a scam, only that it is outrageously expensive and not a good financial choice. The candidate answer also makes an unsupported claim that the strategy is likened to a Ponzi scheme or pyramid scheme, which is not mentioned in the gold evidence."
+      ]
+    }
+  },
+  {
+    "label": "Q20-B",
+    "query_id": "q_c760dc8ec74b5215",
+    "arm": "dense5",
+    "review_stratum": "positive_control",
+    "original_judge": {
+      "query_id": "q_c760dc8ec74b5215",
+      "split": "practice",
+      "question_mode": "transcript",
+      "correctness": 2.0,
+      "grounding": 1.0,
+      "completeness": 1.0,
+      "normalised_answer_score": 0.3333333333333333,
+      "judge_explanations": [
+        "The candidate answer incorrectly labels the 'Bank on Yourself' strategy as a scam, which is not supported by the gold evidence. While the evidence does express skepticism and concerns about the strategy, it does not definitively label it as a scam. The evidence also does not provide enough information to make a clear judgment on the legitimacy of the strategy. The candidate answer is partially correct in expressing skepticism but fails to fully support its claim of the strategy being a scam."
+      ]
+    }
+  },
+  {
+    "label": "Q21-A",
+    "query_id": "q_241622bf679c25cf",
+    "arm": "qwen4_matched5",
+    "review_stratum": "positive_control",
+    "original_judge": {
+      "query_id": "q_241622bf679c25cf",
+      "split": "practice",
+      "question_mode": "transcript",
+      "correctness": 2.0,
+      "grounding": 3.0,
+      "completeness": 2.0,
+      "normalised_answer_score": 0.5833333333333334,
+      "judge_explanations": [
+        "The candidate answer correctly identifies that trading every two or three months is more cost-effective than monthly trading due to holding costs and transaction costs. However, it incorrectly states that trading monthly would be more cost-effective for a single ETF investment, which contradicts the gold evidence. The answer also omits the tax considerations mentioned in the evidence."
+      ]
+    }
+  },
+  {
+    "label": "Q21-B",
+    "query_id": "q_241622bf679c25cf",
+    "arm": "dense5",
+    "review_stratum": "positive_control",
+    "original_judge": {
+      "query_id": "q_241622bf679c25cf",
+      "split": "practice",
+      "question_mode": "transcript",
+      "correctness": 2.0,
+      "grounding": 3.0,
+      "completeness": 2.0,
+      "normalised_answer_score": 0.5833333333333334,
+      "judge_explanations": [
+        "The candidate answer correctly identifies that trading every two or three months may be more intelligent than monthly, as it avoids holding cash and forgoing equity returns. However, it overstates the cost of not being invested by claiming it forgoes equity returns of around $16, which is not supported by the evidence. The evidence suggests that the cost of not being invested is around $8, not $16. Additionally, the candidate answer does not fully address the trade-off between holding cash and trading costs, and it does not mention the possibility of investing in multiple ETFs or using a discount broker to reduce costs."
+      ]
+    }
+  },
+  {
+    "label": "Q22-A",
+    "query_id": "q_90c19079b88bb39e",
+    "arm": "dense5",
+    "review_stratum": "positive_control",
+    "original_judge": {
+      "query_id": "q_90c19079b88bb39e",
+      "split": "practice",
+      "question_mode": "transcript",
+      "correctness": 0.0,
+      "grounding": 0.0,
+      "completeness": 0.0,
+      "normalised_answer_score": 0.0,
+      "judge_explanations": [
+        "The candidate answer incorrectly concludes that the B A A V O's Visa Airline Rewards Card is not a good option based on the provided evidence. The evidence actually discusses the BA frequent fliers' club and its avios (miles) system, not the specific Visa Airline Rewards Card. The answer also makes unsupported claims about airline rewards cards in general being a 'ripoff' and does not address the specific card mentioned in the question. The evidence provided does not contain any information about the B A A V O's Visa Airline Rewards Card, so the candidate answer is not grounded in the given evidence and contains major errors."
+      ]
+    }
+  },
+  {
+    "label": "Q22-B",
+    "query_id": "q_90c19079b88bb39e",
+    "arm": "qwen4_matched5",
+    "review_stratum": "positive_control",
+    "original_judge": {
+      "query_id": "q_90c19079b88bb39e",
+      "split": "practice",
+      "question_mode": "transcript",
+      "correctness": 2.0,
+      "grounding": 3.0,
+      "completeness": 2.0,
+      "normalised_answer_score": 0.5833333333333334,
+      "judge_explanations": [
+        "The candidate answer is mostly correct but contains a few unsupported claims. It accurately notes that the BA Executive Club charges high taxes for British Airways flights and suggests considering partner clubs like American Airlines or Qantas based on travel patterns. However, it incorrectly states that the card is a 'ripoff' without providing specific evidence from the gold evidence. The candidate answer also omits mentioning the 50%-70% discount on mile tickets when buying with avios, which is an important point from the gold evidence."
+      ]
+    }
+  },
+  {
+    "label": "Q23-A",
+    "query_id": "q_cf94bf63c3f36630",
+    "arm": "qwen4_matched5",
+    "review_stratum": "positive_control",
+    "original_judge": {
+      "query_id": "q_cf94bf63c3f36630",
+      "split": "practice",
+      "question_mode": "transcript",
+      "correctness": 2.0,
+      "grounding": 1.0,
+      "completeness": 1.0,
+      "normalised_answer_score": 0.3333333333333333,
+      "judge_explanations": [
+        "The candidate answer provides a comprehensive list of steps for managing household income and expenses, but it does not directly reference or align with the specific evidence provided in the gold evidence. The gold evidence describes a system of equal income pooling and weekly allowances for non-common expenses, which is not mentioned in the candidate answer. While the candidate answer is mostly grounded in general financial advice, it lacks the specific approach and rationale found in the gold evidence."
+      ]
+    }
+  },
+  {
+    "label": "Q23-B",
+    "query_id": "q_cf94bf63c3f36630",
+    "arm": "dense5",
+    "review_stratum": "positive_control",
+    "original_judge": {
+      "query_id": "q_cf94bf63c3f36630",
+      "split": "practice",
+      "question_mode": "transcript",
+      "correctness": 2.0,
+      "grounding": 1.0,
+      "completeness": 1.0,
+      "normalised_answer_score": 0.3333333333333333,
+      "judge_explanations": [
+        "The candidate answer provides a general overview of managing household income and expenses, but it does not directly address the specific evidence provided in the gold evidence. The gold evidence focuses on a couple's approach of combining finances and using a weekly allowance system, which is not mentioned in the candidate answer. While the candidate answer covers some relevant points, it lacks grounding in the specific evidence and does not fully address the main points of the gold evidence."
+      ]
+    }
+  },
+  {
+    "label": "Q24-A",
+    "query_id": "q_718de34f908aedf1",
+    "arm": "qwen4_matched5",
+    "review_stratum": "positive_control",
+    "original_judge": {
+      "query_id": "q_718de34f908aedf1",
+      "split": "practice",
+      "question_mode": "transcript",
+      "correctness": 2.0,
+      "grounding": 1.0,
+      "completeness": 2.0,
+      "normalised_answer_score": 0.4166666666666667,
+      "judge_explanations": [
+        "The candidate answer provides a detailed analysis of the taxability of transferring long-term investment proceeds from India to the United States, covering various scenarios and considerations. However, it contains some important unsupported claims, such as the taxability of dividends and the applicability of look-through provisions, which are not mentioned in the gold evidence. The gold evidence only states that US residents must pay capital gains taxes on interest from overseas assets and must report foreign bank accounts under FATCA, without addressing the specific scenario of transferring long-term investment proceeds."
+      ]
+    }
+  },
+  {
+    "label": "Q24-B",
+    "query_id": "q_718de34f908aedf1",
+    "arm": "dense5",
+    "review_stratum": "positive_control",
+    "original_judge": {
+      "query_id": "q_718de34f908aedf1",
+      "split": "practice",
+      "question_mode": "transcript",
+      "correctness": 2.0,
+      "grounding": 2.0,
+      "completeness": 1.0,
+      "normalised_answer_score": 0.4166666666666667,
+      "judge_explanations": [
+        "The candidate answer correctly identifies that the transfer of long-term investment proceeds from India to the United States is generally not taxable in the US. However, it makes an unsupported claim about the taxability of dividends paid to the beneficial owner, which is not mentioned in the gold evidence. The answer also omits the key point from the gold evidence that US residents must report and pay taxes on capital gains from foreign investments, including interest from assets overseas. The answer is incomplete as it does not fully address the tax obligations for US residents."
+      ]
+    }
+  }
+]

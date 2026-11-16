@@ -20,8 +20,15 @@ and latency separately.
 - [run_qwen_answer_experiment.py](run_qwen_answer_experiment.py): freeze dense5
   and 4B top-5 contexts, generate/resume answers, and summarise results from the
   unchanged public answer evaluator. The
-  [answer protocol](../experiments/qwen4-answer-evaluation.md) records the live
-  job and a labelled partial checkpoint.
+  [answer report](../experiments/qwen4-answer-evaluation.md) records the completed
+  350-query paired experiment and its earlier labelled checkpoint.
+- [audit_qwen_answers.py](audit_qwen_answers.py): verify all 700 saved answers,
+  judge cache keys, raw judgements, score means and paired intervals offline.
+- [prepare_qwen_zero_review.py](prepare_qwen_zero_review.py): retain all 350
+  questions in a diagnostic inventory and freeze stratified, blinded review
+  packets. Keep the review key separate until reviewers finish. The
+  [zero-score investigation](../experiments/qwen4-zero-score-investigation.md)
+  specifies follow-up controls and criteria for accepting a change.
 
 From the repository root, the published retrieval data supports these offline
 checks without model downloads or ELM calls:
@@ -30,6 +37,9 @@ checks without model downloads or ELM calls:
 python rag/extensions/audit_qwen_retrieval.py rag/results/qwen06-retrieval-3724137/full/summary.json --audit
 python rag/extensions/audit_qwen_retrieval.py rag/results/qwen4-retrieval-3724174/full/summary.json --audit
 python rag/extensions/compare_qwen_sizes.py
+python rag/extensions/audit_qwen_answers.py
+# Choose a fresh directory; the published zero-review-v1 sample is frozen.
+python rag/extensions/prepare_qwen_zero_review.py --output rag/results/qwen4-answers-3724290/zero-review-reproduction
 ```
 
 Downloaded weights and tokenizer caches stay outside Git. Frozen result files

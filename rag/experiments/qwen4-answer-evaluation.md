@@ -64,18 +64,116 @@ saved; it is not merged into the retained experiment or selected by score.
 
 ## Results
 
-Full answer evaluation is still running. The two-question generation/judge
-checks passed for both arms. Their scores are setup checks and do not estimate
-the full experiment's answer quality.
+Job `3724290` completed with Slurm exit `0:0` in **1h40m45s**, covering 350
+answers and 350 judgements per arm. This wall time includes preparation,
+generation and judging; it is not per-query inference latency.
+
+The unchanged public evaluator gives dense5 a mean normalised answer score of
+**0.337381** and Qwen-4B top-5 **0.381905**. The paired mean difference is
+**+0.044524**, approximately 4.45 points on a 0-to-100 display scale, or a 13.2%
+relative increase in the mean score. This score is not the percentage of
+questions answered correctly.
+
+The predeclared paired query bootstrap gives a 95% interval of
+**+0.011190 to +0.078810**. The interval excludes zero under this single-run,
+fixed-judge protocol. Across queries, 115 scores improve, 80 decline and 155 tie.
+The interval describes query resampling uncertainty and does not include
+repeated-generation/judge variability or adaptive model-selection uncertainty.
+
+All three 0-to-4 dimensions increase:
+
+- Correctness: **1.425714 to 1.585714**, mean difference +0.160000,
+  95% interval +0.028571 to +0.297143.
+- Grounding: **1.448571 to 1.648571**, difference +0.200000,
+  interval +0.051429 to +0.351429.
+- Completeness: **1.174286 to 1.348571**, difference +0.174286,
+  interval +0.042857 to +0.308571.
+
+Use the fresh dense5 control from this run for the comparison. Earlier dense5
+scores came from different generations/judgements and are historical context.
+
+### Retrieval benefit and remaining failures
+
+The same paired questions previously showed Recall@5 increasing from 0.421337
+to 0.526226. We now also observe a downstream answer-score gain. The generator,
+prompt instructions and number of supplied records remain fixed, while selected
+records and order change. Single stochastic generation/judging runs still limit
+causal attribution.
+
+Higher labelled recall does not guarantee a higher answer score on an individual
+query. Of the 82 queries whose Recall@5 improves, 34 answer scores improve,
+11 decline and 37 tie. When Recall@5 ties, answers can still change because the
+selected documents or their order differ; generation/judge variation can also
+contribute. These counts do not separate those mechanisms.
+
+All-zero judgements decrease from **138/350 (39.43%)** to
+**121/350 (34.57%)**. There are 53 zero-to-positive transitions and 36
+positive-to-zero transitions. Full-score judgements increase from 38 to 50.
+The remaining failures deserve inspection alongside the aggregate improvement.
+
+An offline inventory divides the 121 Qwen all-zero questions into 62 with no
+positive qrel in the selected five records, 29 with partial positive-qrel
+coverage and 30 with full positive-qrel coverage. Full labelled coverage does
+not prove that the answer is present, correctly interpreted or fairly judged.
+The [zero-score investigation](qwen4-zero-score-investigation.md) freezes a
+24-question diagnostic sample and specifies the next controls. All 350 questions
+remain in the benchmark. These diagnostic materials do not establish a further
+answer-quality improvement.
+
+### Judge checks
+
+The [offline audit](../results/qwen4-answers-3724290/answer-evaluation-audit.json)
+verifies all query IDs, frozen prompts and selected records. It reconstructs gold
+evidence from the course asset ZIP, verifies all cache keys, matches scores to
+raw judge responses, recomputes normalised scores and means, and reproduces the
+paired intervals and change counts. It makes no model or API calls.
+
+Some judge explanations require manual review. For
+`q_9a684db4ff009865`, the dense answer discusses investment selection, while the
+gold evidence discusses settlement and unsettled funds. The judge explanation
+attributes the settlement discussion to the candidate and says the gold does
+not address selling/buying stocks. This reverses the contents of the two inputs.
+It establishes a problem with that explanation, not the correct replacement
+score or a population-wide judge error rate. The original scores remain intact.
+
+Other zeros have substantive problems: for example, the Ireland pension answer
+includes supported tax/bankruptcy points but adds claims unsupported by the gold
+evidence. Its all-zero outcome warrants review for partial credit rather than
+assuming either a wholly correct answer or a wholly reliable judgement.
+
+### Cost
+
+Mean measured generation time is **4.755 seconds** for dense5 and
+**5.034 seconds** for Qwen-selected evidence. Mean server input tokens are
+**1289.71** and **1267.31**, respectively, with all 700 server counts matching
+the local estimates. Thus the higher score accompanies similar average input
+length, not a large increase in context volume.
+
+Adding previously measured rerank time gives an attributed selection-plus-
+generation estimate of **4.757 seconds** for dense5 and **10.779 seconds** for
+4B, approximately 2.27 times as long. The reranker itself costs a mean
+5.743 seconds/query in its earlier GPU run. These combined values are not
+measured end-to-end audio-to-answer latency; ASR and initial retrieval are cached.
+
+The experiment supports a quality/cost trade-off: Qwen-4B improves public-judge
+answer scores at higher processing cost. It does not establish an answer-quality
+advantage over Qwen-0.6B, whose generated answers have not been evaluated here.
+An optional next comparison is 0.6B top-5 answers under the same protocol.
+
+Full data: [comparison](../results/qwen4-answers-3724290/comparison.json),
+[dense5 scores](../results/qwen4-answers-3724290/judge_json_dense5/answer_judge_per_query.jsonl),
+[4B scores](../results/qwen4-answers-3724290/judge_json_qwen4_matched5/answer_judge_per_query.jsonl),
+[audit script](../extensions/audit_qwen_answers.py).
+
+### Earlier checkpoint
 
 The [2026-11-16 22:03:46 UTC checkpoint](../results/qwen4-answers-3724290/checkpoints/20261116T220346Z/checkpoint.json)
 contains 240 completed answers per arm on the same 240 query IDs. The live files
 held 241 dense5 answers and 240 Qwen answers at capture; the checkpoint excludes
 the unmatched dense5 answer. It contains the original frozen configuration,
-generation fingerprint and subset judge outputs, with file hashes. Its status
-is `in_progress_checkpoint`, and full answer scoring is incomplete.
+generation fingerprint and subset judge outputs, with file hashes. It records
+the `in_progress_checkpoint` status at capture time; the full run above has
+since completed.
 
-Continue the original job to obtain the 350-query paired answer comparison.
 Use the checkpoint for inspection and backup; resuming generation requires the
-live run directory with its full plans and caches. Retrieval improvements alone
-do not establish answer-quality gains.
+live run directory with its full plans and caches.

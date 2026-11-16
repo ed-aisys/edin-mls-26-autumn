@@ -1,0 +1,191 @@
+{
+  "passed": true,
+  "queries": 350,
+  "all_frozen_plans_and_prompt_hashes_verified": true,
+  "all_cache_keys_verified_against_current_answers_and_gold": true,
+  "all_scores_matched_to_raw_judge_responses": true,
+  "arms": {
+    "dense5": {
+      "means": {
+        "correctness": 1.4257142857142857,
+        "grounding": 1.4485714285714286,
+        "completeness": 1.1742857142857144,
+        "normalised_answer_score": 0.3373809523809524
+      },
+      "all_zero_answers": 138,
+      "full_score_answers": 38
+    },
+    "qwen4_matched5": {
+      "means": {
+        "correctness": 1.5857142857142856,
+        "grounding": 1.6485714285714286,
+        "completeness": 1.3485714285714285,
+        "normalised_answer_score": 0.3819047619047619
+      },
+      "all_zero_answers": 121,
+      "full_score_answers": 50
+    }
+  },
+  "zero_to_positive": 53,
+  "positive_to_zero": 36,
+  "same_ordered_prompt_queries": 0,
+  "retrieval_change_vs_answer_change": {
+    "improved": {
+      "improved": 34,
+      "worse": 11,
+      "tied": 37
+    },
+    "worse": {
+      "improved": 4,
+      "worse": 11,
+      "tied": 7
+    },
+    "tied": {
+      "improved": 77,
+      "worse": 58,
+      "tied": 111
+    }
+  },
+  "selected_cases": {
+    "q_371c6ca10bf1bf5e": {
+      "question": "What advantages does having a pension retirement account in Ireland offer?",
+      "gold_documents": [
+        {
+          "record_id": "r_cf201234a19c3fda",
+          "text": "Here's an Irish government publication that should give you some background information to get you started. In a nutshell, you get tax benefits, but cannot withdraw money without penalty until you reach retirement age."
+        },
+        {
+          "record_id": "r_5ad068a41e4b4a04",
+          "text": "As you point out, the main benefits of a pension/retirement account over a traditional cash/taxable account are the legal and tax benefits. Most Western countries establish a specific legal definition for an account which is often taxed less or not at all relative to taxable accounts and which contains some protection for the owner in case of a bankruptcy. The typical drawbacks for investing within such structures are limited investment choice, limited withdrawal rights (either in terms of age or rate of withdrawal), and maximum contributions. The benefits are usually very clear, and your decision whether or not to open a pension/retirement account should depend on a careful weighing of the benefits and drawbacks. As to whether you may end up with less than you started, that depends on what you invest in. As with all of finance, you must take more risk to get more return. Although the choices inside a pension/retirement account may be worded somewhat differently, they are usually fundamentally no different than some of the most popular investments available for ordinary taxable accounts."
+        }
+      ],
+      "dense5": {
+        "answer": "Having a pension retirement account in Ireland offers several advantages, including:\n\n1. **Tax Benefits**: As mentioned in Document 2, pension accounts offer tax advantages, allowing individuals to save for retirement with potential tax relief.\n\n2. **Protection in Bankruptcy**: Similar to other Western countries, Irish pension accounts provide legal and tax benefits, including protection for the owner in case of bankruptcy, as highlighted in Document 1.\n\n3. **Guaranteed Income**: Document 4 emphasizes that defined benefit pensions, like those in Ireland, provide a guaranteed income stream, reducing the risk associated with market fluctuations.\n\n4. **Compensation for Future Pension Changes**: Document 3 mentions that the current pension scheme is aimed at compensating individuals who will reach pension age before April 2016, when a new flat-rate pension is introduced.\n\n5. **Encouragement of Long-Term Savings**: As noted in Document 5, retirement accounts are designed for long-term savings, encouraging individuals to save for retirement rather than spending the money immediately.\n\nThese advantages make pension retirement accounts in Ireland a valuable tool for securing financial stability in retirement.",
+        "score": 0.0,
+        "recall_at_5": 1.0,
+        "judge": [
+          "The candidate answer makes several claims that are not supported by the provided gold evidence. The gold evidence only mentions tax benefits and protection in bankruptcy, but the candidate answer goes beyond this by mentioning guaranteed income, compensation for future pension changes, and encouragement of long-term savings, which are not mentioned in the gold evidence. Additionally, the candidate answer does not directly reference the specific documents provided in the gold evidence."
+        ]
+      },
+      "qwen4_matched5": {
+        "answer": "Based on the evidence provided, having a pension retirement account in Ireland offers several advantages:\n\n1. **Tax Benefits**: Contributions to a pension account are made from pre-tax money, either by the individual or their employer. This means that the gross salary is reduced by the pension contribution, and income tax is recalculated with the excess either refunded or put into the pension. This provides immediate tax relief.\n\n2. **Legal and Tax Advantages**: Pension accounts have a specific legal definition and are often taxed less or not at all relative to taxable accounts. They also contain some protection for the owner in case of bankruptcy.\n\n3. **Investment Choices**: While there may be some limitations on investment choices within a pension account, the options are usually not fundamentally different from those available in taxable accounts.\n\n4. **Withdrawal Rights**: Although there are limitations on withdrawal rights (either in terms of age or rate of withdrawal), these are typically clear and well-defined.\n\n5. **Maximum Contributions**: There are maximum contribution limits, but these can be carried forward and offset against future profits, providing flexibility.\n\n6. **Mental Partitioning**: Having a dedicated retirement account can help in mentally separating retirement savings from other funds, making it easier to manage and not touch the retirement money for non-retirement expenses.\n\n7. **Tax-Efficient Withdrawals**: When withdrawing from a pension account, the income is subject to tax at a potentially lower rate, as income is expected to be lower during retirement.\n\nThese advantages make pension retirement accounts a valuable tool for retirement planning in Ireland.",
+        "score": 0.0,
+        "recall_at_5": 1.0,
+        "judge": [
+          "The candidate answer contains several unsupported claims not present in the gold evidence. For example, the mention of 'mental partitioning' and 'tax-efficient withdrawals' are not mentioned in the evidence. Additionally, the candidate answer introduces the concept of 'maximum contributions' and 'carrying forward' which are not present in the gold evidence. The evidence only mentions 'maximum contribution limits' without any details on carry-forward or offsetting against future profits."
+        ]
+      }
+    },
+    "q_9d78dff597245697": {
+      "question": "Why is gamma scalping not recommended for retail traders with reg T margin requirements?",
+      "gold_documents": [
+        {
+          "record_id": "r_ceda7e5fd33c7b9d",
+          "text": "My interpretation of that sentence is that you can't do the buying/selling of shares outright (sans margin) because of the massive quantity of shares he's talking about. So you have to use margin to buy the stocks. However, because in order to make significant money with this sort of strategy you probably need to be working dozens of stocks at the same time, you need to be familiar with portfolio margin. Since your broker does not calculate margin calls based on individual stocks, but rather on the value of your whole portfolio, you should have experience handling margin not just on individual stock movements but also on overall portfolio movements. For example, if 10% (by value) of the stocks you're targeting tend to have a correlation of -0.8 with the price of oil you should probably target another 10% (by value) in stocks that tend to have a correlation of +0.8 with the price of oil. And so on and so forth. That way your portfolio can weather big (or even small) changes in market conditions that would cause a margin call on a novice investor's portfolio."
+        }
+      ],
+      "dense5": {
+        "answer": "Gamma scalping is not recommended for retail traders with Reg T margin requirements because it involves high-frequency trading strategies that require quick reactions to price changes. Retail traders, especially those using brokers, cannot react quickly enough to succeed at bid-ask scalping. Additionally, brokers are concerned about potential lawsuits stemming from inadequate risk management, particularly when dealing with highly volatile stocks. Therefore, retail traders are better off avoiding gamma scalping due to the risks involved and the limitations of their trading platforms.",
+        "score": 0.0,
+        "recall_at_5": 0.0,
+        "judge": [
+          "The candidate answer does not address the specific reasons why gamma scalping is not recommended for retail traders with Reg T margin requirements, as outlined in the gold evidence. The gold evidence focuses on the need for portfolio margin and diversification to manage risk, but the candidate answer does not mention these points. Instead, it discusses high-frequency trading and broker concerns, which are not supported by the provided evidence."
+        ]
+      },
+      "qwen4_matched5": {
+        "answer": "Gamma scalping is not recommended for retail traders with Reg T margin requirements because brokers are concerned about potential lawsuits stemming from their perceived inadequate risk management. This is particularly true when allowing traders to engage in extremely volatile stocks with high leverage. Additionally, brokers run the risk of losing money in scenarios where a trader shorts a stock with all of the funds, and the company rises 100% or more by the next day, in which case the trader owes money to the broker. Many of the companies with high margin requirements are extremely volatile pharmaceutical companies that depend heavily on FDA approvals, further increasing the risk for brokers.",
+        "score": 0.0,
+        "recall_at_5": 0.0,
+        "judge": [
+          "The candidate answer does not address the specific question about why gamma scalping is not recommended for retail traders with Reg T margin requirements. Instead, it discusses general issues with margin trading and portfolio management, which are not directly relevant to the question. The gold evidence also does not support the claims made in the candidate answer."
+        ]
+      }
+    },
+    "q_890a6df9ce937b08": {
+      "question": "How can I determine the exact time a SWIFT is issued by a bank?",
+      "gold_documents": [
+        {
+          "record_id": "r_c4b0886ff3312f06",
+          "text": "I think technically the MIR includes the date of issuance but not the time, see the references here. What you have there looks like a timestamp followed by the MIR. If you look at this example from IBM they also show the input time as a separate field."
+        }
+      ],
+      "dense5": {
+        "answer": "Based on the evidence provided, there is no specific information on how to determine the exact time a SWIFT is issued by a bank. The documents discuss the process of initiating SWIFT payments, the importance of SWIFT codes and IBANs, and the need for clear communication between banks, but none of them mention the exact time a SWIFT is issued.",
+        "score": 0.0,
+        "recall_at_5": 0.0,
+        "judge": [
+          "The candidate answer incorrectly states that there is no specific information on how to determine the exact time a SWIFT is issued by a bank, when in fact the gold evidence explicitly mentions that the MIR includes the date of issuance, and provides an example from IBM showing the input time as a separate field. The candidate answer fails to acknowledge or incorporate this information from the gold evidence."
+        ]
+      },
+      "qwen4_matched5": {
+        "answer": "Based on the evidence provided, it is not possible to determine the exact time a SWIFT is issued by a bank. The evidence suggests that the issuance time is not included in the MIR (Message Identification Record) and that it is more of a bank's policy issue rather than a legal regulation. To obtain the information, you would need to work it out with the bank.",
+        "score": 0.0,
+        "recall_at_5": 1.0,
+        "judge": [
+          "The candidate answer incorrectly states that the evidence suggests the issuance time is not included in the MIR and that it is more of a bank's policy issue rather than a legal regulation. The gold evidence actually states that the MIR includes the date of issuance but not the time, which contradicts the candidate answer. Additionally, the candidate answer does not provide a complete answer to the question, as it fails to mention that the issuance time is not included in the MIR, which is a key point from the evidence."
+        ]
+      }
+    },
+    "q_9a684db4ff009865": {
+      "question": "How should I proceed when selling a stock and buying a new one?",
+      "gold_documents": [
+        {
+          "record_id": "r_ccf34994b0eec012",
+          "text": "You have to wait for three (business) days. That's the time it takes for the settlement to complete and for the money to get to your account. If you don't wait - brokers will still allow you to buy a new stock, but may limit your ability to sell it until the previous sale is settled. Here's a FAQ from Schwab on the issue."
+        },
+        {
+          "record_id": "r_1336f447efc75039",
+          "text": "It depends on the broker. The one I use (Fidelity) will allow me to buy then sell or sell then buy within 3 days even though the cash isn't settled from the first transaction. But they won't let me buy then sell then buy again with unsettled cash. Of course not waiting for cash to settle makes you vulnerable to a good faith violation."
+        }
+      ],
+      "dense5": {
+        "answer": "Based on the evidence provided, here's how you should proceed when selling a stock and buying a new one:\n\n1. **Selling a Stock**:\n   - **Don't sell just because the stock has dropped**: According to Document 2, selling when the stock drops out of your criteria is not advisable. Instead, sell only when you are confident that the stock is going to decline.\n   - **Consider the cost of trading**: Document 2 also mentions that selling and buying again to switch to another stock might not be beneficial due to trading costs. Retail investors on average lose money on their switches.\n   - **Personal financial situation**: Document 3 suggests that if you were planning to sell the stock anyway, you can use the proceeds to reduce debt. However, if you don't have savings, it's advisable to sell the stock. If you do have savings, consider whether they are earning you more than your loans.\n\n2. **Buying a New Stock**:\n   - **Buy only if the current price and outlook justify it**: Document 4 suggests that you should buy a stock only if, given the current price and future outlook, you would buy it if you didn't already own it. This is a form of \"buying low\" and \"selling high\" strategy.\n   - **Consider diversification and risk profiles**: Document 5 advises considering diversification and the risk profiles of individual stocks or segments when deciding to buy or sell a stock.\n\nIn summary, when selling a stock, do so only when you are confident about the stock's future decline and consider the costs and your personal financial situation. When buying a new stock, ensure that the current price and outlook justify the purchase. Always consider diversification and risk profiles when making investment decisions.",
+        "score": 0.0,
+        "recall_at_5": 0.0,
+        "judge": [
+          "The candidate answer does not address the question of how to proceed when selling a stock and buying a new one, instead discussing brokerage rules around settlement periods and good faith violations. The gold evidence provided does not mention anything about selling stocks or buying new ones, making the candidate answer completely unsupported and incorrect."
+        ]
+      },
+      "qwen4_matched5": {
+        "answer": "When selling a stock and buying a new one, you should follow these steps based on the evidence provided:\n\n1. **Decision to Sell or Buy**:\n   - If you believe the stock you currently hold will recover and yield better returns, you might consider holding it or buying more as a contrarian investment.\n   - If you have identified another stock that you think will yield significantly better returns, you can sell your current stock and buy the new one.\n\n2. **Tax Considerations**:\n   - When you sell a stock, you need to account for any profit or loss accrued up to that point. This will affect your tax return for the year.\n   - Selling and buying stocks in the same year can complicate your tax return, as you will have to report the gains or losses from the sale and establish a new baseline for the new stock.\n\n3. **Settlement Period**:\n   - If you are trading with a cash account, you will need to wait for the sale to settle (3 business days) before you can use the proceeds to buy another stock.\n   - If you are a pattern day trader (4 or more day trades in 5 business days), your brokerage may require you to have a minimum of $25,000 in funds and a margin account.\n\n4. **Diversification**:\n   - It is generally advisable to diversify your investments to manage risk. This means spreading your investments across different stocks or asset classes.\n\nIn summary, the key steps are to make a decision based on your investment strategy, consider the tax implications, be aware of the settlement period, and ensure you are diversifying your portfolio.",
+        "score": 0.0,
+        "recall_at_5": 0.5,
+        "judge": [
+          "The candidate answer contains several inaccuracies and unsupported claims. It incorrectly states that you can buy a new stock immediately after selling one without waiting for the settlement period, which contradicts the gold evidence. The evidence clearly states that you must wait for three business days for the sale to settle before you can use the proceeds to buy another stock. Additionally, the candidate answer mentions pattern day trading requirements, which are not mentioned in the gold evidence. The explanation provided is also incomplete, as it does not fully address the key points of the question."
+        ]
+      }
+    },
+    "q_0a12138b81eb7e2a": {
+      "question": "Where can I find the expense ratios on my financial statement?",
+      "gold_documents": [
+        {
+          "record_id": "r_214bea108b1e3fe4",
+          "text": "For Vanguard: Vanguard does compare its fees with similar funds from its competitors on this tab, but then again, this is Vanguard giving you this information, so take with a grain of salt."
+        },
+        {
+          "record_id": "r_3940558a52a438fc",
+          "text": "I don't think that you'll notice a difference in the NAV in a fund with fees that are low as the Vanguard Total Stock Market Fund. Their management fees are incorporated into the NAV, but keep in mind that the fund has a total of $144 billion in assets, with $66 billion in the investor class. The actual fees represent a tiny fraction of the NAV, and may only show up at all on the day they assess the fees. With Vanguard total stock market, you notice the fee difference in the distributions. In the example of Vanguard Total Stock Market, there are institutional-class shares (like VITPX with a minimum investment of $200M) with still lower costs -- as low as 0.0250% vs. 0.18% for the investor class. You will notice a different NAV and distributions for that fund, but there may be other reasons for the variation that I'm not familar with, as I'm not an institutional investor."
+        }
+      ],
+      "dense5": {
+        "answer": "Based on the evidence provided, you can find the expense ratios on your financial statement in the following ways:\n\n1. **Prospectus**: The Prospectus Expense Ratio (net) and Prospectus Gross Expense Ratio are mentioned as being gathered from a fund's prospectus, which reflects the actual fees charged during a particular fiscal year and the anticipated expenses for the upcoming fiscal year, respectively.\n\n2. **Income Statement**: Document 4 suggests that the income statement is one of the three key financial statements to focus on for various financial ratios, including the expense ratio.\n\n3. **Annual Reports**: Document 3 mentions that annual reports can contain expense ratios, although the reporting can vary widely.\n\n4. **10-K and 10-Q Filings**: Document 5 indicates that the balance sheet and income statements, which may include expense ratios, are located in the 10-K and 10-Q filings for publicly traded companies.\n\nHowever, the evidence does not provide a specific location within these documents where the expense ratios are explicitly listed. Therefore, you may need to review these documents thoroughly to locate the expense ratios.",
+        "score": 0.0,
+        "recall_at_5": 0.0,
+        "judge": [
+          "The candidate answer does not align with the provided gold evidence. The gold evidence does not mention any of the locations for finding expense ratios listed in the candidate answer, such as the Prospectus, Income Statement, Annual Reports, or 10-K and 10-Q Filings. The gold evidence only discusses the incorporation of fees into the Net Asset Value (NAV) and the differences in fees between institutional and investor classes for a specific Vanguard fund, but it does not provide any information about where to find expense ratios in financial statements."
+        ]
+      },
+      "qwen4_matched5": {
+        "answer": "Based on the evidence provided, you can find the expense ratios on your financial statement in the quarterly reports and the prospectus. The prospectus contains information about the actual fees charged during a particular fiscal year, as well as the anticipated expenses for the upcoming fiscal year. The expense ratios are also reflected in the fund's net asset value (NAV).",
+        "score": 0.0,
+        "recall_at_5": 0.0,
+        "judge": [
+          "The candidate answer incorrectly states that expense ratios can be found in the prospectus and quarterly reports. The gold evidence does not mention prospectuses or quarterly reports as sources for expense ratios. The evidence only discusses how fees are incorporated into the net asset value (NAV) and how distributions may reflect fee differences, but it does not provide information on where to find expense ratios in financial statements."
+        ]
+      }
+    }
+  },
+  "paired_intervals_and_change_counts_recomputed": true,
+  "identical_answer_pairs": 0,
+  "different_scores_on_identical_answers": 0
+}

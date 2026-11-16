@@ -1,0 +1,51 @@
+{
+  "status": "awaiting_manual_review",
+  "queries_retained": 350,
+  "seed": 20261117,
+  "sampled_queries": 24,
+  "review_packets": 48,
+  "strata": {
+    "positive_control": 229,
+    "zero_none": 62,
+    "zero_full": 30,
+    "zero_partial": 29
+  },
+  "sampled_strata": {
+    "zero_none": 6,
+    "zero_partial": 6,
+    "zero_full": 6,
+    "positive_control": 6
+  },
+  "arms": {
+    "dense5": {
+      "all_zero": 138,
+      "zeros_by_labelled_top5_coverage": {
+        "partial": 29,
+        "none": 90,
+        "full": 19
+      }
+    },
+    "qwen4_matched5": {
+      "all_zero": 121,
+      "zeros_by_labelled_top5_coverage": {
+        "none": 62,
+        "full": 30,
+        "partial": 29
+      }
+    }
+  },
+  "limitations": [
+    "Qrel coverage is not proof that selected text answers the question.",
+    "Balanced diagnostic sampling does not estimate population error rates.",
+    "Do not use this score-conditioned sample as a benchmark improvement result.",
+    "Review packets hide method labels and judge scores; keep the key separate."
+  ],
+  "source_sha256": {
+    "rag/results/qwen4-answers-3724290/config.json": "0350971c7297c67df5ea2bd194f186eda4cb93fcb88d9636a125934d9cb05ca2",
+    "rag/results/qwen4-retrieval-3724174/full/rankings.jsonl": "0eebc96ee37e5a9786d5e9d68d8cd7ac15e2286253630e999574fad9c4579146",
+    "rag/results/qwen4-answers-3724290/answers/dense5.jsonl": "4414aa1a598d6b4d081e73b3f6cfd30e62c67a25f83f49857bb9f5fd4b33cc71",
+    "rag/results/qwen4-answers-3724290/answers/qwen4_matched5.jsonl": "c092b1ef21353eb95653eb0d58cac54b4ec55181bfb9b04d383c6ccb628722bc",
+    "rag/results/qwen4-answers-3724290/judge_json_dense5/answer_judge_per_query.jsonl": "e6d470a7e0110c400c6d4de048cca2a1fcf9810da546c7f200fed1ab72672443",
+    "rag/results/qwen4-answers-3724290/judge_json_qwen4_matched5/answer_judge_per_query.jsonl": "eed4a135564b53a64fc99a34c72ae8e601c6cd45590452b3b2c6adff1dffa6db"
+  }
+}
