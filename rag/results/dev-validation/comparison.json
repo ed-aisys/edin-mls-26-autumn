@@ -1,0 +1,2434 @@
+{
+  "split": "dev",
+  "queries": 125,
+  "expected_queries": 125,
+  "full_sample_completed": true,
+  "judge_available": true,
+  "per_arm": {
+    "dense5": {
+      "queries": 125,
+      "mean_local_input_tokens": 1209.048,
+      "mean_selected_documents": 5,
+      "queries_with_truncated_document": 0,
+      "mean_selected_id_qrel_recall": 0.3794974358974359,
+      "mean_full_document_qrel_recall": 0.3794974358974359,
+      "mean_reranking_ms": 0.0,
+      "mean_generation_ms": 4621.951952204108,
+      "median_generation_ms": 4531.710626557469,
+      "median_attributed_selection_plus_generation_ms": 4533.097647130489,
+      "usage_coverage": 125,
+      "server_local_token_mismatches": 0,
+      "server_budget_overruns": 0,
+      "max_local_input_tokens": 2803,
+      "non_stop_completions": 0,
+      "mean_server_input_tokens": 1209.048,
+      "mean_server_output_tokens": 263.592,
+      "mean_judge_correctness": 1.4,
+      "mean_judge_grounding": 1.392,
+      "mean_judge_completeness": 1.176,
+      "mean_judge_normalised_answer_score": 0.33066666666666666
+    },
+    "dense20": {
+      "queries": 125,
+      "mean_local_input_tokens": 4948.4,
+      "mean_selected_documents": 20,
+      "queries_with_truncated_document": 0,
+      "mean_selected_id_qrel_recall": 0.5795208791208791,
+      "mean_full_document_qrel_recall": 0.5795208791208791,
+      "mean_reranking_ms": 0.0,
+      "mean_generation_ms": 5479.4429590553045,
+      "median_generation_ms": 5871.403228491545,
+      "median_attributed_selection_plus_generation_ms": 5880.261238664389,
+      "usage_coverage": 125,
+      "server_local_token_mismatches": 0,
+      "server_budget_overruns": 0,
+      "max_local_input_tokens": 8684,
+      "non_stop_completions": 0,
+      "mean_server_input_tokens": 4948.4,
+      "mean_server_output_tokens": 292.776,
+      "mean_judge_correctness": 1.368,
+      "mean_judge_grounding": 1.432,
+      "mean_judge_completeness": 1.168,
+      "mean_judge_normalised_answer_score": 0.33066666666666666
+    },
+    "rerank5": {
+      "queries": 125,
+      "mean_local_input_tokens": 1470.248,
+      "mean_selected_documents": 5,
+      "queries_with_truncated_document": 0,
+      "mean_selected_id_qrel_recall": 0.33256996336996336,
+      "mean_full_document_qrel_recall": 0.33256996336996336,
+      "mean_reranking_ms": 261.89934080839157,
+      "mean_generation_ms": 4468.701259359717,
+      "median_generation_ms": 4365.068217739463,
+      "median_attributed_selection_plus_generation_ms": 4569.004138931632,
+      "usage_coverage": 125,
+      "server_local_token_mismatches": 0,
+      "server_budget_overruns": 0,
+      "max_local_input_tokens": 4605,
+      "non_stop_completions": 0,
+      "mean_server_input_tokens": 1470.248,
+      "mean_server_output_tokens": 255.76,
+      "mean_judge_correctness": 1.328,
+      "mean_judge_grounding": 1.312,
+      "mean_judge_completeness": 1.072,
+      "mean_judge_normalised_answer_score": 0.30933333333333335
+    },
+    "dense_budget": {
+      "queries": 125,
+      "mean_local_input_tokens": 4095.752,
+      "mean_selected_documents": 18.168,
+      "queries_with_truncated_document": 118,
+      "mean_selected_id_qrel_recall": 0.566378021978022,
+      "mean_full_document_qrel_recall": 0.5637113553113553,
+      "mean_reranking_ms": 0.0,
+      "mean_generation_ms": 6737.502082064748,
+      "median_generation_ms": 5671.596471220255,
+      "median_attributed_selection_plus_generation_ms": 5775.914452970028,
+      "usage_coverage": 125,
+      "server_local_token_mismatches": 0,
+      "server_budget_overruns": 0,
+      "max_local_input_tokens": 4096,
+      "non_stop_completions": 0,
+      "mean_server_input_tokens": 4095.752,
+      "mean_server_output_tokens": 288.488,
+      "mean_judge_correctness": 1.384,
+      "mean_judge_grounding": 1.4,
+      "mean_judge_completeness": 1.152,
+      "mean_judge_normalised_answer_score": 0.328
+    },
+    "rerank_budget": {
+      "queries": 125,
+      "mean_local_input_tokens": 4095.704,
+      "mean_selected_documents": 15.28,
+      "queries_with_truncated_document": 120,
+      "mean_selected_id_qrel_recall": 0.4760542124542125,
+      "mean_full_document_qrel_recall": 0.4749113553113553,
+      "mean_reranking_ms": 261.89934080839157,
+      "mean_generation_ms": 6449.5102407336235,
+      "median_generation_ms": 5484.517002478242,
+      "median_attributed_selection_plus_generation_ms": 5926.211489364505,
+      "usage_coverage": 125,
+      "server_local_token_mismatches": 0,
+      "server_budget_overruns": 0,
+      "max_local_input_tokens": 4096,
+      "non_stop_completions": 0,
+      "mean_server_input_tokens": 4095.704,
+      "mean_server_output_tokens": 347.368,
+      "mean_judge_correctness": 1.24,
+      "mean_judge_grounding": 1.168,
+      "mean_judge_completeness": 0.992,
+      "mean_judge_normalised_answer_score": 0.2833333333333333
+    }
+  },
+  "paired": {
+    "dense20 minus dense5": {
+      "query_differences": [
+        {
+          "query_id": "q_dc0daa63c6ad372c",
+          "local_input_token_delta": 1403,
+          "selection_plus_generation_ms_delta": 120.13713270425797,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_33fd7baba78a1358",
+          "local_input_token_delta": 2922,
+          "selection_plus_generation_ms_delta": 892.6541339606047,
+          "judge_score_delta": -1.0
+        },
+        {
+          "query_id": "q_01e721befe9d0dd7",
+          "local_input_token_delta": 4223,
+          "selection_plus_generation_ms_delta": 3778.7085752934217,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_ec2bf0997b0ab34b",
+          "local_input_token_delta": 3746,
+          "selection_plus_generation_ms_delta": 269.55425925552845,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_b1e20f08cf71cb73",
+          "local_input_token_delta": 4864,
+          "selection_plus_generation_ms_delta": 1047.171976417303,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_3576d20498b24f50",
+          "local_input_token_delta": 4476,
+          "selection_plus_generation_ms_delta": -656.7705422639847,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_766585499ae34d13",
+          "local_input_token_delta": 4305,
+          "selection_plus_generation_ms_delta": 890.3348557651043,
+          "judge_score_delta": -0.4166666666666667
+        },
+        {
+          "query_id": "q_2354f69a335b77ad",
+          "local_input_token_delta": 1678,
+          "selection_plus_generation_ms_delta": 3687.8094878047705,
+          "judge_score_delta": -0.3333333333333333
+        },
+        {
+          "query_id": "q_cd9e1110345de425",
+          "local_input_token_delta": 3020,
+          "selection_plus_generation_ms_delta": -96.07497230172157,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_619ce121155f4933",
+          "local_input_token_delta": 3400,
+          "selection_plus_generation_ms_delta": 2550.163608044386,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_24c587b74c5b7c95",
+          "local_input_token_delta": 3283,
+          "selection_plus_generation_ms_delta": -1196.4036114513874,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_f1e3538e7cd880f9",
+          "local_input_token_delta": 3385,
+          "selection_plus_generation_ms_delta": -665.2080714702606,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_83436a5f06f10cb0",
+          "local_input_token_delta": 4307,
+          "selection_plus_generation_ms_delta": 360.9890416264534,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_d96b734b2bc02b5a",
+          "local_input_token_delta": 2148,
+          "selection_plus_generation_ms_delta": 2672.7249938994646,
+          "judge_score_delta": 0.3333333333333333
+        },
+        {
+          "query_id": "q_de2197727d6ce8d1",
+          "local_input_token_delta": 3856,
+          "selection_plus_generation_ms_delta": 1045.713309198618,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_759750b5fb0e1764",
+          "local_input_token_delta": 2862,
+          "selection_plus_generation_ms_delta": 2427.8572127223015,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_7f3179f293749f08",
+          "local_input_token_delta": 3080,
+          "selection_plus_generation_ms_delta": -6.806941702961922,
+          "judge_score_delta": -0.16666666666666669
+        },
+        {
+          "query_id": "q_4649a82e62e04522",
+          "local_input_token_delta": 3578,
+          "selection_plus_generation_ms_delta": 573.9493109285831,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_827ed2ddd2313785",
+          "local_input_token_delta": 3086,
+          "selection_plus_generation_ms_delta": 578.2010816037655,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_77e405127e09b49c",
+          "local_input_token_delta": 1955,
+          "selection_plus_generation_ms_delta": 6493.4635404497385,
+          "judge_score_delta": -0.41666666666666663
+        },
+        {
+          "query_id": "q_13756c6685e346cd",
+          "local_input_token_delta": 2340,
+          "selection_plus_generation_ms_delta": 2190.9397039562464,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_a96f931788ebffff",
+          "local_input_token_delta": 3610,
+          "selection_plus_generation_ms_delta": 200.975950807333,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_90103c660d810557",
+          "local_input_token_delta": 4745,
+          "selection_plus_generation_ms_delta": 594.1457822918892,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_0c66e84e096f93f7",
+          "local_input_token_delta": 1924,
+          "selection_plus_generation_ms_delta": 2904.0148332715034,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_b8de4034a157d0db",
+          "local_input_token_delta": 4711,
+          "selection_plus_generation_ms_delta": 1696.3173300027847,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_fe7a2a5d67cc1106",
+          "local_input_token_delta": 3248,
+          "selection_plus_generation_ms_delta": 2001.6139652580023,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_77e5efc4effec4e2",
+          "local_input_token_delta": 4422,
+          "selection_plus_generation_ms_delta": 4954.724131152034,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_9bbd995c2b2ddb55",
+          "local_input_token_delta": 2465,
+          "selection_plus_generation_ms_delta": -530.2561372518539,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_bfa8e9fbe926b099",
+          "local_input_token_delta": 5104,
+          "selection_plus_generation_ms_delta": 387.79834285378456,
+          "judge_score_delta": -0.4166666666666667
+        },
+        {
+          "query_id": "q_f88e1fabff07591d",
+          "local_input_token_delta": 2860,
+          "selection_plus_generation_ms_delta": 555.302157998085,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_119cb1d92c34f085",
+          "local_input_token_delta": 2550,
+          "selection_plus_generation_ms_delta": -1489.8630902171135,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_33095b63b15b0fa1",
+          "local_input_token_delta": 4083,
+          "selection_plus_generation_ms_delta": 3493.3051858097315,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_62f55195e3b0ecac",
+          "local_input_token_delta": 4775,
+          "selection_plus_generation_ms_delta": -3359.3415562063456,
+          "judge_score_delta": -0.08333333333333337
+        },
+        {
+          "query_id": "q_58ca7b6f4d40fecd",
+          "local_input_token_delta": 5331,
+          "selection_plus_generation_ms_delta": 4146.836334839463,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_bbf5affa094195bb",
+          "local_input_token_delta": 3114,
+          "selection_plus_generation_ms_delta": 1360.0201029330492,
+          "judge_score_delta": -0.41666666666666663
+        },
+        {
+          "query_id": "q_14946dca186a869c",
+          "local_input_token_delta": 2903,
+          "selection_plus_generation_ms_delta": 283.6896274238825,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_ad2c7401776ba3d6",
+          "local_input_token_delta": 2940,
+          "selection_plus_generation_ms_delta": 3184.4636015594006,
+          "judge_score_delta": 0.41666666666666663
+        },
+        {
+          "query_id": "q_63fb06cc67c1a7ef",
+          "local_input_token_delta": 2667,
+          "selection_plus_generation_ms_delta": 1893.9700778573751,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_d5d6544524797db6",
+          "local_input_token_delta": 3677,
+          "selection_plus_generation_ms_delta": -681.2352482229471,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_4a6395d025f2f577",
+          "local_input_token_delta": 5099,
+          "selection_plus_generation_ms_delta": 123.88051487505436,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_129093181d03c478",
+          "local_input_token_delta": 2995,
+          "selection_plus_generation_ms_delta": -3213.093400001526,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_27e2ee362cd632ed",
+          "local_input_token_delta": 2764,
+          "selection_plus_generation_ms_delta": 695.2922083437443,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_c6b07e1ece323ce6",
+          "local_input_token_delta": 5488,
+          "selection_plus_generation_ms_delta": -182.15511552989483,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_b5557d1eb90f52f2",
+          "local_input_token_delta": 3424,
+          "selection_plus_generation_ms_delta": -339.61705304682255,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_3df64fbcb882bbee",
+          "local_input_token_delta": 4330,
+          "selection_plus_generation_ms_delta": -1213.972944766283,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_82d3831f4cecfa2f",
+          "local_input_token_delta": 4304,
+          "selection_plus_generation_ms_delta": -3845.082415267825,
+          "judge_score_delta": -0.08333333333333337
+        },
+        {
+          "query_id": "q_bba95a0c50bb2b65",
+          "local_input_token_delta": 4411,
+          "selection_plus_generation_ms_delta": 256.40677474439144,
+          "judge_score_delta": -0.08333333333333337
+        },
+        {
+          "query_id": "q_575e9577d577257b",
+          "local_input_token_delta": 2527,
+          "selection_plus_generation_ms_delta": 2292.056929320097,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_236bb02e0972054e",
+          "local_input_token_delta": 2657,
+          "selection_plus_generation_ms_delta": -659.1424588114023,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_53c401f8583ef532",
+          "local_input_token_delta": 4846,
+          "selection_plus_generation_ms_delta": -1252.4975705891848,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_cb61d17cb90968de",
+          "local_input_token_delta": 3786,
+          "selection_plus_generation_ms_delta": 1285.1675171405077,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_eda9e6976c4135b0",
+          "local_input_token_delta": 3535,
+          "selection_plus_generation_ms_delta": 2715.27080796659,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_754d65c473d57184",
+          "local_input_token_delta": 2835,
+          "selection_plus_generation_ms_delta": -1555.8712966740131,
+          "judge_score_delta": 0.5
+        },
+        {
+          "query_id": "q_a8ea5a4d5297476b",
+          "local_input_token_delta": 4360,
+          "selection_plus_generation_ms_delta": 733.6051184684038,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_d551e7d90e93f173",
+          "local_input_token_delta": 4515,
+          "selection_plus_generation_ms_delta": 1312.3693373054266,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_118787619d2fa03e",
+          "local_input_token_delta": 2505,
+          "selection_plus_generation_ms_delta": -291.4958503097296,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_e12507fff4f941cd",
+          "local_input_token_delta": 3698,
+          "selection_plus_generation_ms_delta": 1759.6383932977915,
+          "judge_score_delta": -0.08333333333333331
+        },
+        {
+          "query_id": "q_66b53aca3ab4ed3a",
+          "local_input_token_delta": 3772,
+          "selection_plus_generation_ms_delta": 219.40715238451958,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_690ac29257262a58",
+          "local_input_token_delta": 3209,
+          "selection_plus_generation_ms_delta": -29.283640906214714,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_dfb0f82726831c78",
+          "local_input_token_delta": 4782,
+          "selection_plus_generation_ms_delta": 392.0188434422016,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_94efba4b07bc12eb",
+          "local_input_token_delta": 3226,
+          "selection_plus_generation_ms_delta": 1702.837124466896,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_9c6796cffb5cb7ed",
+          "local_input_token_delta": 2808,
+          "selection_plus_generation_ms_delta": 2226.8647141754627,
+          "judge_score_delta": 0.16666666666666669
+        },
+        {
+          "query_id": "q_7c75f7cf3f7b7223",
+          "local_input_token_delta": 3341,
+          "selection_plus_generation_ms_delta": 951.664324849844,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_1b8414b3d92627d3",
+          "local_input_token_delta": 3430,
+          "selection_plus_generation_ms_delta": 121.56844325363636,
+          "judge_score_delta": -0.08333333333333337
+        },
+        {
+          "query_id": "q_a756969099a5c91a",
+          "local_input_token_delta": 4324,
+          "selection_plus_generation_ms_delta": 3359.5052901655436,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_3c305034a907bff9",
+          "local_input_token_delta": 3997,
+          "selection_plus_generation_ms_delta": 1479.2121518403292,
+          "judge_score_delta": -0.08333333333333331
+        },
+        {
+          "query_id": "q_88e135fa82ca9d35",
+          "local_input_token_delta": 2687,
+          "selection_plus_generation_ms_delta": -1319.3918243050575,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_b81e42cba4ba2821",
+          "local_input_token_delta": 4117,
+          "selection_plus_generation_ms_delta": -1155.905444175005,
+          "judge_score_delta": 0.08333333333333331
+        },
+        {
+          "query_id": "q_5fd3ef2ef4264738",
+          "local_input_token_delta": 4260,
+          "selection_plus_generation_ms_delta": -1111.9271367788315,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_9b0131c74d426d1e",
+          "local_input_token_delta": 3952,
+          "selection_plus_generation_ms_delta": 898.7538833171129,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_b681cc4c4cd62d5b",
+          "local_input_token_delta": 2087,
+          "selection_plus_generation_ms_delta": 421.04257829487324,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_8dad01d9871b283e",
+          "local_input_token_delta": 4124,
+          "selection_plus_generation_ms_delta": 4.724118858575821,
+          "judge_score_delta": -0.3333333333333333
+        },
+        {
+          "query_id": "q_5311e750469a7f46",
+          "local_input_token_delta": 4012,
+          "selection_plus_generation_ms_delta": 4798.938436433673,
+          "judge_score_delta": -0.16666666666666669
+        },
+        {
+          "query_id": "q_6718aeb9b04f1962",
+          "local_input_token_delta": 5294,
+          "selection_plus_generation_ms_delta": 2017.2205232083797,
+          "judge_score_delta": 0.08333333333333331
+        },
+        {
+          "query_id": "q_6bf9e6e1a56d73c5",
+          "local_input_token_delta": 6382,
+          "selection_plus_generation_ms_delta": 52.12051793932915,
+          "judge_score_delta": 0.5
+        },
+        {
+          "query_id": "q_9fff7ae6921ad2c6",
+          "local_input_token_delta": 4018,
+          "selection_plus_generation_ms_delta": 297.676021233201,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_c81a4c29167773fb",
+          "local_input_token_delta": 5646,
+          "selection_plus_generation_ms_delta": 421.41670174896717,
+          "judge_score_delta": -0.08333333333333337
+        },
+        {
+          "query_id": "q_836f963858e39c52",
+          "local_input_token_delta": 2524,
+          "selection_plus_generation_ms_delta": -105.1343772560358,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_de7f874a20167a15",
+          "local_input_token_delta": 3855,
+          "selection_plus_generation_ms_delta": 3086.8204180151224,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_653a4ba74af80def",
+          "local_input_token_delta": 3410,
+          "selection_plus_generation_ms_delta": 204.5665867626667,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_64a524fc04d7d380",
+          "local_input_token_delta": 4157,
+          "selection_plus_generation_ms_delta": 2119.6567956358194,
+          "judge_score_delta": -0.08333333333333331
+        },
+        {
+          "query_id": "q_9ff0a37eb3d4374e",
+          "local_input_token_delta": 3025,
+          "selection_plus_generation_ms_delta": 453.12038995325565,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_91fc9afe8e04c782",
+          "local_input_token_delta": 2201,
+          "selection_plus_generation_ms_delta": 8270.57465352118,
+          "judge_score_delta": -0.08333333333333337
+        },
+        {
+          "query_id": "q_670cc29fa2307321",
+          "local_input_token_delta": 6733,
+          "selection_plus_generation_ms_delta": 4595.251468941569,
+          "judge_score_delta": 0.3333333333333333
+        },
+        {
+          "query_id": "q_52dbd70237677e73",
+          "local_input_token_delta": 4596,
+          "selection_plus_generation_ms_delta": -317.4948636442423,
+          "judge_score_delta": 0.3333333333333333
+        },
+        {
+          "query_id": "q_c54bc81ecb781544",
+          "local_input_token_delta": 2112,
+          "selection_plus_generation_ms_delta": -282.34660997986794,
+          "judge_score_delta": 0.3333333333333333
+        },
+        {
+          "query_id": "q_a104e341f2ad636f",
+          "local_input_token_delta": 3431,
+          "selection_plus_generation_ms_delta": -1833.2807142287493,
+          "judge_score_delta": 0.3333333333333333
+        },
+        {
+          "query_id": "q_1a1bd6b10555ed7a",
+          "local_input_token_delta": 7366,
+          "selection_plus_generation_ms_delta": 135.7912253588438,
+          "judge_score_delta": -0.5833333333333333
+        },
+        {
+          "query_id": "q_5a3a6bbe546dc2f4",
+          "local_input_token_delta": 5129,
+          "selection_plus_generation_ms_delta": 3971.4660551398993,
+          "judge_score_delta": 0.6666666666666667
+        },
+        {
+          "query_id": "q_37ada55cf3de72c5",
+          "local_input_token_delta": 2848,
+          "selection_plus_generation_ms_delta": 2265.266442671418,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_c6417d8dbf54e605",
+          "local_input_token_delta": 1863,
+          "selection_plus_generation_ms_delta": -401.9145630300045,
+          "judge_score_delta": 0.5833333333333333
+        },
+        {
+          "query_id": "q_a613c397a93a05eb",
+          "local_input_token_delta": 4886,
+          "selection_plus_generation_ms_delta": 3128.130052238703,
+          "judge_score_delta": -0.08333333333333337
+        },
+        {
+          "query_id": "q_809c499337b553ec",
+          "local_input_token_delta": 5048,
+          "selection_plus_generation_ms_delta": 2690.3581097722054,
+          "judge_score_delta": 0.25
+        },
+        {
+          "query_id": "q_bce6195293268add",
+          "local_input_token_delta": 2334,
+          "selection_plus_generation_ms_delta": -5359.8306979984045,
+          "judge_score_delta": 0.08333333333333331
+        },
+        {
+          "query_id": "q_93443d5a05cd57c0",
+          "local_input_token_delta": 4402,
+          "selection_plus_generation_ms_delta": 613.3842505514622,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_0ab841636984af0c",
+          "local_input_token_delta": 2299,
+          "selection_plus_generation_ms_delta": 357.7544800937176,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_4e26a72bfdd314a3",
+          "local_input_token_delta": 4191,
+          "selection_plus_generation_ms_delta": 2226.473141461611,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_660c923c1fe765b3",
+          "local_input_token_delta": 5074,
+          "selection_plus_generation_ms_delta": 185.8689747750759,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_f049c5a1fea3fb9c",
+          "local_input_token_delta": 3662,
+          "selection_plus_generation_ms_delta": 2830.2523363381624,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_e2d93ba37d41a2fd",
+          "local_input_token_delta": 3417,
+          "selection_plus_generation_ms_delta": -3850.6915494799614,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_3b315cdea7a19bd1",
+          "local_input_token_delta": 4150,
+          "selection_plus_generation_ms_delta": 4367.904173210263,
+          "judge_score_delta": 0.5
+        },
+        {
+          "query_id": "q_a540dbc5b8799670",
+          "local_input_token_delta": 5718,
+          "selection_plus_generation_ms_delta": 75.18033497035503,
+          "judge_score_delta": -1.0
+        },
+        {
+          "query_id": "q_19fb5b8950b04606",
+          "local_input_token_delta": 3193,
+          "selection_plus_generation_ms_delta": -318.56944784522057,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_348823efa903d6ce",
+          "local_input_token_delta": 4003,
+          "selection_plus_generation_ms_delta": -1311.5525916218758,
+          "judge_score_delta": -0.3333333333333333
+        },
+        {
+          "query_id": "q_52dfde60d835ce82",
+          "local_input_token_delta": 3076,
+          "selection_plus_generation_ms_delta": 80.74991963803768,
+          "judge_score_delta": -0.08333333333333337
+        },
+        {
+          "query_id": "q_5f1d7b60eb3c063a",
+          "local_input_token_delta": 5408,
+          "selection_plus_generation_ms_delta": 671.0483450442553,
+          "judge_score_delta": -0.08333333333333337
+        },
+        {
+          "query_id": "q_1e8dfc3d32a6c0e6",
+          "local_input_token_delta": 2806,
+          "selection_plus_generation_ms_delta": 210.55994182825089,
+          "judge_score_delta": 0.3333333333333333
+        },
+        {
+          "query_id": "q_c00595a73e659a13",
+          "local_input_token_delta": 3574,
+          "selection_plus_generation_ms_delta": 286.2399872392416,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_623ca02323bdcf42",
+          "local_input_token_delta": 2845,
+          "selection_plus_generation_ms_delta": -199.4921825826168,
+          "judge_score_delta": 0.5
+        },
+        {
+          "query_id": "q_b752910e1a6c0e70",
+          "local_input_token_delta": 3090,
+          "selection_plus_generation_ms_delta": 399.4890432804823,
+          "judge_score_delta": -0.08333333333333337
+        },
+        {
+          "query_id": "q_929d9f9a0e015d65",
+          "local_input_token_delta": 2002,
+          "selection_plus_generation_ms_delta": -3205.3663227707148,
+          "judge_score_delta": 0.16666666666666669
+        },
+        {
+          "query_id": "q_116884719561bf18",
+          "local_input_token_delta": 3162,
+          "selection_plus_generation_ms_delta": 1506.2042754143476,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_6f43afaa5e92dbbb",
+          "local_input_token_delta": 5213,
+          "selection_plus_generation_ms_delta": 4335.575634613633,
+          "judge_score_delta": -0.4166666666666667
+        },
+        {
+          "query_id": "q_900c4b5340b303c0",
+          "local_input_token_delta": 5423,
+          "selection_plus_generation_ms_delta": 3665.4791366308928,
+          "judge_score_delta": 1.0
+        },
+        {
+          "query_id": "q_b3ba420b3fd4247e",
+          "local_input_token_delta": 2577,
+          "selection_plus_generation_ms_delta": -727.8533428907394,
+          "judge_score_delta": 0.5833333333333334
+        },
+        {
+          "query_id": "q_54feaf0a76462c56",
+          "local_input_token_delta": 2748,
+          "selection_plus_generation_ms_delta": -151.72205306589603,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_f289da5dc985a411",
+          "local_input_token_delta": 3985,
+          "selection_plus_generation_ms_delta": 2794.0928377211094,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_47b7c2ad5748600b",
+          "local_input_token_delta": 4485,
+          "selection_plus_generation_ms_delta": 1024.036506190896,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_e75812046abc116d",
+          "local_input_token_delta": 5403,
+          "selection_plus_generation_ms_delta": 1790.1257891207933,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_da0fce3abc878e40",
+          "local_input_token_delta": 4578,
+          "selection_plus_generation_ms_delta": 578.8328871130943,
+          "judge_score_delta": -0.16666666666666669
+        },
+        {
+          "query_id": "q_6f8b73b746019a15",
+          "local_input_token_delta": 2687,
+          "selection_plus_generation_ms_delta": 1442.090356722474,
+          "judge_score_delta": -0.4166666666666667
+        },
+        {
+          "query_id": "q_372a96cf7c169250",
+          "local_input_token_delta": 4325,
+          "selection_plus_generation_ms_delta": 441.78263284265995,
+          "judge_score_delta": -0.08333333333333331
+        },
+        {
+          "query_id": "q_e3e73f9ccdca5810",
+          "local_input_token_delta": 5493,
+          "selection_plus_generation_ms_delta": 1597.6425558328629,
+          "judge_score_delta": 0.08333333333333331
+        },
+        {
+          "query_id": "q_4fdf59e3fbfa2a1a",
+          "local_input_token_delta": 4026,
+          "selection_plus_generation_ms_delta": 1781.2028750777245,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_d33bf150239366a3",
+          "local_input_token_delta": 4293,
+          "selection_plus_generation_ms_delta": -1243.9010962843895,
+          "judge_score_delta": -0.41666666666666663
+        }
+      ],
+      "mean_judge_score_delta": -2.6645352591003758e-18,
+      "query_bootstrap_95_interval": [
+        -0.044000000000000004,
+        0.042666666666666665
+      ],
+      "wins": 22,
+      "ties": 73,
+      "losses": 30
+    },
+    "rerank5 minus dense5": {
+      "query_differences": [
+        {
+          "query_id": "q_dc0daa63c6ad372c",
+          "local_input_token_delta": 354,
+          "selection_plus_generation_ms_delta": -182.8013937920332,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_33fd7baba78a1358",
+          "local_input_token_delta": 880,
+          "selection_plus_generation_ms_delta": -930.5360428988934,
+          "judge_score_delta": -0.5833333333333333
+        },
+        {
+          "query_id": "q_01e721befe9d0dd7",
+          "local_input_token_delta": 286,
+          "selection_plus_generation_ms_delta": -2793.8002049922943,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_ec2bf0997b0ab34b",
+          "local_input_token_delta": 97,
+          "selection_plus_generation_ms_delta": 1404.2414482682943,
+          "judge_score_delta": -0.25000000000000006
+        },
+        {
+          "query_id": "q_b1e20f08cf71cb73",
+          "local_input_token_delta": 718,
+          "selection_plus_generation_ms_delta": 597.7022964507341,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_3576d20498b24f50",
+          "local_input_token_delta": 666,
+          "selection_plus_generation_ms_delta": -1833.6212448775768,
+          "judge_score_delta": -0.5
+        },
+        {
+          "query_id": "q_766585499ae34d13",
+          "local_input_token_delta": 379,
+          "selection_plus_generation_ms_delta": 1279.2641762644053,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_2354f69a335b77ad",
+          "local_input_token_delta": 352,
+          "selection_plus_generation_ms_delta": 3168.5293298214674,
+          "judge_score_delta": 0.08333333333333337
+        },
+        {
+          "query_id": "q_cd9e1110345de425",
+          "local_input_token_delta": 470,
+          "selection_plus_generation_ms_delta": 1957.6536621898413,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_619ce121155f4933",
+          "local_input_token_delta": 930,
+          "selection_plus_generation_ms_delta": -780.8180674910545,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_24c587b74c5b7c95",
+          "local_input_token_delta": -277,
+          "selection_plus_generation_ms_delta": 944.5278327912092,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_f1e3538e7cd880f9",
+          "local_input_token_delta": 851,
+          "selection_plus_generation_ms_delta": -1034.0989604592323,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_83436a5f06f10cb0",
+          "local_input_token_delta": 562,
+          "selection_plus_generation_ms_delta": 425.6450738757849,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_d96b734b2bc02b5a",
+          "local_input_token_delta": 347,
+          "selection_plus_generation_ms_delta": 1193.3263931423426,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_de2197727d6ce8d1",
+          "local_input_token_delta": -182,
+          "selection_plus_generation_ms_delta": -1831.9610562175512,
+          "judge_score_delta": -0.5833333333333333
+        },
+        {
+          "query_id": "q_759750b5fb0e1764",
+          "local_input_token_delta": 1530,
+          "selection_plus_generation_ms_delta": 279.3736085295677,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_7f3179f293749f08",
+          "local_input_token_delta": 591,
+          "selection_plus_generation_ms_delta": 420.69579660892487,
+          "judge_score_delta": -0.16666666666666669
+        },
+        {
+          "query_id": "q_4649a82e62e04522",
+          "local_input_token_delta": -624,
+          "selection_plus_generation_ms_delta": -50.464000552892685,
+          "judge_score_delta": -1.0
+        },
+        {
+          "query_id": "q_827ed2ddd2313785",
+          "local_input_token_delta": 6,
+          "selection_plus_generation_ms_delta": -568.5264933854342,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_77e405127e09b49c",
+          "local_input_token_delta": 181,
+          "selection_plus_generation_ms_delta": -1649.8406380414963,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_13756c6685e346cd",
+          "local_input_token_delta": 7,
+          "selection_plus_generation_ms_delta": 1618.5618434101343,
+          "judge_score_delta": 0.5833333333333333
+        },
+        {
+          "query_id": "q_a96f931788ebffff",
+          "local_input_token_delta": 511,
+          "selection_plus_generation_ms_delta": 1422.6434603333473,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_90103c660d810557",
+          "local_input_token_delta": 1564,
+          "selection_plus_generation_ms_delta": 479.5818440616131,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_0c66e84e096f93f7",
+          "local_input_token_delta": 66,
+          "selection_plus_generation_ms_delta": 1014.023520052433,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_b8de4034a157d0db",
+          "local_input_token_delta": -445,
+          "selection_plus_generation_ms_delta": -2451.468612998724,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_fe7a2a5d67cc1106",
+          "local_input_token_delta": 392,
+          "selection_plus_generation_ms_delta": 1106.859927996993,
+          "judge_score_delta": 0.3333333333333333
+        },
+        {
+          "query_id": "q_77e5efc4effec4e2",
+          "local_input_token_delta": 1016,
+          "selection_plus_generation_ms_delta": 1436.7548506706953,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_9bbd995c2b2ddb55",
+          "local_input_token_delta": 526,
+          "selection_plus_generation_ms_delta": -5459.330011159182,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_bfa8e9fbe926b099",
+          "local_input_token_delta": 306,
+          "selection_plus_generation_ms_delta": -577.4859171360731,
+          "judge_score_delta": -0.4166666666666667
+        },
+        {
+          "query_id": "q_f88e1fabff07591d",
+          "local_input_token_delta": 118,
+          "selection_plus_generation_ms_delta": 27.24219672381878,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_119cb1d92c34f085",
+          "local_input_token_delta": 27,
+          "selection_plus_generation_ms_delta": -1012.5533919781446,
+          "judge_score_delta": 0.16666666666666669
+        },
+        {
+          "query_id": "q_33095b63b15b0fa1",
+          "local_input_token_delta": 982,
+          "selection_plus_generation_ms_delta": 1911.7833077907562,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_62f55195e3b0ecac",
+          "local_input_token_delta": 855,
+          "selection_plus_generation_ms_delta": -3184.627503156662,
+          "judge_score_delta": -0.08333333333333337
+        },
+        {
+          "query_id": "q_58ca7b6f4d40fecd",
+          "local_input_token_delta": 59,
+          "selection_plus_generation_ms_delta": 2086.4043813198805,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_bbf5affa094195bb",
+          "local_input_token_delta": -144,
+          "selection_plus_generation_ms_delta": 369.3141993135214,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_14946dca186a869c",
+          "local_input_token_delta": 484,
+          "selection_plus_generation_ms_delta": -3574.8372972011566,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_ad2c7401776ba3d6",
+          "local_input_token_delta": 377,
+          "selection_plus_generation_ms_delta": -217.88369491696358,
+          "judge_score_delta": -0.16666666666666669
+        },
+        {
+          "query_id": "q_63fb06cc67c1a7ef",
+          "local_input_token_delta": -400,
+          "selection_plus_generation_ms_delta": 901.109553873539,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_d5d6544524797db6",
+          "local_input_token_delta": 638,
+          "selection_plus_generation_ms_delta": -2855.061251670122,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_4a6395d025f2f577",
+          "local_input_token_delta": -330,
+          "selection_plus_generation_ms_delta": 78.18486355245113,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_129093181d03c478",
+          "local_input_token_delta": -132,
+          "selection_plus_generation_ms_delta": 217.5409160554409,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_27e2ee362cd632ed",
+          "local_input_token_delta": -1303,
+          "selection_plus_generation_ms_delta": -2870.6643152981997,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_c6b07e1ece323ce6",
+          "local_input_token_delta": 713,
+          "selection_plus_generation_ms_delta": 479.7065984457731,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_b5557d1eb90f52f2",
+          "local_input_token_delta": -550,
+          "selection_plus_generation_ms_delta": -2955.370906740427,
+          "judge_score_delta": 0.4166666666666667
+        },
+        {
+          "query_id": "q_3df64fbcb882bbee",
+          "local_input_token_delta": 2,
+          "selection_plus_generation_ms_delta": -450.08428394794464,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_82d3831f4cecfa2f",
+          "local_input_token_delta": 514,
+          "selection_plus_generation_ms_delta": 941.440561786294,
+          "judge_score_delta": -0.08333333333333337
+        },
+        {
+          "query_id": "q_bba95a0c50bb2b65",
+          "local_input_token_delta": -5,
+          "selection_plus_generation_ms_delta": -107.99332149326801,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_575e9577d577257b",
+          "local_input_token_delta": -463,
+          "selection_plus_generation_ms_delta": 99.03964400291443,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_236bb02e0972054e",
+          "local_input_token_delta": 262,
+          "selection_plus_generation_ms_delta": 498.790355399251,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_53c401f8583ef532",
+          "local_input_token_delta": 180,
+          "selection_plus_generation_ms_delta": -679.7088347375393,
+          "judge_score_delta": -1.0
+        },
+        {
+          "query_id": "q_cb61d17cb90968de",
+          "local_input_token_delta": -64,
+          "selection_plus_generation_ms_delta": -1061.0436517745256,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_eda9e6976c4135b0",
+          "local_input_token_delta": -103,
+          "selection_plus_generation_ms_delta": 23.398686200380325,
+          "judge_score_delta": -0.4166666666666667
+        },
+        {
+          "query_id": "q_754d65c473d57184",
+          "local_input_token_delta": 48,
+          "selection_plus_generation_ms_delta": -1452.9749061912298,
+          "judge_score_delta": 0.4166666666666667
+        },
+        {
+          "query_id": "q_a8ea5a4d5297476b",
+          "local_input_token_delta": -192,
+          "selection_plus_generation_ms_delta": -2027.9697831720114,
+          "judge_score_delta": -0.08333333333333337
+        },
+        {
+          "query_id": "q_d551e7d90e93f173",
+          "local_input_token_delta": 259,
+          "selection_plus_generation_ms_delta": 703.9791755378246,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_118787619d2fa03e",
+          "local_input_token_delta": 402,
+          "selection_plus_generation_ms_delta": 814.3197521567345,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_e12507fff4f941cd",
+          "local_input_token_delta": 3793,
+          "selection_plus_generation_ms_delta": 1102.4350058287382,
+          "judge_score_delta": -0.08333333333333331
+        },
+        {
+          "query_id": "q_66b53aca3ab4ed3a",
+          "local_input_token_delta": 1370,
+          "selection_plus_generation_ms_delta": 2597.333300858736,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_690ac29257262a58",
+          "local_input_token_delta": -786,
+          "selection_plus_generation_ms_delta": -2341.766633093357,
+          "judge_score_delta": 0.4166666666666667
+        },
+        {
+          "query_id": "q_dfb0f82726831c78",
+          "local_input_token_delta": 662,
+          "selection_plus_generation_ms_delta": 97.45216183364391,
+          "judge_score_delta": 0.08333333333333337
+        },
+        {
+          "query_id": "q_94efba4b07bc12eb",
+          "local_input_token_delta": 539,
+          "selection_plus_generation_ms_delta": -1012.8906350582838,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_9c6796cffb5cb7ed",
+          "local_input_token_delta": 776,
+          "selection_plus_generation_ms_delta": -597.4905379116535,
+          "judge_score_delta": -0.4166666666666667
+        },
+        {
+          "query_id": "q_7c75f7cf3f7b7223",
+          "local_input_token_delta": 163,
+          "selection_plus_generation_ms_delta": -47.99033887684345,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_1b8414b3d92627d3",
+          "local_input_token_delta": 556,
+          "selection_plus_generation_ms_delta": 541.634751483798,
+          "judge_score_delta": -0.08333333333333337
+        },
+        {
+          "query_id": "q_a756969099a5c91a",
+          "local_input_token_delta": 813,
+          "selection_plus_generation_ms_delta": 558.5438050329685,
+          "judge_score_delta": -0.3333333333333333
+        },
+        {
+          "query_id": "q_3c305034a907bff9",
+          "local_input_token_delta": 59,
+          "selection_plus_generation_ms_delta": 1719.1345673054457,
+          "judge_score_delta": -0.08333333333333331
+        },
+        {
+          "query_id": "q_88e135fa82ca9d35",
+          "local_input_token_delta": 282,
+          "selection_plus_generation_ms_delta": -1988.108130171895,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_b81e42cba4ba2821",
+          "local_input_token_delta": -80,
+          "selection_plus_generation_ms_delta": -1021.7775944620371,
+          "judge_score_delta": 0.08333333333333331
+        },
+        {
+          "query_id": "q_5fd3ef2ef4264738",
+          "local_input_token_delta": -412,
+          "selection_plus_generation_ms_delta": -3343.812206760049,
+          "judge_score_delta": -0.08333333333333331
+        },
+        {
+          "query_id": "q_9b0131c74d426d1e",
+          "local_input_token_delta": -375,
+          "selection_plus_generation_ms_delta": 394.71997506916523,
+          "judge_score_delta": 0.08333333333333337
+        },
+        {
+          "query_id": "q_b681cc4c4cd62d5b",
+          "local_input_token_delta": -581,
+          "selection_plus_generation_ms_delta": -7.433170452713966,
+          "judge_score_delta": 0.4166666666666667
+        },
+        {
+          "query_id": "q_8dad01d9871b283e",
+          "local_input_token_delta": 1399,
+          "selection_plus_generation_ms_delta": 3722.7130122482777,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_5311e750469a7f46",
+          "local_input_token_delta": 502,
+          "selection_plus_generation_ms_delta": -982.5633987784386,
+          "judge_score_delta": -0.08333333333333337
+        },
+        {
+          "query_id": "q_6718aeb9b04f1962",
+          "local_input_token_delta": 927,
+          "selection_plus_generation_ms_delta": 255.16101345419884,
+          "judge_score_delta": 0.08333333333333331
+        },
+        {
+          "query_id": "q_6bf9e6e1a56d73c5",
+          "local_input_token_delta": -225,
+          "selection_plus_generation_ms_delta": 574.8820658773184,
+          "judge_score_delta": 0.5833333333333334
+        },
+        {
+          "query_id": "q_9fff7ae6921ad2c6",
+          "local_input_token_delta": 0,
+          "selection_plus_generation_ms_delta": 69.39212791621685,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_c81a4c29167773fb",
+          "local_input_token_delta": 180,
+          "selection_plus_generation_ms_delta": -211.09106950461864,
+          "judge_score_delta": -0.08333333333333337
+        },
+        {
+          "query_id": "q_836f963858e39c52",
+          "local_input_token_delta": 138,
+          "selection_plus_generation_ms_delta": -185.81858836114407,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_de7f874a20167a15",
+          "local_input_token_delta": 453,
+          "selection_plus_generation_ms_delta": 2073.1694139540195,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_653a4ba74af80def",
+          "local_input_token_delta": 942,
+          "selection_plus_generation_ms_delta": 336.3118935376406,
+          "judge_score_delta": -0.5
+        },
+        {
+          "query_id": "q_64a524fc04d7d380",
+          "local_input_token_delta": -130,
+          "selection_plus_generation_ms_delta": 2885.3906337171793,
+          "judge_score_delta": 0.5
+        },
+        {
+          "query_id": "q_9ff0a37eb3d4374e",
+          "local_input_token_delta": 65,
+          "selection_plus_generation_ms_delta": 343.99423748254776,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_91fc9afe8e04c782",
+          "local_input_token_delta": 240,
+          "selection_plus_generation_ms_delta": 1809.9852744489908,
+          "judge_score_delta": 0.08333333333333331
+        },
+        {
+          "query_id": "q_670cc29fa2307321",
+          "local_input_token_delta": -352,
+          "selection_plus_generation_ms_delta": -514.4441574811935,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_52dbd70237677e73",
+          "local_input_token_delta": 1596,
+          "selection_plus_generation_ms_delta": -333.2887217402458,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_c54bc81ecb781544",
+          "local_input_token_delta": 839,
+          "selection_plus_generation_ms_delta": 400.8422512561083,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_a104e341f2ad636f",
+          "local_input_token_delta": -508,
+          "selection_plus_generation_ms_delta": -1034.6840433776379,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_1a1bd6b10555ed7a",
+          "local_input_token_delta": 822,
+          "selection_plus_generation_ms_delta": -551.2690134346485,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_5a3a6bbe546dc2f4",
+          "local_input_token_delta": 1458,
+          "selection_plus_generation_ms_delta": -976.7730440944433,
+          "judge_score_delta": 0.6666666666666667
+        },
+        {
+          "query_id": "q_37ada55cf3de72c5",
+          "local_input_token_delta": -17,
+          "selection_plus_generation_ms_delta": 452.42964662611485,
+          "judge_score_delta": -0.4166666666666667
+        },
+        {
+          "query_id": "q_c6417d8dbf54e605",
+          "local_input_token_delta": -216,
+          "selection_plus_generation_ms_delta": -5795.522250235081,
+          "judge_score_delta": 0.08333333333333331
+        },
+        {
+          "query_id": "q_a613c397a93a05eb",
+          "local_input_token_delta": -654,
+          "selection_plus_generation_ms_delta": 3982.668036594987,
+          "judge_score_delta": -0.4166666666666667
+        },
+        {
+          "query_id": "q_809c499337b553ec",
+          "local_input_token_delta": 152,
+          "selection_plus_generation_ms_delta": 2634.7747538238764,
+          "judge_score_delta": 0.25
+        },
+        {
+          "query_id": "q_bce6195293268add",
+          "local_input_token_delta": -478,
+          "selection_plus_generation_ms_delta": -5054.522508755326,
+          "judge_score_delta": -0.08333333333333337
+        },
+        {
+          "query_id": "q_93443d5a05cd57c0",
+          "local_input_token_delta": -1539,
+          "selection_plus_generation_ms_delta": 1019.6743849664927,
+          "judge_score_delta": 0.08333333333333331
+        },
+        {
+          "query_id": "q_0ab841636984af0c",
+          "local_input_token_delta": 275,
+          "selection_plus_generation_ms_delta": 271.9026058912277,
+          "judge_score_delta": -0.08333333333333331
+        },
+        {
+          "query_id": "q_4e26a72bfdd314a3",
+          "local_input_token_delta": -182,
+          "selection_plus_generation_ms_delta": 2247.079186141491,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_660c923c1fe765b3",
+          "local_input_token_delta": -23,
+          "selection_plus_generation_ms_delta": 2402.2369869053364,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_f049c5a1fea3fb9c",
+          "local_input_token_delta": 201,
+          "selection_plus_generation_ms_delta": 2223.315490409732,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_e2d93ba37d41a2fd",
+          "local_input_token_delta": 603,
+          "selection_plus_generation_ms_delta": 1530.0030149519444,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_3b315cdea7a19bd1",
+          "local_input_token_delta": -531,
+          "selection_plus_generation_ms_delta": 323.57240095734596,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_a540dbc5b8799670",
+          "local_input_token_delta": 679,
+          "selection_plus_generation_ms_delta": 274.4199652224779,
+          "judge_score_delta": -1.0
+        },
+        {
+          "query_id": "q_19fb5b8950b04606",
+          "local_input_token_delta": 102,
+          "selection_plus_generation_ms_delta": 6404.126005247235,
+          "judge_score_delta": 0.4166666666666667
+        },
+        {
+          "query_id": "q_348823efa903d6ce",
+          "local_input_token_delta": -66,
+          "selection_plus_generation_ms_delta": -492.7614014595747,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_52dfde60d835ce82",
+          "local_input_token_delta": 90,
+          "selection_plus_generation_ms_delta": 1009.2094913125038,
+          "judge_score_delta": 0.41666666666666663
+        },
+        {
+          "query_id": "q_5f1d7b60eb3c063a",
+          "local_input_token_delta": 304,
+          "selection_plus_generation_ms_delta": 709.1497257351875,
+          "judge_score_delta": -0.16666666666666669
+        },
+        {
+          "query_id": "q_1e8dfc3d32a6c0e6",
+          "local_input_token_delta": -526,
+          "selection_plus_generation_ms_delta": 6490.117575973272,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_c00595a73e659a13",
+          "local_input_token_delta": 413,
+          "selection_plus_generation_ms_delta": 4434.6460569649935,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_623ca02323bdcf42",
+          "local_input_token_delta": 35,
+          "selection_plus_generation_ms_delta": 186.2164717167616,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_b752910e1a6c0e70",
+          "local_input_token_delta": 615,
+          "selection_plus_generation_ms_delta": 1093.2992808520794,
+          "judge_score_delta": -0.08333333333333337
+        },
+        {
+          "query_id": "q_929d9f9a0e015d65",
+          "local_input_token_delta": -284,
+          "selection_plus_generation_ms_delta": -830.069363117218,
+          "judge_score_delta": 0.16666666666666669
+        },
+        {
+          "query_id": "q_116884719561bf18",
+          "local_input_token_delta": -80,
+          "selection_plus_generation_ms_delta": -686.4529307931662,
+          "judge_score_delta": 0.4166666666666667
+        },
+        {
+          "query_id": "q_6f43afaa5e92dbbb",
+          "local_input_token_delta": 1918,
+          "selection_plus_generation_ms_delta": 4450.40768943727,
+          "judge_score_delta": -0.4166666666666667
+        },
+        {
+          "query_id": "q_900c4b5340b303c0",
+          "local_input_token_delta": 27,
+          "selection_plus_generation_ms_delta": -1954.974390566349,
+          "judge_score_delta": 0.4166666666666667
+        },
+        {
+          "query_id": "q_b3ba420b3fd4247e",
+          "local_input_token_delta": -245,
+          "selection_plus_generation_ms_delta": -4085.961576551199,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_54feaf0a76462c56",
+          "local_input_token_delta": 297,
+          "selection_plus_generation_ms_delta": 582.9026326537132,
+          "judge_score_delta": 0.4166666666666667
+        },
+        {
+          "query_id": "q_f289da5dc985a411",
+          "local_input_token_delta": 28,
+          "selection_plus_generation_ms_delta": 1056.1334267258644,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_47b7c2ad5748600b",
+          "local_input_token_delta": 1031,
+          "selection_plus_generation_ms_delta": -487.110598012805,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_e75812046abc116d",
+          "local_input_token_delta": -87,
+          "selection_plus_generation_ms_delta": 272.9593347758055,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_da0fce3abc878e40",
+          "local_input_token_delta": -737,
+          "selection_plus_generation_ms_delta": -1087.1733650565147,
+          "judge_score_delta": -0.08333333333333331
+        },
+        {
+          "query_id": "q_6f8b73b746019a15",
+          "local_input_token_delta": 1133,
+          "selection_plus_generation_ms_delta": -3664.3245834857225,
+          "judge_score_delta": -0.4166666666666667
+        },
+        {
+          "query_id": "q_372a96cf7c169250",
+          "local_input_token_delta": 350,
+          "selection_plus_generation_ms_delta": 155.29649332165718,
+          "judge_score_delta": -0.08333333333333331
+        },
+        {
+          "query_id": "q_e3e73f9ccdca5810",
+          "local_input_token_delta": -313,
+          "selection_plus_generation_ms_delta": 150.7086642086506,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_4fdf59e3fbfa2a1a",
+          "local_input_token_delta": 1199,
+          "selection_plus_generation_ms_delta": 2486.6588953882456,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_d33bf150239366a3",
+          "local_input_token_delta": -243,
+          "selection_plus_generation_ms_delta": 1281.3880313187838,
+          "judge_score_delta": 0.0
+        }
+      ],
+      "mean_judge_score_delta": -0.021333333333333333,
+      "query_bootstrap_95_interval": [
+        -0.06866666666666667,
+        0.024
+      ],
+      "wins": 25,
+      "ties": 67,
+      "losses": 33
+    },
+    "rerank_budget minus dense_budget": {
+      "query_differences": [
+        {
+          "query_id": "q_dc0daa63c6ad372c",
+          "local_input_token_delta": 0,
+          "selection_plus_generation_ms_delta": 4826.615648344159,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_33fd7baba78a1358",
+          "local_input_token_delta": 0,
+          "selection_plus_generation_ms_delta": 1381.1453692615032,
+          "judge_score_delta": -0.4166666666666667
+        },
+        {
+          "query_id": "q_01e721befe9d0dd7",
+          "local_input_token_delta": -9,
+          "selection_plus_generation_ms_delta": 3835.830310359597,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_ec2bf0997b0ab34b",
+          "local_input_token_delta": 0,
+          "selection_plus_generation_ms_delta": -99.23289529979229,
+          "judge_score_delta": -0.5833333333333334
+        },
+        {
+          "query_id": "q_b1e20f08cf71cb73",
+          "local_input_token_delta": 0,
+          "selection_plus_generation_ms_delta": 222.38812409341335,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_3576d20498b24f50",
+          "local_input_token_delta": 0,
+          "selection_plus_generation_ms_delta": -1521.6895621269941,
+          "judge_score_delta": -0.5833333333333333
+        },
+        {
+          "query_id": "q_766585499ae34d13",
+          "local_input_token_delta": 0,
+          "selection_plus_generation_ms_delta": 5788.9579348266125,
+          "judge_score_delta": -0.4166666666666667
+        },
+        {
+          "query_id": "q_2354f69a335b77ad",
+          "local_input_token_delta": 0,
+          "selection_plus_generation_ms_delta": -3168.620089069009,
+          "judge_score_delta": -0.4166666666666667
+        },
+        {
+          "query_id": "q_cd9e1110345de425",
+          "local_input_token_delta": 0,
+          "selection_plus_generation_ms_delta": 3371.6698214411736,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_619ce121155f4933",
+          "local_input_token_delta": 0,
+          "selection_plus_generation_ms_delta": 28.01366336643696,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_24c587b74c5b7c95",
+          "local_input_token_delta": 0,
+          "selection_plus_generation_ms_delta": 2571.111338213086,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_f1e3538e7cd880f9",
+          "local_input_token_delta": 0,
+          "selection_plus_generation_ms_delta": -420.8462033420801,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_83436a5f06f10cb0",
+          "local_input_token_delta": 0,
+          "selection_plus_generation_ms_delta": 633.482463657856,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_d96b734b2bc02b5a",
+          "local_input_token_delta": 0,
+          "selection_plus_generation_ms_delta": -1880.5919401347637,
+          "judge_score_delta": -0.08333333333333337
+        },
+        {
+          "query_id": "q_de2197727d6ce8d1",
+          "local_input_token_delta": 0,
+          "selection_plus_generation_ms_delta": -183837.38415129483,
+          "judge_score_delta": 0.5
+        },
+        {
+          "query_id": "q_759750b5fb0e1764",
+          "local_input_token_delta": 0,
+          "selection_plus_generation_ms_delta": -749.1563502699137,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_7f3179f293749f08",
+          "local_input_token_delta": 0,
+          "selection_plus_generation_ms_delta": 912.1314845979214,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_4649a82e62e04522",
+          "local_input_token_delta": 0,
+          "selection_plus_generation_ms_delta": -285.63717380166054,
+          "judge_score_delta": -0.5
+        },
+        {
+          "query_id": "q_827ed2ddd2313785",
+          "local_input_token_delta": 0,
+          "selection_plus_generation_ms_delta": 1241.092910990119,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_77e405127e09b49c",
+          "local_input_token_delta": 2,
+          "selection_plus_generation_ms_delta": 137051.5154339373,
+          "judge_score_delta": -0.5833333333333334
+        },
+        {
+          "query_id": "q_13756c6685e346cd",
+          "local_input_token_delta": 1,
+          "selection_plus_generation_ms_delta": 391.8268270790577,
+          "judge_score_delta": -0.16666666666666669
+        },
+        {
+          "query_id": "q_a96f931788ebffff",
+          "local_input_token_delta": 0,
+          "selection_plus_generation_ms_delta": 566.9841580092907,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_90103c660d810557",
+          "local_input_token_delta": 0,
+          "selection_plus_generation_ms_delta": 731.8551037460566,
+          "judge_score_delta": -0.08333333333333331
+        },
+        {
+          "query_id": "q_0c66e84e096f93f7",
+          "local_input_token_delta": 0,
+          "selection_plus_generation_ms_delta": -521.1559422314167,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_b8de4034a157d0db",
+          "local_input_token_delta": 0,
+          "selection_plus_generation_ms_delta": 1874.4780216366053,
+          "judge_score_delta": -0.5833333333333334
+        },
+        {
+          "query_id": "q_fe7a2a5d67cc1106",
+          "local_input_token_delta": 0,
+          "selection_plus_generation_ms_delta": 274.0569282323122,
+          "judge_score_delta": -0.3333333333333333
+        },
+        {
+          "query_id": "q_77e5efc4effec4e2",
+          "local_input_token_delta": 0,
+          "selection_plus_generation_ms_delta": 3125.216295942664,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_9bbd995c2b2ddb55",
+          "local_input_token_delta": 0,
+          "selection_plus_generation_ms_delta": -673.2778903096914,
+          "judge_score_delta": 0.3333333333333333
+        },
+        {
+          "query_id": "q_bfa8e9fbe926b099",
+          "local_input_token_delta": 0,
+          "selection_plus_generation_ms_delta": 133.94798897206783,
+          "judge_score_delta": 0.5
+        },
+        {
+          "query_id": "q_f88e1fabff07591d",
+          "local_input_token_delta": 0,
+          "selection_plus_generation_ms_delta": 1806.1314206570387,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_119cb1d92c34f085",
+          "local_input_token_delta": 0,
+          "selection_plus_generation_ms_delta": 493.5984741896391,
+          "judge_score_delta": 0.08333333333333331
+        },
+        {
+          "query_id": "q_33095b63b15b0fa1",
+          "local_input_token_delta": 0,
+          "selection_plus_generation_ms_delta": -3766.816698014736,
+          "judge_score_delta": -0.25
+        },
+        {
+          "query_id": "q_62f55195e3b0ecac",
+          "local_input_token_delta": 0,
+          "selection_plus_generation_ms_delta": 1771.372327581048,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_58ca7b6f4d40fecd",
+          "local_input_token_delta": 0,
+          "selection_plus_generation_ms_delta": 219.80617754161358,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_bbf5affa094195bb",
+          "local_input_token_delta": 0,
+          "selection_plus_generation_ms_delta": 2157.3399398475885,
+          "judge_score_delta": -0.41666666666666663
+        },
+        {
+          "query_id": "q_14946dca186a869c",
+          "local_input_token_delta": 0,
+          "selection_plus_generation_ms_delta": -3332.0036735385656,
+          "judge_score_delta": -0.3333333333333333
+        },
+        {
+          "query_id": "q_ad2c7401776ba3d6",
+          "local_input_token_delta": 0,
+          "selection_plus_generation_ms_delta": -253.78447771072388,
+          "judge_score_delta": -0.5833333333333333
+        },
+        {
+          "query_id": "q_63fb06cc67c1a7ef",
+          "local_input_token_delta": 0,
+          "selection_plus_generation_ms_delta": -94.71426159143448,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_d5d6544524797db6",
+          "local_input_token_delta": 0,
+          "selection_plus_generation_ms_delta": 354.10493053495884,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_4a6395d025f2f577",
+          "local_input_token_delta": 0,
+          "selection_plus_generation_ms_delta": 383.2238409668207,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_129093181d03c478",
+          "local_input_token_delta": 0,
+          "selection_plus_generation_ms_delta": 4251.557569950819,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_27e2ee362cd632ed",
+          "local_input_token_delta": 7,
+          "selection_plus_generation_ms_delta": -601.9293032586575,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_c6b07e1ece323ce6",
+          "local_input_token_delta": 0,
+          "selection_plus_generation_ms_delta": -2003.9500650018454,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_b5557d1eb90f52f2",
+          "local_input_token_delta": 0,
+          "selection_plus_generation_ms_delta": -432.90613777935505,
+          "judge_score_delta": -0.5833333333333334
+        },
+        {
+          "query_id": "q_3df64fbcb882bbee",
+          "local_input_token_delta": 0,
+          "selection_plus_generation_ms_delta": -246.09430320560932,
+          "judge_score_delta": -0.3333333333333333
+        },
+        {
+          "query_id": "q_82d3831f4cecfa2f",
+          "local_input_token_delta": 0,
+          "selection_plus_generation_ms_delta": -5955.858789384365,
+          "judge_score_delta": 0.3333333333333333
+        },
+        {
+          "query_id": "q_bba95a0c50bb2b65",
+          "local_input_token_delta": 0,
+          "selection_plus_generation_ms_delta": 906.945463269949,
+          "judge_score_delta": 0.5
+        },
+        {
+          "query_id": "q_575e9577d577257b",
+          "local_input_token_delta": 0,
+          "selection_plus_generation_ms_delta": 207.84186013042927,
+          "judge_score_delta": 0.75
+        },
+        {
+          "query_id": "q_236bb02e0972054e",
+          "local_input_token_delta": 9,
+          "selection_plus_generation_ms_delta": 2514.9336643517017,
+          "judge_score_delta": 0.5833333333333333
+        },
+        {
+          "query_id": "q_53c401f8583ef532",
+          "local_input_token_delta": 0,
+          "selection_plus_generation_ms_delta": 1296.2245885282755,
+          "judge_score_delta": -0.5
+        },
+        {
+          "query_id": "q_cb61d17cb90968de",
+          "local_input_token_delta": 0,
+          "selection_plus_generation_ms_delta": 365.8158499747515,
+          "judge_score_delta": -0.08333333333333337
+        },
+        {
+          "query_id": "q_eda9e6976c4135b0",
+          "local_input_token_delta": 0,
+          "selection_plus_generation_ms_delta": -1972.5192375481129,
+          "judge_score_delta": -0.5833333333333334
+        },
+        {
+          "query_id": "q_754d65c473d57184",
+          "local_input_token_delta": -9,
+          "selection_plus_generation_ms_delta": -1399.489214643836,
+          "judge_score_delta": 0.08333333333333337
+        },
+        {
+          "query_id": "q_a8ea5a4d5297476b",
+          "local_input_token_delta": 0,
+          "selection_plus_generation_ms_delta": 467.7151422947645,
+          "judge_score_delta": -0.08333333333333331
+        },
+        {
+          "query_id": "q_d551e7d90e93f173",
+          "local_input_token_delta": 0,
+          "selection_plus_generation_ms_delta": 1825.6546314805746,
+          "judge_score_delta": -1.0
+        },
+        {
+          "query_id": "q_118787619d2fa03e",
+          "local_input_token_delta": 0,
+          "selection_plus_generation_ms_delta": 194.36930865049362,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_e12507fff4f941cd",
+          "local_input_token_delta": 0,
+          "selection_plus_generation_ms_delta": -911.8454158306122,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_66b53aca3ab4ed3a",
+          "local_input_token_delta": -1,
+          "selection_plus_generation_ms_delta": 3995.553385466337,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_690ac29257262a58",
+          "local_input_token_delta": 0,
+          "selection_plus_generation_ms_delta": -1295.7718055695295,
+          "judge_score_delta": 0.08333333333333337
+        },
+        {
+          "query_id": "q_dfb0f82726831c78",
+          "local_input_token_delta": 0,
+          "selection_plus_generation_ms_delta": 170.88225111365318,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_94efba4b07bc12eb",
+          "local_input_token_delta": 0,
+          "selection_plus_generation_ms_delta": 1445.0895301997662,
+          "judge_score_delta": -0.5833333333333333
+        },
+        {
+          "query_id": "q_9c6796cffb5cb7ed",
+          "local_input_token_delta": 0,
+          "selection_plus_generation_ms_delta": -2246.4771140366793,
+          "judge_score_delta": -0.5
+        },
+        {
+          "query_id": "q_7c75f7cf3f7b7223",
+          "local_input_token_delta": 0,
+          "selection_plus_generation_ms_delta": 112.892160192132,
+          "judge_score_delta": -0.4166666666666667
+        },
+        {
+          "query_id": "q_1b8414b3d92627d3",
+          "local_input_token_delta": 0,
+          "selection_plus_generation_ms_delta": 19.20616254210472,
+          "judge_score_delta": -0.08333333333333331
+        },
+        {
+          "query_id": "q_a756969099a5c91a",
+          "local_input_token_delta": 0,
+          "selection_plus_generation_ms_delta": -19.016722217202187,
+          "judge_score_delta": 0.3333333333333333
+        },
+        {
+          "query_id": "q_3c305034a907bff9",
+          "local_input_token_delta": 0,
+          "selection_plus_generation_ms_delta": 744.7660528123379,
+          "judge_score_delta": -0.16666666666666669
+        },
+        {
+          "query_id": "q_88e135fa82ca9d35",
+          "local_input_token_delta": 0,
+          "selection_plus_generation_ms_delta": 1289.3679253757,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_b81e42cba4ba2821",
+          "local_input_token_delta": 0,
+          "selection_plus_generation_ms_delta": 765.8591791987419,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_5fd3ef2ef4264738",
+          "local_input_token_delta": 0,
+          "selection_plus_generation_ms_delta": 2773.6994940787554,
+          "judge_score_delta": -0.4166666666666667
+        },
+        {
+          "query_id": "q_9b0131c74d426d1e",
+          "local_input_token_delta": 0,
+          "selection_plus_generation_ms_delta": 4485.160026699305,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_b681cc4c4cd62d5b",
+          "local_input_token_delta": 0,
+          "selection_plus_generation_ms_delta": -1592.367535457015,
+          "judge_score_delta": -0.5
+        },
+        {
+          "query_id": "q_8dad01d9871b283e",
+          "local_input_token_delta": 0,
+          "selection_plus_generation_ms_delta": 6974.837779998779,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_5311e750469a7f46",
+          "local_input_token_delta": 0,
+          "selection_plus_generation_ms_delta": -855.9033758938313,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_6718aeb9b04f1962",
+          "local_input_token_delta": 0,
+          "selection_plus_generation_ms_delta": -165.01454822719097,
+          "judge_score_delta": -0.08333333333333337
+        },
+        {
+          "query_id": "q_6bf9e6e1a56d73c5",
+          "local_input_token_delta": -7,
+          "selection_plus_generation_ms_delta": -348.38355891406536,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_9fff7ae6921ad2c6",
+          "local_input_token_delta": 0,
+          "selection_plus_generation_ms_delta": 276.3780206441879,
+          "judge_score_delta": -0.5833333333333333
+        },
+        {
+          "query_id": "q_c81a4c29167773fb",
+          "local_input_token_delta": 0,
+          "selection_plus_generation_ms_delta": 3380.7659670710564,
+          "judge_score_delta": 0.3333333333333333
+        },
+        {
+          "query_id": "q_836f963858e39c52",
+          "local_input_token_delta": 0,
+          "selection_plus_generation_ms_delta": -1775.1854099333286,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_de7f874a20167a15",
+          "local_input_token_delta": 0,
+          "selection_plus_generation_ms_delta": 3851.560842245817,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_653a4ba74af80def",
+          "local_input_token_delta": 0,
+          "selection_plus_generation_ms_delta": 149.1202563047409,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_64a524fc04d7d380",
+          "local_input_token_delta": 0,
+          "selection_plus_generation_ms_delta": 704.36623506248,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_9ff0a37eb3d4374e",
+          "local_input_token_delta": 0,
+          "selection_plus_generation_ms_delta": 762.3058240860701,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_91fc9afe8e04c782",
+          "local_input_token_delta": 2,
+          "selection_plus_generation_ms_delta": 1271.495245397091,
+          "judge_score_delta": 0.08333333333333337
+        },
+        {
+          "query_id": "q_670cc29fa2307321",
+          "local_input_token_delta": 0,
+          "selection_plus_generation_ms_delta": -1858.8483165949583,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_52dbd70237677e73",
+          "local_input_token_delta": 0,
+          "selection_plus_generation_ms_delta": 268.9386121928692,
+          "judge_score_delta": 0.08333333333333337
+        },
+        {
+          "query_id": "q_c54bc81ecb781544",
+          "local_input_token_delta": 0,
+          "selection_plus_generation_ms_delta": 1174.096705392003,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_a104e341f2ad636f",
+          "local_input_token_delta": 0,
+          "selection_plus_generation_ms_delta": 1181.4962103962898,
+          "judge_score_delta": 0.08333333333333337
+        },
+        {
+          "query_id": "q_1a1bd6b10555ed7a",
+          "local_input_token_delta": 0,
+          "selection_plus_generation_ms_delta": -1428.4158367663622,
+          "judge_score_delta": 0.5833333333333333
+        },
+        {
+          "query_id": "q_5a3a6bbe546dc2f4",
+          "local_input_token_delta": -8,
+          "selection_plus_generation_ms_delta": -1274.3856683373451,
+          "judge_score_delta": -0.08333333333333337
+        },
+        {
+          "query_id": "q_37ada55cf3de72c5",
+          "local_input_token_delta": 0,
+          "selection_plus_generation_ms_delta": -1075.4710994660854,
+          "judge_score_delta": 0.16666666666666669
+        },
+        {
+          "query_id": "q_c6417d8dbf54e605",
+          "local_input_token_delta": 0,
+          "selection_plus_generation_ms_delta": -8471.916688606143,
+          "judge_score_delta": 0.16666666666666669
+        },
+        {
+          "query_id": "q_a613c397a93a05eb",
+          "local_input_token_delta": 0,
+          "selection_plus_generation_ms_delta": -718.9688384532928,
+          "judge_score_delta": -0.08333333333333331
+        },
+        {
+          "query_id": "q_809c499337b553ec",
+          "local_input_token_delta": 0,
+          "selection_plus_generation_ms_delta": 5490.994649007916,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_bce6195293268add",
+          "local_input_token_delta": 0,
+          "selection_plus_generation_ms_delta": -3484.513746574521,
+          "judge_score_delta": -0.4166666666666667
+        },
+        {
+          "query_id": "q_93443d5a05cd57c0",
+          "local_input_token_delta": 0,
+          "selection_plus_generation_ms_delta": -2570.1202005147934,
+          "judge_score_delta": 0.6666666666666667
+        },
+        {
+          "query_id": "q_0ab841636984af0c",
+          "local_input_token_delta": 0,
+          "selection_plus_generation_ms_delta": 315.6529627740383,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_4e26a72bfdd314a3",
+          "local_input_token_delta": 0,
+          "selection_plus_generation_ms_delta": -3871.70341424644,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_660c923c1fe765b3",
+          "local_input_token_delta": 0,
+          "selection_plus_generation_ms_delta": 2552.6667684316635,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_f049c5a1fea3fb9c",
+          "local_input_token_delta": 0,
+          "selection_plus_generation_ms_delta": -603.7285309284925,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_e2d93ba37d41a2fd",
+          "local_input_token_delta": 0,
+          "selection_plus_generation_ms_delta": -3196.022966876626,
+          "judge_score_delta": 0.08333333333333331
+        },
+        {
+          "query_id": "q_3b315cdea7a19bd1",
+          "local_input_token_delta": 0,
+          "selection_plus_generation_ms_delta": 6383.343257009983,
+          "judge_score_delta": 0.5
+        },
+        {
+          "query_id": "q_a540dbc5b8799670",
+          "local_input_token_delta": 0,
+          "selection_plus_generation_ms_delta": -617.446867749095,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_19fb5b8950b04606",
+          "local_input_token_delta": 0,
+          "selection_plus_generation_ms_delta": 3947.732049971819,
+          "judge_score_delta": 0.5
+        },
+        {
+          "query_id": "q_348823efa903d6ce",
+          "local_input_token_delta": 0,
+          "selection_plus_generation_ms_delta": -531.4941555261612,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_52dfde60d835ce82",
+          "local_input_token_delta": 0,
+          "selection_plus_generation_ms_delta": 4477.236082777381,
+          "judge_score_delta": 1.0
+        },
+        {
+          "query_id": "q_5f1d7b60eb3c063a",
+          "local_input_token_delta": -1,
+          "selection_plus_generation_ms_delta": 800.3422450274229,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_1e8dfc3d32a6c0e6",
+          "local_input_token_delta": 0,
+          "selection_plus_generation_ms_delta": 3154.438652098179,
+          "judge_score_delta": -0.4166666666666667
+        },
+        {
+          "query_id": "q_c00595a73e659a13",
+          "local_input_token_delta": 4,
+          "selection_plus_generation_ms_delta": 1383.5083413869143,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_623ca02323bdcf42",
+          "local_input_token_delta": 0,
+          "selection_plus_generation_ms_delta": 618.0843282490969,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_b752910e1a6c0e70",
+          "local_input_token_delta": 0,
+          "selection_plus_generation_ms_delta": -925.9620402008295,
+          "judge_score_delta": -1.0
+        },
+        {
+          "query_id": "q_929d9f9a0e015d65",
+          "local_input_token_delta": 6,
+          "selection_plus_generation_ms_delta": 628.2967180013657,
+          "judge_score_delta": -0.08333333333333337
+        },
+        {
+          "query_id": "q_116884719561bf18",
+          "local_input_token_delta": 0,
+          "selection_plus_generation_ms_delta": 732.0367284119129,
+          "judge_score_delta": 0.4166666666666667
+        },
+        {
+          "query_id": "q_6f43afaa5e92dbbb",
+          "local_input_token_delta": 0,
+          "selection_plus_generation_ms_delta": 751.5293397009373,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_900c4b5340b303c0",
+          "local_input_token_delta": 0,
+          "selection_plus_generation_ms_delta": -3831.788033246994,
+          "judge_score_delta": -0.08333333333333331
+        },
+        {
+          "query_id": "q_b3ba420b3fd4247e",
+          "local_input_token_delta": 0,
+          "selection_plus_generation_ms_delta": 913.3371710777283,
+          "judge_score_delta": -0.4166666666666667
+        },
+        {
+          "query_id": "q_54feaf0a76462c56",
+          "local_input_token_delta": 0,
+          "selection_plus_generation_ms_delta": 140.58846607804298,
+          "judge_score_delta": 0.4166666666666667
+        },
+        {
+          "query_id": "q_f289da5dc985a411",
+          "local_input_token_delta": 0,
+          "selection_plus_generation_ms_delta": -2193.401897326112,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_47b7c2ad5748600b",
+          "local_input_token_delta": 0,
+          "selection_plus_generation_ms_delta": 1058.6307533085346,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_e75812046abc116d",
+          "local_input_token_delta": 0,
+          "selection_plus_generation_ms_delta": 495.2703583985567,
+          "judge_score_delta": 0.5
+        },
+        {
+          "query_id": "q_da0fce3abc878e40",
+          "local_input_token_delta": 0,
+          "selection_plus_generation_ms_delta": -729.8085857182741,
+          "judge_score_delta": 0.08333333333333337
+        },
+        {
+          "query_id": "q_6f8b73b746019a15",
+          "local_input_token_delta": 0,
+          "selection_plus_generation_ms_delta": -5313.010426238179,
+          "judge_score_delta": -0.4166666666666667
+        },
+        {
+          "query_id": "q_372a96cf7c169250",
+          "local_input_token_delta": -2,
+          "selection_plus_generation_ms_delta": 790.8192127943039,
+          "judge_score_delta": 0.5
+        },
+        {
+          "query_id": "q_e3e73f9ccdca5810",
+          "local_input_token_delta": 0,
+          "selection_plus_generation_ms_delta": 1476.9770130515099,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_4fdf59e3fbfa2a1a",
+          "local_input_token_delta": 0,
+          "selection_plus_generation_ms_delta": 645.1408695429564,
+          "judge_score_delta": 0.0
+        },
+        {
+          "query_id": "q_d33bf150239366a3",
+          "local_input_token_delta": 0,
+          "selection_plus_generation_ms_delta": 359.6654422581196,
+          "judge_score_delta": 0.0
+        }
+      ],
+      "mean_judge_score_delta": -0.04466666666666667,
+      "query_bootstrap_95_interval": [
+        -0.10066666666666667,
+        0.01333333333333333
+      ],
+      "wins": 28,
+      "ties": 56,
+      "losses": 41
+    }
+  },
+  "judge_directory_prefix": "judge_json_",
+  "reranking_cost_provenance": null,
+  "input_files_sha256": {
+    "rag/results/dev-validation/answers/dense5.jsonl": "d7d0ec1750cf17e4cc4b0d89c17f92916cea1ce4e67b472eee738ec7cc45b4e4",
+    "rag/results/dev-validation/answers/judge_json_dense5/answer_judge_per_query.jsonl": "47246f81778479f739e579ccbe1b377cbee382cb91cf6bdaf20435c350bf4ecb",
+    "rag/results/dev-validation/answers/dense20.jsonl": "bfe8ee0e5cffd8b079bcb55629f4eb05c3863b63ffdf55e207ae342e58113557",
+    "rag/results/dev-validation/answers/judge_json_dense20/answer_judge_per_query.jsonl": "a1417300b28f1ce03b0b27fffef42cbd1bb4ee68b2efa0f4d95c148012a39ef0",
+    "rag/results/dev-validation/answers/rerank5.jsonl": "4a154db1e0c9aa0d8502fb8c5a174e80c96b8674fedb70b8b93a8c1285e74013",
+    "rag/results/dev-validation/answers/judge_json_rerank5/answer_judge_per_query.jsonl": "936b498b92ae8e47bd25dac58d37581947492aecd2d09f2b49680b14659aa437",
+    "rag/results/dev-validation/answers/dense_budget.jsonl": "2e3a8406d878317f11c719fc35803787250060c8ee7339382ad8c14756b4c48c",
+    "rag/results/dev-validation/answers/judge_json_dense_budget/answer_judge_per_query.jsonl": "4ea322b2a0299303cbb82f279d23db0968ac3c8b9c4245393fe4ef48f1f2b088",
+    "rag/results/dev-validation/answers/rerank_budget.jsonl": "b6989b9ae9d851a4a3140874fcab63a30a063bff6a3b1b784cf04e8d4bd3634d",
+    "rag/results/dev-validation/answers/judge_json_rerank_budget/answer_judge_per_query.jsonl": "fa400da9ed74456209d4f35b7f4fa41886e2be320f302d7462ff9bfaf7cfdab3"
+  },
+  "limitations": [
+    "Held-out dev validation; single generation and single judge per answer",
+    "Query bootstrap excludes repeated-generation/judge uncertainty",
+    "Timing is single-pass CPU/API observation; no steady-state speedup claim",
+    "With reused scores, selection-plus-generation is an attributed sum; stages may come from different nodes/runs",
+    "Selected-ID qrel recall can count a truncated document whose useful span is absent",
+    "Full-document qrel recall also does not establish evidence sufficiency"
+  ]
+}

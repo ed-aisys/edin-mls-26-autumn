@@ -98,12 +98,10 @@ retrieval baseline (350 queries), ran a controlled practice pilot, and completed
 held-out \textbf{dev validation} (125 queries, five evidence-selection
 configurations) without tuning on dev after observing scores.
 
-To satisfy the ASR reporting requirement, one selected question answer per task is
-included in Section~\ref{sec:results}: Task~1 in
-\textit{Selected ASR question answer (Task 1)}, and Tasks~2--4 in
-\textit{Selected ASR question answers (Tasks 2--4)}. Optional additional Task~1
-analysis is reported separately. Reproduction commands and additional records are
-in the Appendix.
+The selected ASR answers are Task 1, Question 1 (Section~\ref{sec:q1}),
+Task 2, Question 3 (Section~\ref{sec:q2}), Task 3, Question 2
+(Section~\ref{sec:q3}), and Task 4, Question 1 (Section~\ref{sec:q4}).
+The Appendix maps measurements to committed evidence files.
 
 \section{System and Technical Approach}
 \label{sec:approach}
@@ -135,8 +133,9 @@ Part~A (\texttt{task2\_reduce.cuh}) implements \texttt{warp\_reduce\_sum/max} wi
 \texttt{\_\_shfl\_xor\_sync} and \texttt{block\_reduce\_sum/max} via a
 \texttt{partial[]} staging buffer and two barriers. Part~B builds
 \texttt{rmsnorm\_kernel} (row-wise RMS scale with learned weights) and
-\texttt{softmax\_kernel} using the online \texttt{MaxSum} merge from the guide so
-each row is read once. Task~4 reuses the warp helpers for tile-wise probability sums.
+\texttt{softmax\_kernel} using the online \texttt{MaxSum} merge from the guide:
+one statistics pass followed by an output pass. Task~4 reuses the warp helpers
+for tile-wise probability sums.
 
 \subsection{Task 3: shared-memory tiled GEMM}
 Following the lecture tiled GEMM, each $16\times 16$ thread block computes a
@@ -161,8 +160,8 @@ every lane accumulates $\sum_r p_r v_r$ across all keys in the tile (not only it
 
 \subsection{ASR kernels}
 \textbf{Hardware:} NVIDIA RTX A6000 (sm\_86, 84 SMs; test harness reports
-${\sim}768$~GB/s peak DRAM bandwidth). \textbf{Software:} \texttt{mls-asr}
-conda environment (Python~3.11, PyTorch~2.10+cu128, transformers~5.0), CUDA via
+768~GB/s peak DRAM bandwidth). \textbf{Software:} \texttt{mls-asr}
+conda environment, CUDA via
 \texttt{/usr/local/cuda}, repository \texttt{hw1-asr}.
 
 \textbf{Quality metrics:} per-case \texttt{max\_err} against CPU references
@@ -171,7 +170,9 @@ conda environment (Python~3.11, PyTorch~2.10+cu128, transformers~5.0), CUDA via
 per-kernel latency/GFLOP/s from tests and end-to-end ms/token with
 \texttt{--profile} shares. \textbf{Controls:} same GPU for sweeps, rebuild with
 \texttt{make clean} when changing \texttt{NVCCFLAGS}, default
-\texttt{-O3 -std=c++17 -lineinfo} except the \texttt{--use\_fast\_math} experiment.
+\texttt{-O3 -std=c++17 -lineinfo -diag-suppress 177}. All reported ASR
+measurements use the fresh default build on otherwise idle GPU 1; analytical
+memory counts below are derived from the committed kernel code and test shapes.
 
 \subsection{RAG evidence-selection study}
 \textbf{System:} practice/dev audio questions $\rightarrow$ ASR transcript
@@ -181,11 +182,7 @@ answer generation (\texttt{utter-project/EuroLLM-22B-Instruct-2512}, temperature
 0.1). Retrieval uses exact cosine similarity with saved transcripts to isolate
 downstream changes.
 
-\textbf{Baseline and evaluation:} on all 350 practice queries we report
-Recall@5/10/20/100, MRR@10 and NDCG@10 against public qrels. A small 5-query
-automatic answer-judge sample is treated as diagnostic only.
-
-\textbf{Held-out dev comparison (frozen method):} on 125 dev queries we compare
+\textbf{Paired evaluation:} on 350 practice and 125 held-out dev queries we compare
 five configurations using the same transcripts, corpus, model and prompting:
 \texttt{dense5} (top-5), \texttt{dense20} (top-20), \texttt{rerank5} (cross-encoder
 reranked top-5~\cite{nogueira2019passage}), \texttt{dense\_budget} (dense fill to
@@ -193,193 +190,182 @@ ${\sim}$4096 input tokens), and \texttt{rerank\_budget} (reranked fill to
 ${\sim}$4096). We report automatic
 judge scores (correctness, grounding, completeness in $[0,4]$ and normalised
 answer score in $[0,1]$), selected-id qrel recall, average selected documents and
-input tokens, truncation counts, and mean reranking/generation times. This is a
-single-run confirmation on dev; no tuning was performed on dev after scores were
+input tokens, and median generation times. Paired score differences and their
+95\% query-bootstrap intervals are taken directly from each split's
+\texttt{comparison.json} (5,000 resamples, fixed seed in the summariser).
+These intervals do not include repeated-generation or judge variability.
+This is a single-run confirmation on dev; no tuning was performed on dev after scores were
 observed. Automatic judge and qrels are imperfect proxies, and remote generation
 latency is load-dependent, so timing/cost results are interpreted as partial.
 
 \section{Results and Analysis}
 \label{sec:results}
 
-\subsection{RAG baseline and retrieval diagnostics}
-We ran the supplied RAG pipeline on an ICF RTX A6000 with two allocated CPUs and
-24~GB host memory (job 3713067, 11 November 2026; code revision \texttt{c0b7a7f}):
-all custom CUDA ASR groups, CPU enc\_a query encoding, exact cosine retrieval over
-24{,}000 normalised 384-dimensional enc\_a vectors~\cite{reimers2019sbert}, and
-top-5 evidence passed to ELM EuroLLM-22B-Instruct-2512~\cite{martins2024eurollm}
-(temperature 0.1).
-
-On all 350 practice queries (public qrels, top-100 retrieved per query),
-Recall@5/10/20/100 was 0.421/0.480/0.579/0.770, MRR@10 was 0.489, and NDCG@10 was
-0.420. We saved ASR transcripts for controlled downstream comparisons. A 5-query
-automatic answer-judge sample (1.43\% of practice) gave mean
-correctness/grounding/completeness 1.6/2.0/1.2 out of 4 (normalised 0.40); one
-judge error on the first query led us to treat these scores as diagnostic only.
-The gap between Recall@100 and Recall@5 motivated evidence selection. In an earlier
-30-query practice pilot, top-20 raised selected-ID recall (${\sim}0.29$ to
-${\sim}0.51$) at about $3.7\times$ input tokens, while CPU cross-encoder reranking
-did not beat dense top-5; bootstrap intervals crossed zero. We therefore froze the
-method and used dev only as held-out confirmation.
-
-\subsection{RAG held-out dev validation: evidence selection and context budget}
-We evaluated five frozen configurations on 125 dev queries as a held-out
-confirmation (no tuning on dev after scores). Table~\ref{tab:rag-dev} summarises
-quality, evidence coverage, and context/cost indicators.
+\subsection{RAG: practice and held-out dev evidence selection}
+Table~\ref{tab:rag-dev} puts the completed practice study beside held-out dev,
+using the same enc\_a sentence embeddings~\cite{reimers2019sbert} and
+ELM EuroLLM generator~\cite{martins2024eurollm}. Saved transcripts isolate
+downstream evidence selection from ASR changes.
 
 \begin{table}[t]
 \centering
 \small
-\caption{Held-out dev validation (125 queries, single run). Quality scores are
-automatic judge means; recall is selected-id qrel recall. Rerank/generation times
-are partial (remote generation is load-dependent).}
+\setlength{\tabcolsep}{3pt}
+\caption{Practice (350) and held-out dev (125), single generation/judge per answer.
+Ans.: mean normalised judge score; Rec.: mean selected-ID qrel recall;
+Tok.: mean input tokens; Gen.: median API generation ms.}
 \label{tab:rag-dev}
-\begin{tabular}{@{}lrrrrrr@{}}
+\begin{tabular}{@{}lrrrrrrrr@{}}
 \toprule
-Arm & Ans. & Recall & Docs & Tok. & Trunc. & Gen. ms \\
+& \multicolumn{4}{c}{Practice} & \multicolumn{4}{c}{Dev} \\
+\cmidrule(lr){2-5}\cmidrule(l){6-9}
+Arm & Ans. & Rec. & Tok. & Gen. & Ans. & Rec. & Tok. & Gen. \\
 \midrule
-\texttt{dense5}          & 0.331 & 0.379 & 5.0  & 1209 & 0   & 4622 \\
-\texttt{dense20}         & 0.331 & 0.580 & 20.0 & 4948 & 0   & 5479 \\
-\texttt{rerank5}         & 0.309 & 0.333 & 5.0  & 1470 & 0   & 4469 \\
-\texttt{dense\_budget}   & 0.328 & 0.566 & 18.2 & 4096 & 118 & 6738 \\
-\texttt{rerank\_budget}  & 0.283 & 0.476 & 15.3 & 4096 & 120 & 6450 \\
+\texttt{dense5}         & .327 & .421 & 1290 & 3655 & .331 & .379 & 1209 & 4532 \\
+\texttt{dense20}        & .326 & .579 & 4984 & 4830 & .331 & .580 & 4948 & 5871 \\
+\texttt{rerank5}        & .314 & .388 & 1435 & 3867 & .309 & .333 & 1470 & 4365 \\
+\texttt{dense\_budget}  & .325 & .548 & 4096 & 4875 & .328 & .566 & 4096 & 5672 \\
+\texttt{rerank\_budget} & .318 & .514 & 4096 & 4500 & .283 & .476 & 4096 & 5485 \\
 \bottomrule
 \end{tabular}
 \end{table}
 
-\textbf{Findings.} (1) \emph{Higher evidence coverage did not guarantee higher
-answer quality.} \texttt{dense20} and \texttt{dense\_budget} increased qrel recall
-substantially over \texttt{dense5} (0.580/0.566 vs.\ 0.379) but achieved similar
-normalised answer scores (0.331/0.328 vs.\ 0.331). (2) \emph{Reranking was not
-beneficial in this setting.} \texttt{rerank5} was slightly below baseline, and
-\texttt{rerank\_budget} had the lowest score (0.283) despite moderate recall;
-reranking added ${\sim}262$~ms/query on average. (3) \emph{Budget filling changed
-the quality--coverage--cost trade-off.} Budget arms used near-cap contexts with
-frequent truncation, increasing recall and context/timing cost but not reliably
-improving judged answers.
+\begin{table}[t]
+\centering
+\small
+\setlength{\tabcolsep}{4pt}
+\caption{Paired answer-score differences with 95\% query-bootstrap intervals,
+read from the two \texttt{comparison.json} files. Every reported interval crosses zero.}
+\label{tab:paired}
+\begin{tabular}{@{}lrrrr@{}}
+\toprule
+& \multicolumn{2}{c}{Practice (350)} & \multicolumn{2}{c}{Dev (125)} \\
+Comparison & $\Delta$ & 95\% interval & $\Delta$ & 95\% interval \\
+\midrule
+\texttt{dense20} $-$ \texttt{dense5} & $-.0005$ & [$-.0314$, $.0317$] & $.0000$ & [$-.0440$, $.0427$] \\
+\texttt{rerank5} $-$ \texttt{dense5} & $-.0124$ & [$-.0450$, $.0198$] & $-.0213$ & [$-.0687$, $.0240$] \\
+\texttt{rerank\_budget} $-$ \texttt{dense\_budget} & $-.0069$ & [$-.0390$, $.0255$] & $-.0447$ & [$-.1007$, $.0133$] \\
+\bottomrule
+\end{tabular}
+\end{table}
 
-\textbf{Interpretation.} The dev results suggest that answer quality depends not
-only on retrieving more annotated evidence but also on which evidence is selected,
-how it is composed under a token limit, and whether the model uses it faithfully.
-In some cases, extra context can include useful information missed by top-5; in
-others, larger or reranked contexts appear to dilute or displace useful evidence.
-For example, on one dev query about government bonds, budget filling included a
-later useful document and raised the judged score from 0 to 0.583, whereas the
-reranked budget answer remained at 0; on another query about telecommuting tax,
-top-5 already scored 1.0, but larger/reranked contexts scored 0 despite sharing
-core documents. These single cases are illustrative only. Because this is a single
-held-out run with automatic judging and qrel-based recall, we treat the overall
-pattern as observed trade-offs rather than causal or statistically significant
-effects.
+\textbf{Quality and coverage.} All reported paired answer-score intervals cross
+zero (Table~\ref{tab:paired}); these data do not establish an answer-quality
+ranking. The \texttt{rerank\_budget} minus \texttt{dense\_budget} dev difference
+($-0.045$) did not reproduce on practice ($-0.007$).
+Adding documents raised dev recall from about 0.38 to 0.58 without a detectable
+mean answer-score change ($0.0000$, interval $[-0.0440,0.0427]$).
+This between-arm result does not mean recall is irrelevant: within individual dev
+arms, recall and answer score correlate positively (Pearson $r=0.294$--$0.465$).
+Budget arms use \emph{less} input than \texttt{dense20} (4096 versus 4948 tokens
+on dev), though more than \texttt{dense5}. Generation times are medians because
+API outliers distort means: the dev \texttt{dense\_budget} maximum is
+186{,}750~ms. Timing does not demonstrate a steady-state speedup.
 
-\subsection{Task 1 correctness and end-to-end check}
-All four \texttt{make test1} cases pass with \texttt{max\_err} $\leq 2\times 10^{-7}$
-(default flags). \texttt{./run.sh --cuda task1} yields 100\% transcription accuracy
-(\emph{Concord returned to its place amidst the tents.}) with \texttt{rope=cuda}
-and remaining groups on PyTorch.
+\textbf{Judge noise and confounding.} On dev, the two dense contexts share exactly
+the same document order through the shorter context on all 125 questions;
+strictly, \texttt{dense\_budget} is a prefix of \texttt{dense20} on only 89,
+because it selects more than 20 documents on the remainder.
+Nevertheless, 55 questions receive different scores, with 25 absolute gaps
+at least 0.4. This is not a controlled judge-repeat experiment: truncation, extra
+documents and stochastic generation can also change answers.
+Each arm has 5--11 zero-score answers whose explanation's first sentence contains
+the whole word ``correctly'' or ``accurately''. Positive wording need not validate
+the whole answer, but warrants caution about numerical/textual consistency.
+Dev zero-score fractions range from 37.6\% to 47.2\% (44.8\% for
+\texttt{dense5}); the distribution has a substantial mass at zero.
+These audited counts, rather than selected anecdotes, motivate reporting uncertainty.
 
-\subsection{Selected ASR question answer (Task 1)}
-\textbf{Selected question (Task 1, encoder memory bandwidth).}
+\textbf{Candidate-pool ablation.} On 350 practice questions, GPU cross-encoder
+pools of 20/50/100 yield Recall@5 of 0.411/0.399/0.388, all below dense's 0.421;
+mean reranking costs are 39/97/194~ms. This is the main evidence of a retrieval
+failure for this reranker, not proof of an answer-quality disadvantage.
+Larger candidate pools did not fix top-ranked relevance in this measurement.
+The selection experiment's dev reranking cost of 262~ms/query is on GPU;
+the earlier pilot's 26~s/query is on two CPU cores, so these are not like-for-like
+speed comparisons. BM25 and RRF give dev Recall@5 of 0.208/0.303,
+below dense's 0.379; we do not infer answer-quality differences from those recalls.
+
+\textbf{ASR--RAG connection and latency.} In the 30-question four-condition
+comparison, custom CUDA and PyTorch-reference transcripts differ on zero queries,
+and downstream dense5/budget recalls are identical across ASR implementations.
+This supports using cached transcripts here, not general ASR equivalence.
+A separate 10-question practice timing probe (generation disabled) gives mean
+ASR/embedding/retrieval times of 2622/11/13~ms. Generation must be added separately:
+for example, practice \texttt{dense5}'s median is 3655~ms.
+Adding these stage summaries is illustrative, not a measured matched end-to-end
+median; the ASR probe covers only 10 questions.
+
+\subsection{ASR correctness and end-to-end findings}
+All four task suites report \textbf{ALL PASS}. All-CUDA, Task-1-only and
+PyTorch-only runs reproduce \emph{Concord returned to its place amidst the tents.}
+with the harness reporting 100.0\% word accuracy on this reference clip.
+Their measured transcription times are respectively 1986.1, 483.1 and 521.3~ms.
+Thus \emph{enabling all custom CUDA groups is slower than enabling only Task 1}.
+The all-CUDA profile attributes 83.8\% to \texttt{linear} and 15.4\% to
+\texttt{attention}; encoder attention tests report 8.641~ms and 1333~GFLOP/s.
+The GEMM gap below identifies a concrete bottleneck rather than assuming that
+custom kernels must outperform library-backed PyTorch.
+
+\subsection{Task 1, Question 1}
+\label{sec:q1}
+\begin{quote}
+For the audio encoder case, how many bytes does the kernel read and write in total? Which fraction of your GPU's peak bandwidth did you reach?
+\end{quote}
 The harness counts bytes moved as
 $2 \cdot (\text{q\_rows} + \text{k\_rows}) \cdot \text{rotary\_dim} \cdot 4$
 (read $+$ write over the rotated prefix). For the audio-encoder case
 ($B{=}1$, $\mathrm{seq}{=}1500$, $H_q{=}H_k{=}20$, $\text{rotary\_dim}{=}32$),
 $\text{q\_rows}{=}\text{k\_rows}{=}30{,}000$, so
 $2 \cdot 60{,}000 \cdot 32 \cdot 4 = 15.36 \times 10^6$~bytes (${\sim}14.6$~MiB)
-per call. At ${\sim}0.026$~ms this is ${\sim}601$~GB/s, about \textbf{78\%} of the
+per call (an analytical count, not a new timing measurement).
+The fresh harness reports 0.026~ms and 600.0~GB/s, \textbf{78\%} of the
 quoted 768~GB/s peak---a roofline-style~\cite{williams2009roofline} check
 consistent with a memory-bound kernel that also executes trigonometry and indexing.
 
-\subsection{Additional Task 1 analysis (optional)}
-\textbf{Additional question (precomputed $\cos/\sin$ table).}
-A table of shape $[\mathrm{seq\_len}, h]$ for $\cos$ and $\sin$ adds
-$2 \cdot \mathrm{seq\_len} \cdot h \cdot 4$~bytes read per pair while removing
-\texttt{cosf}/\texttt{sinf} FLOPs. For the encoder case ($\mathrm{seq\_len}{=}1500$,
-$h{=}16$) this is $192$~KiB total but \textbf{+8~bytes/pair} on the critical path.
-At ${\sim}78\%$ of peak already, extra reads likely slow the kernel here;
-precomputation is more attractive when trigonometry dominates and memory headroom
-is larger.
+\subsection{Task 2, Question 3}
+\label{sec:q2}
+\begin{quote}
+How many times does your softmax read each element of \texttt{x} from global memory? How many times does the textbook version (max, then sum, then write) read it?
+\end{quote}
+Our softmax reads each element \textbf{twice}: the first loop in
+\texttt{softmax\_kernel} merges \texttt{MaxSum} statistics; the final output loop
+rereads \texttt{xr[c]} to compute its normalised exponential.
+The textbook implementation reads it \textbf{three times}, once each for maximum,
+exponential sum, and output. Online softmax merges the first two passes, but
+does not remove the output pass. These are source-level global-load requests,
+not measured DRAM transactions; cache hits can reduce actual DRAM traffic.
 
-\textbf{Additional question (single launch for $q$ and $k$).}
-The model invokes RoPE \textbf{396 times} per transcription. Fusing $q$ and $k$
-halves kernel-launch count, avoids an extra global synchronisation point, and
-reuses one grid configuration, at the cost of slightly more complex indexing
-(blank~1.2). This is favourable because launch overhead accumulates across many
-invocations.
+\subsection{Task 3, Question 2}
+\label{sec:q3}
+\begin{quote}
+Your kernel reaches only a fraction of cuBLAS's speed on the large cases. Name one thing cuBLAS does differently that explains part of the gap. You do not have to implement it.
+\end{quote}
+cuBLAS uses more sophisticated hierarchical tiling and register-level reuse,
+computing multiple outputs per thread rather than our single-output
+$16\times16$ shared-memory tile. This increases reuse and arithmetic intensity;
+library implementations can also dispatch architecture-specific kernels.
+Our encoder \texttt{q\_proj} reaches 2967~GFLOP/s versus cuBLAS's 20305;
+\texttt{fc1 + GELU} reaches 2870 versus 21346~GFLOP/s.
+The comparison is not a pure epilogue match (our \texttt{fc1} fuses GELU),
+but the large library gap is consistent with the profile's dominant linear cost.
+We do not claim tensor-core use by the particular cuBLAS calls without tracing them.
 
-\subsection{Optional Task 1 exploration}
-Table~\ref{tab:rope-threads} sweeps \texttt{ROPE\_THREADS} on the encoder case
-(default \texttt{NVCCFLAGS}). Throughput is flat near 76--79\% of peak for
-block sizes 64--512; \texttt{1024} drops slightly (fewer blocks, less latency hiding).
-\texttt{32} is slowest (about 76\% of peak): many small blocks increase launch and
-scheduling overhead relative to useful memory work.
-
-\begin{table}[t]
-\centering
-\caption{RoPE encoder-case bandwidth vs.\ \texttt{ROPE\_THREADS} (RTX A6000).}
-\label{tab:rope-threads}
-\begin{tabular}{@{}rrl@{}}
-\toprule
-\texttt{ROPE\_THREADS} & Time (ms) & Effective bandwidth \\
-\midrule
-32  & 0.026 & 581 GB/s, 0.76 of peak \\
-64  & 0.026 & 598 GB/s, 0.78 of peak \\
-128 & 0.025 & 606 GB/s, 0.79 of peak \\
-256 & 0.026 & 601 GB/s, 0.78 of peak \\
-512 & 0.026 & 599 GB/s, 0.78 of peak \\
-1024 & 0.026 & 591 GB/s, 0.77 of peak \\
-\bottomrule
-\end{tabular}
-\end{table}
-
-\textbf{Tiny cases (${\sim}0.002$~ms).}
-Micro-benchmarks move only hundreds of floats; time is dominated by \textbf{fixed
-launch latency} and synchronisation, not by bytes transferred, so reported GB/s
-is near 0\% of peak even when correct.
-
-\textbf{\texttt{--use\_fast\_math}.}
-Rebuilding with \texttt{NVCCFLAGS} including \texttt{--use\_fast\_math} leaves tiny and
-decoder cases passing but \textbf{fails the audio-encoder case}
-(\texttt{max\_err}${\approx}1.9\times 10^{-4}$ vs.\ tolerance $10^{-5}$).
-Encoder tokens reach $\mathrm{pos}\uparrow 1499$ with $\mathrm{inv\_freq}[0]{=}1$,
-so $\angle$ is large; hardware-style \texttt{cosf}/\texttt{sinf} approximations
-drift from the CPU reference. Decoder angles stay smaller ($\mathrm{seq}{=}64$),
-so fast math still passes. Default flags were restored after the experiment
-(\texttt{make clean} then \texttt{make}).
-
-\subsection{Tasks 2--4: tests and full ASR run}
-\texttt{make test2} through \texttt{make test4} all report \textbf{ALL PASS} on the
-RTX A6000 (encoder attention ${\sim}8.6$~ms, ${\sim}1338$~GFLOP/s in the harness).
-\texttt{./run.sh} with every group on CUDA transcribes correctly (${\sim}1961$~ms per
-utterance vs.\ ${\sim}475$~ms with only Task~1 on CUDA---GEMM dominates). Profile:
-\texttt{linear} ${\sim}82.5\%$ of GPU time, \texttt{attention} ${\sim}15.2\%$,
-remaining norms/activations under $2\%$ each.
-
-\subsection{Selected ASR question answers (Tasks 2--4)}
-\textbf{Selected question (Task 2, reductions/normalisation/softmax).}
-Reductions combine per-thread partials without atomics; RMSNorm requires one
-block-wide sum of squares per row; and online softmax avoids multiple passes by
-maintaining running max/sum statistics. Warp shuffles are preferred inside a warp
-over shared-memory trees because they avoid shared-memory round-trips for the
-intra-warp stage.
-
-\textbf{Selected question (Task 3, tiled GEMM).}
-Encoder \texttt{fc1} alone performs $1500\times5120\times1280$ MACs; tiled GEMM
-reduces global memory traffic by reusing each loaded \texttt{x}/\texttt{W} element
-across \texttt{TILE} threads via shared memory. The implementation reaches
-hundreds of GFLOP/s on large cases but remains below cuBLAS because it does not
-use tensor cores or highly tuned libraries such as CUTLASS.
-
-\textbf{Selected question (Task 4, tiled attention/online softmax).}
-A dense encoder score tensor would require
-$20 \times 1500 \times 1500 \times 4 \approx 172$~MiB per layer, whereas tiled
-attention streams 32-key tiles in ${\sim}48$~KiB shared memory per block. All warps
-must follow the same tile iterations due to \texttt{\_\_syncthreads()} (so per-warp
-early exit is unsafe). Online-softmax correction uses $\mathrm{corr}=1$ when a tile
-does not raise $m$, and guards the uninitialised-$m$ case to avoid NaNs. With four
-queries per block each key tile is amortised across four queries; larger
-\texttt{ATTN\_WARPS} improves reuse but increases shared-memory/register pressure.
-A key correctness detail was broadcasting each lane's probability with
-\texttt{\_\_shfl\_sync} so every lane accumulates $\sum_r p_r v_r$ over the tile.
+\subsection{Task 4, Question 1}
+\label{sec:q4}
+\begin{quote}
+How much memory would the full score matrix of one encoder layer take (20 heads, 1500 x 1500, float32)? How much shared memory does one block of your kernel use instead?
+\end{quote}
+The full score matrix takes $20\cdot1500\cdot1500\cdot4
+=180{,}000{,}000$ bytes ($171.66$~MiB).
+In \texttt{launch\_attention}, shared memory is allocated as
+$4[32(d+1)+32d+4d]$ bytes: padded keys, values and cached scaled queries.
+For encoder head dimension $d=64$, this is
+$4[32\cdot65+32\cdot64+4\cdot64]=17{,}536$ bytes
+($17.125$~KiB) per block, \emph{not} 48~KiB.
+The latter is only the launcher's threshold for requesting an opt-in shared-memory
+limit. Scores are reduced tile by tile with online softmax rather than storing the
+full matrix; these memory footprints are analytical counts from the source.
 
 \section{Discussion and Conclusion}
 \label{sec:conclusion}
@@ -389,24 +375,24 @@ transcription with CUDA enabled. Measurements and profiling indicate RoPE is
 memory-bound, GEMM dominates end-to-end latency, and attention is the next largest
 cost but benefits from tiled/online-softmax execution. Key implementation lessons
 include correct index arithmetic for fused RoPE, warp/block synchronisation for
-reductions and softmax, and cross-lane probability broadcasting in Task~4; fast
-math is unsafe for RoPE at large encoder angles.
+reductions and softmax, and cross-lane probability broadcasting in Task~4.
+Correct custom GEMM is nevertheless substantially slower than cuBLAS in the
+measured large shapes, so all-CUDA execution is not an end-to-end acceleration.
 
-\textbf{RAG.} The practice baseline showed a large Recall@100--Recall@5 gap, but the
-held-out dev comparison indicates that increasing or reranking evidence under a
-fixed budget does not automatically improve judged answer quality. In this setting,
-\texttt{dense20} and \texttt{dense\_budget} improved evidence coverage over
-\texttt{dense5} without improving answer score, while \texttt{rerank\_budget}
-performed worst. This supports a quality--coverage--cost trade-off view: effective
-evidence selection depends on relevance, context composition, truncation, and
-faithful generation, not coverage alone.
+\textbf{RAG.} Increasing context changes recall and input cost, but every reported
+paired answer-score interval crosses zero. The negative dev budget-reranking
+difference is not reproduced at the same magnitude on practice. The candidate-pool
+ablation provides clearer retrieval-level evidence against this reranker than the
+noisy judge scores provide about answer quality. This does not establish that
+reranking in general is ineffective.
 
 \textbf{Limitations.} ASR correctness is evidenced by provided tests and a reference
 audio case, not exhaustive dataset-level transcription evaluation. RAG conclusions
-are based on one held-out dev run (125 queries), automatic judge/qrel proxies, and
-partial cost measurements (remote generation latency varies; no fully matched
-end-to-end ASR+RAG timing). We therefore avoid causal or statistically significant
-claims and report dev as confirmation of frozen methods only.
+use completed practice and one held-out dev run, automatic judge/qrel proxies, and
+partial cost measurements. Selected-ID recall can credit a truncated document
+without the useful span. Query bootstrap captures neither repeated-generation
+nor judge uncertainty; the small ASR--RAG and latency probes do not establish
+dataset-wide equivalence or fully matched end-to-end timing.
 
 \textbf{Overall.} The combined system work shows that local kernel optimisations and
 downstream RAG design choices must be evaluated with both quality and cost in mind:
@@ -425,21 +411,69 @@ how evidence is selected and used under realistic constraints.
 \begin{verbatim}
 conda activate mls-asr
 export PATH=/usr/local/cuda/bin:$PATH
+export CUDA_VISIBLE_DEVICES=1
 cd edin-mls-26-autumn/hw1-asr
-make test          # or make test1 .. test4
-./run.sh           # all CUDA kernels
+make clean && make && make test
 ./run.sh --profile
+./run.sh --cuda task1
+./run.sh --cuda none
 \end{verbatim}
 
-\section{RAG reproduction record}
-Baseline: \texttt{rag/experiments/baseline-3713067.md} and
-\texttt{rag/results/icf-3713067/}. Practice pilot:
-\texttt{rag/experiments/selection-pilot-results.md} and
-\texttt{rag/experiments/selection-pilot-metrics.json}. Held-out dev validation
-(frozen methods, no post-hoc tuning): \texttt{rag/results/dev-validation/}
-(\texttt{comparison.json}, \texttt{answers/}, \texttt{plan/}, logs). Procedure:
-\texttt{rag/experiments/DEV\_VALIDATION.md}. ASR logs:
-\texttt{hw1-asr/results/cuda-submit-logs/} when present.
+\section{Committed evidence and reproduction record}
+All paths below are repository-relative. Raw generated answers and judge outputs
+are intentionally not committed; summaries record their hashes where available.
+No dev generation or judging was repeated during report revision.
+\begin{itemize}
+\item ASR unit tests, throughput and all-CUDA profile:
+\path{hw1-asr/results/cuda-submit-logs/make-test-and-profile.log}.
+Task-1-only and PyTorch-only timings:
+\path{hw1-asr/results/cuda-submit-logs/cuda-task1.log} and
+\path{hw1-asr/results/cuda-submit-logs/cuda-none.log}.
+\item ASR analytical counts and quoted questions:
+\path{hw1-asr/csrc/task1_rope.cu},
+\path{hw1-asr/csrc/task2_reduce.cu},
+\path{hw1-asr/csrc/task3_gemm.cu},
+\path{hw1-asr/csrc/task4_attention.cu},
+\path{hw1-asr/tests/test_task1_rope.cu},
+\path{hw1-asr/docs/task1-rope.md},
+\path{hw1-asr/docs/task2-reduce.md},
+\path{hw1-asr/docs/task3-gemm.md},
+\path{hw1-asr/docs/task4-attention.md}.
+\item RAG tables:
+\path{rag/results/selection-run-full/comparison.json} and
+\path{rag/results/dev-validation/comparison.json}, fields
+\texttt{per\_arm} and \texttt{paired}.
+Corpus size and baseline model settings:
+\path{rag/experiments/baseline-3713067.md}.
+\item Candidate-pool, latency, ASR--RAG and lexical diagnostics:
+\path{rag/results/rerank-pool-ablation-full/summary.json},
+\path{rag/results/e2e-latency-practice.json},
+\path{rag/results/asr-rag-four-condition-30/summary.json},
+\path{rag/results/bm25-compare-dev/summary.json}.
+Pilot CPU costs: \path{rag/experiments/selection-pilot-metrics.json}
+and \path{rag/experiments/selection-pilot-results.md}.
+\item Judge consistency, prefix checks, correlations and timing maxima:
+\path{rag/results/report-evidence/summary.json}, reproduced by
+\path{rag/extensions/audit_report_evidence.py} from local saved outputs.
+\item Dev input and procedure:
+\path{rag/experiments/dev125.jsonl},
+\path{rag/experiments/DEV_VALIDATION.md},
+\path{rag/experiments/run_dev_validation_nohup.sh}.
+Selection and summary implementation:
+\path{rag/extensions/run_selection_experiment.py},
+\path{rag/extensions/summarize_selection_experiment.py},
+\path{rag/extensions/README.md}.
+\end{itemize}
+To recompute summaries only, without invoking generation or judge:
+\begin{verbatim}
+~/mls-rag-env/bin/python \
+  rag/extensions/summarize_selection_experiment.py \
+  --run rag/results/selection-run-full \
+  --judge-prefix judge_json_ --split practice \
+  --output rag/results/selection-run-full/comparison.json
+# Substitute dev-validation and --split dev for dev.
+python3 rag/extensions/audit_report_evidence.py
+\end{verbatim}
 
 % Keep this line unchanged.
 \newpage
@@ -456,10 +490,13 @@ Baseline: \texttt{rag/experiments/baseline-3713067.md} and
 \section*{AI declaration}
 AI coding assistants (including Cursor/ELM) were used to help run and organise
 GPU/RAG experiments, derive bandwidth and cost summaries, analyse saved
-dev-validation results, and draft/edit LaTeX text for this report. Reported numbers
-were reviewed against repository artifacts, kernel changes were checked with
-available tests and runs, and the final wording and structure were edited by the
-authors. The group remains responsible for the submitted work.
+dev-validation results, and draft/edit LaTeX text for this report. During this
+revision, an OpenAI coding agent reran the default ASR checks, recomputed saved
+RAG summaries without new dev generation or judging, and cross-checked report
+measurements against repository artifacts. This describes automated checks, not
+an assertion that the authors independently verified every number. Author review
+and completion of group information remain outstanding. The group remains
+responsible for the submitted work.
 
 % Please put the information of your group here without changing the format.
 % This page will be deleted when the report is distributed for reviewing.

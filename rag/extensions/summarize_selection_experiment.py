@@ -36,11 +36,24 @@ def main():
     ap.add_argument("--assets", type=Path, default=ROOT / "rag-assets.zip")
     ap.add_argument("--output", type=Path, required=True)
     ap.add_argument("--judge-prefix", default="judge_")
+    ap.add_argument("--split", choices=("practice", "dev"), default=None,
+                    help="Qrel split for recall metrics (default: infer from first answer row)")
     args = ap.parse_args()
-    if args.output.exists():
-        raise ValueError("Choose a fresh summary path")
-    with zipfile.ZipFile(args.assets) as archive:
-        raw = archive.read("data/rag_corpus/qrels_practice.tsv").decode("utf-8-sig")
+    split = args.split
+    if split is None:
+        for arm in ARMS:
+            path = args.run / "answers" / (arm + ".jsonl")
+            if path.exists():
+                first = rows(path)[0]
+                split = first.get("split", "practice")
+                break
+        split = split or "practice"
+    qrels_path = ROOT / "rag/data/rag_corpus" / f"qrels_{split}.tsv"
+    if qrels_path.exists():
+        raw = qrels_path.read_text(encoding="utf-8-sig")
+    else:
+        with zipfile.ZipFile(args.assets) as archive:
+            raw = archive.read(f"data/rag_corpus/qrels_{split}.tsv").decode("utf-8-sig")
     rels = {}
     for row in csv.DictReader(io.StringIO(raw), delimiter="\t"):
         if float(row.get("score", 1)) > 0:
@@ -54,7 +67,9 @@ def main():
         if len(data) != len(answers[arm]) or not data:
             raise ValueError("Empty/duplicate answers")
         hashes[str(path)] = hashlib.sha256(path.read_bytes()).hexdigest()
-        judge_path = args.run / (args.judge_prefix + arm) / "answer_judge_per_query.jsonl"
+        judge_path = args.run / "answers" / (args.judge_prefix + arm) / "answer_judge_per_query.jsonl"
+        if not judge_path.exists():
+            judge_path = args.run / (args.judge_prefix + arm) / "answer_judge_per_query.jsonl"
         if judge_path.exists():
             data = rows(judge_path)
             judgements[arm] = {r["query_id"]: r for r in data}
@@ -115,13 +130,14 @@ def main():
             result.update(mean_judge_score_delta=mean(deltas), query_bootstrap_95_interval=interval(deltas),
                           wins=sum(v > 0 for v in deltas), ties=sum(v == 0 for v in deltas), losses=sum(v < 0 for v in deltas))
         paired[first + " minus " + second] = result
-    output = {"queries": len(coverage), "expected_queries": config["queries"],
+    output = {"split": split, "queries": len(coverage), "expected_queries": config["queries"],
               "full_sample_completed": len(coverage) == config["queries"],
               "judge_available": bool(judgements), "per_arm": per_arm, "paired": paired,
               "judge_directory_prefix": args.judge_prefix,
               "reranking_cost_provenance": config.get("reused_reranking"),
               "input_files_sha256": hashes,
-              "limitations": ["Exploratory practice sample; single generation and single judge per answer",
+              "limitations": [("Exploratory practice sample" if split == "practice" else "Held-out dev validation")
+                               + "; single generation and single judge per answer",
                               "Query bootstrap excludes repeated-generation/judge uncertainty",
                               "Timing is single-pass CPU/API observation; no steady-state speedup claim",
                               "With reused scores, selection-plus-generation is an attributed sum; stages may come from different nodes/runs",

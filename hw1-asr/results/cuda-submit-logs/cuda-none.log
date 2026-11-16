@@ -1,0 +1,15 @@
+GPU: NVIDIA RTX A6000 (sm_86)
+Kernels: rope=torch  reduce=torch  gemm=torch  attention=torch  provided=torch
+Loading the model (about 9 GB of float32 weights)...
+Loaded in 7.3 s
+Audio: 3.50 s, mel features (1, 128, 3000), prompt 59 tokens
+  run 1:    520.2 ms  (13 tokens)
+  run 2:    522.4 ms  (13 tokens)
+  run 3:    521.2 ms  (13 tokens)
+
+Time: 521.3 ms per transcription (+/- 0.9 ms), 40.1 ms per token
+Peak GPU memory: 8.88 GiB
+Transcription: Concord returned to its place amidst the tents.
+Expected:      Concord returned to its place amidst the tents
+Accuracy: 100.0%
+Status: PASS

@@ -1,91 +1,117 @@
-GPU 0: NVIDIA RTX A6000 (UUID: GPU-2eea4b8b-d9b5-8b04-e426-c8d0617dc87a)
-GPU 1: NVIDIA RTX A6000 (UUID: GPU-cc1fade4-7632-01cc-a9ea-77e9dcb519cd)
-GPU 2: NVIDIA RTX A6000 (UUID: GPU-75ff33de-3366-d7fc-88a2-be025af94bed)
-GPU 3: NVIDIA RTX A6000 (UUID: GPU-6cf865f5-d572-f772-67d0-50037b7884af)
----
+Mon Nov 16 14:35:18 2026
++-----------------------------------------------------------------------------------------+
+| NVIDIA-SMI 595.71.05              Driver Version: 595.71.05      CUDA Version: 13.2     |
++-----------------------------------------+------------------------+----------------------+
+| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |
+| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |
+|                                         |                        |               MIG M. |
+|=========================================+========================+======================|
+|   1  NVIDIA RTX A6000               On  |   00000000:41:00.0 Off |                  Off |
+| 30%   31C    P8             29W /  300W |       1MiB /  49140MiB |      0%      Default |
+|                                         |                        |                  N/A |
++-----------------------------------------+------------------------+----------------------+
+
++-----------------------------------------------------------------------------------------+
+| Processes:                                                                              |
+|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |
+|        ID   ID                                                               Usage      |
+|=========================================================================================|
+|  No running processes found                                                             |
++-----------------------------------------------------------------------------------------+
+CUDA_VISIBLE_DEVICES=1; default Makefile options
+rm -rf build
+nvcc -O3 -std=c++17 -lineinfo -diag-suppress 177 -arch=sm_86 -Xcompiler -fPIC -Icsrc -c csrc/task1_rope.cu -o build/sm_86/obj/task1_rope.o
+nvcc -O3 -std=c++17 -lineinfo -diag-suppress 177 -arch=sm_86 -Xcompiler -fPIC -Icsrc -c csrc/task2_reduce.cu -o build/sm_86/obj/task2_reduce.o
+nvcc -O3 -std=c++17 -lineinfo -diag-suppress 177 -arch=sm_86 -Xcompiler -fPIC -Icsrc -c csrc/task3_gemm.cu -o build/sm_86/obj/task3_gemm.o
+nvcc -O3 -std=c++17 -lineinfo -diag-suppress 177 -arch=sm_86 -Xcompiler -fPIC -Icsrc -c csrc/task4_attention.cu -o build/sm_86/obj/task4_attention.o
+nvcc -O3 -std=c++17 -lineinfo -diag-suppress 177 -arch=sm_86 -Xcompiler -fPIC -Icsrc -c csrc/provided.cu -o build/sm_86/obj/provided.o
+nvcc -O3 -std=c++17 -lineinfo -diag-suppress 177 -arch=sm_86 -Xcompiler -fPIC -Icsrc -shared build/sm_86/obj/task1_rope.o build/sm_86/obj/task2_reduce.o build/sm_86/obj/task3_gemm.o build/sm_86/obj/task4_attention.o build/sm_86/obj/provided.o -o build/sm_86/libasr_kernels.so
+nvcc -O3 -std=c++17 -lineinfo -diag-suppress 177 -arch=sm_86 -Xcompiler -fPIC -Icsrc tests/test_task1_rope.cu build/sm_86/obj/task1_rope.o build/sm_86/obj/task2_reduce.o build/sm_86/obj/task3_gemm.o build/sm_86/obj/task4_attention.o build/sm_86/obj/provided.o -o build/sm_86/test_task1_rope -lcublas -Xlinker -rpath -Xlinker /usr/local/cuda/lib64
+nvcc -O3 -std=c++17 -lineinfo -diag-suppress 177 -arch=sm_86 -Xcompiler -fPIC -Icsrc tests/test_task2_reduce.cu build/sm_86/obj/task1_rope.o build/sm_86/obj/task2_reduce.o build/sm_86/obj/task3_gemm.o build/sm_86/obj/task4_attention.o build/sm_86/obj/provided.o -o build/sm_86/test_task2_reduce -lcublas -Xlinker -rpath -Xlinker /usr/local/cuda/lib64
+nvcc -O3 -std=c++17 -lineinfo -diag-suppress 177 -arch=sm_86 -Xcompiler -fPIC -Icsrc tests/test_task3_gemm.cu build/sm_86/obj/task1_rope.o build/sm_86/obj/task2_reduce.o build/sm_86/obj/task3_gemm.o build/sm_86/obj/task4_attention.o build/sm_86/obj/provided.o -o build/sm_86/test_task3_gemm -lcublas -Xlinker -rpath -Xlinker /usr/local/cuda/lib64
+nvcc -O3 -std=c++17 -lineinfo -diag-suppress 177 -arch=sm_86 -Xcompiler -fPIC -Icsrc tests/test_task4_attention.cu build/sm_86/obj/task1_rope.o build/sm_86/obj/task2_reduce.o build/sm_86/obj/task3_gemm.o build/sm_86/obj/task4_attention.o build/sm_86/obj/provided.o -o build/sm_86/test_task4_attention -lcublas -Xlinker -rpath -Xlinker /usr/local/cuda/lib64
 GPU: NVIDIA RTX A6000 (sm_86), 84 SMs, peak memory bandwidth about 768 GB/s
 
-tiny (2 x 3 tokens, Hq=3, Hk=1)      PASS  max_err=1.08e-07     0.002 ms      0.6 GB/s ( 0% of peak)
-odd sizes, partial rotation          PASS  max_err=1.08e-07     0.002 ms      7.3 GB/s ( 1% of peak)
-audio encoder (partial, 32/64)       PASS  max_err=1.93e-07     0.025 ms    603.9 GB/s (79% of peak)
-text decoder (GQA 16/4, full)        PASS  max_err=1.64e-07     0.003 ms    474.1 GB/s (62% of peak)
+tiny (2 x 3 tokens, Hq=3, Hk=1)      PASS  max_err=1.08e-07     0.002 ms      0.7 GB/s ( 0% of peak)
+odd sizes, partial rotation          PASS  max_err=1.08e-07     0.002 ms      7.2 GB/s ( 1% of peak)
+audio encoder (partial, 32/64)       PASS  max_err=1.93e-07     0.026 ms    600.0 GB/s (78% of peak)
+text decoder (GQA 16/4, full)        PASS  max_err=1.64e-07     0.003 ms    457.1 GB/s (60% of peak)
 
 Task 1 (RoPE): ALL PASS
 GPU: NVIDIA RTX A6000 (sm_86), 84 SMs, peak memory bandwidth about 768 GB/s
 
 rmsnorm, one short row               PASS  max_err=8.27e-08     0.002 ms      0.1 GB/s ( 0% of peak)
-rmsnorm, odd cols                    PASS  max_err=2.98e-07     0.003 ms     13.1 GB/s ( 2% of peak)
-rmsnorm, text decoder                PASS  max_err=4.35e-07     0.005 ms    217.9 GB/s (28% of peak)
-layernorm, odd cols (example)        PASS  max_err=2.86e-07     0.004 ms     11.2 GB/s ( 1% of peak)
-layernorm, audio encoder             PASS  max_err=5.42e-07     0.027 ms    578.0 GB/s (75% of peak)
-softmax, one short row               PASS  max_err=9.28e-09     0.002 ms      0.0 GB/s ( 0% of peak)
-softmax, odd cols                    PASS  max_err=1.96e-09     0.003 ms      8.0 GB/s ( 1% of peak)
-softmax, large inputs (+-100)        PASS  max_err=2.57e-08     0.003 ms      6.0 GB/s ( 1% of peak)
-softmax, all negative (-200..-150)   PASS  max_err=2.50e-08     0.002 ms      2.0 GB/s ( 0% of peak)
-softmax, vocabulary row (59264)      PASS  max_err=1.25e-10     0.084 ms      5.7 GB/s ( 1% of peak)
-softmax, 64 x 4096                   PASS  max_err=1.32e-09     0.006 ms    359.3 GB/s (47% of peak)
+rmsnorm, odd cols                    PASS  max_err=3.68e-07     0.003 ms     12.6 GB/s ( 2% of peak)
+rmsnorm, text decoder                PASS  max_err=4.35e-07     0.005 ms    211.1 GB/s (27% of peak)
+layernorm, odd cols (example)        PASS  max_err=3.91e-07     0.004 ms     10.7 GB/s ( 1% of peak)
+layernorm, audio encoder             PASS  max_err=5.42e-07     0.027 ms    575.8 GB/s (75% of peak)
+softmax, one short row               PASS  max_err=1.11e-08     0.003 ms      0.0 GB/s ( 0% of peak)
+softmax, odd cols                    PASS  max_err=1.88e-09     0.004 ms      6.3 GB/s ( 1% of peak)
+softmax, large inputs (+-100)        PASS  max_err=1.89e-08     0.004 ms      3.7 GB/s ( 0% of peak)
+softmax, all negative (-200..-150)   PASS  max_err=1.69e-08     0.003 ms      1.6 GB/s ( 0% of peak)
+softmax, vocabulary row (59264)      PASS  max_err=8.13e-11     0.104 ms      4.6 GB/s ( 1% of peak)
+softmax, 64 x 4096                   PASS  max_err=9.37e-10     0.008 ms    275.1 GB/s (36% of peak)
 
 Task 2 (reductions): ALL PASS
 GPU: NVIDIA RTX A6000 (sm_86), 84 SMs, peak memory bandwidth about 768 GB/s
 
 tiny 3 x 5, K = 7                    PASS  max_err=9.76e-09     0.002 ms        0 GFLOP/s
     for comparison: naive      0 GFLOP/s, cuBLAS      0 GFLOP/s (CPU reference)
-odd sizes 37 x 100, K = 33, bias     PASS  max_err=1.55e-07     0.003 ms       82 GFLOP/s
-    for comparison: naive     75 GFLOP/s, cuBLAS     51 GFLOP/s (CPU reference)
-odd sizes, bias + GELU               PASS  max_err=7.70e-07     0.005 ms      165 GFLOP/s
-    for comparison: naive    141 GFLOP/s, cuBLAS    142 GFLOP/s (CPU reference)
-decoder q_proj (64x2048x2048)        PASS  max_err=1.10e-05     0.224 ms     2398 GFLOP/s
-    for comparison: naive    462 GFLOP/s, cuBLAS  10487 GFLOP/s (cuBLAS reference)
-decoder gate_proj (64x6144x2048)     PASS  max_err=1.24e-05     0.875 ms     1841 GFLOP/s
-    for comparison: naive    349 GFLOP/s, cuBLAS  15888 GFLOP/s (cuBLAS reference)
-decoder down_proj (64x2048x6144)     PASS  max_err=3.53e-05     0.956 ms     1684 GFLOP/s
-    for comparison: naive    327 GFLOP/s, cuBLAS  11902 GFLOP/s (cuBLAS reference)
-lm_head, last token (1x59264x2048)   PASS  max_err=1.24e-05     1.963 ms      124 GFLOP/s
-    for comparison: naive    156 GFLOP/s, cuBLAS    249 GFLOP/s (cuBLAS reference)
-encoder q_proj (1500x1280x1280)      PASS  max_err=2.38e-07     2.491 ms     1973 GFLOP/s
-    for comparison: naive    340 GFLOP/s, cuBLAS  14854 GFLOP/s (cuBLAS reference)
-encoder fc1 + GELU (1500x5120x1280)  PASS  max_err=1.08e-05     9.944 ms     1977 GFLOP/s
-    for comparison: naive    354 GFLOP/s, cuBLAS  14246 GFLOP/s (cuBLAS reference)
-conv2 via im2col (1500x1280x3840)    PASS  max_err=7.16e-07     8.012 ms     1841 GFLOP/s
-    for comparison: naive    366 GFLOP/s, cuBLAS  13816 GFLOP/s (cuBLAS reference)
+odd sizes 37 x 100, K = 33, bias     PASS  max_err=1.55e-07     0.003 ms       80 GFLOP/s
+    for comparison: naive     75 GFLOP/s, cuBLAS     48 GFLOP/s (CPU reference)
+odd sizes, bias + GELU               PASS  max_err=7.70e-07     0.006 ms      159 GFLOP/s
+    for comparison: naive    141 GFLOP/s, cuBLAS    134 GFLOP/s (CPU reference)
+decoder q_proj (64x2048x2048)        PASS  max_err=1.10e-05     0.234 ms     2299 GFLOP/s
+    for comparison: naive    461 GFLOP/s, cuBLAS  10201 GFLOP/s (cuBLAS reference)
+decoder gate_proj (64x6144x2048)     PASS  max_err=1.24e-05     0.592 ms     2720 GFLOP/s
+    for comparison: naive    509 GFLOP/s, cuBLAS  15871 GFLOP/s (cuBLAS reference)
+decoder down_proj (64x2048x6144)     PASS  max_err=3.53e-05     0.706 ms     2282 GFLOP/s
+    for comparison: naive    452 GFLOP/s, cuBLAS  12929 GFLOP/s (cuBLAS reference)
+lm_head, last token (1x59264x2048)   PASS  max_err=1.24e-05     1.354 ms      179 GFLOP/s
+    for comparison: naive    200 GFLOP/s, cuBLAS    353 GFLOP/s (cuBLAS reference)
+encoder q_proj (1500x1280x1280)      PASS  max_err=2.38e-07     1.657 ms     2967 GFLOP/s
+    for comparison: naive    515 GFLOP/s, cuBLAS  20305 GFLOP/s (cuBLAS reference)
+encoder fc1 + GELU (1500x5120x1280)  PASS  max_err=1.08e-05     6.851 ms     2870 GFLOP/s
+    for comparison: naive    541 GFLOP/s, cuBLAS  21346 GFLOP/s (cuBLAS reference)
+conv2 via im2col (1500x1280x3840)    PASS  max_err=7.16e-07     5.170 ms     2852 GFLOP/s
+    for comparison: naive    542 GFLOP/s, cuBLAS  20498 GFLOP/s (cuBLAS reference)
 
 Task 3 (tiled GEMM): ALL PASS
 GPU: NVIDIA RTX A6000 (sm_86), 84 SMs, peak memory bandwidth about 768 GB/s
 
 tiny, one tile (4 queries, 5 keys)   PASS  max_err=8.15e-08     0.006 ms        0 GFLOP/s
 several tiles, peaky scores          PASS  max_err=4.97e-07     0.020 ms       12 GFLOP/s
-GQA 4 heads / 2 kv heads             PASS  max_err=1.30e-07     0.009 ms       66 GFLOP/s
-causal, seq_q = seq_k                PASS  max_err=5.16e-07     0.035 ms       73 GFLOP/s
-causal, 5 new queries, 37 keys       PASS  max_err=1.78e-07     0.011 ms       18 GFLOP/s
-causal, one new query                PASS  max_err=3.39e-07     0.033 ms       17 GFLOP/s
-text decoder (GQA 16/4, causal)      PASS  max_err=5.21e-07     0.043 ms      389 GFLOP/s
-audio encoder (20 heads, 1500)       PASS  max_err=2.68e-07    12.590 ms      915 GFLOP/s
+GQA 4 heads / 2 kv heads             PASS  max_err=1.30e-07     0.009 ms       68 GFLOP/s
+causal, seq_q = seq_k                PASS  max_err=5.16e-07     0.034 ms       74 GFLOP/s
+causal, 5 new queries, 37 keys       PASS  max_err=1.78e-07     0.010 ms       18 GFLOP/s
+causal, one new query                PASS  max_err=3.39e-07     0.033 ms       18 GFLOP/s
+text decoder (GQA 16/4, causal)      PASS  max_err=5.21e-07     0.042 ms      398 GFLOP/s
+audio encoder (20 heads, 1500)       PASS  max_err=2.68e-07     8.641 ms     1333 GFLOP/s
 
 Task 4 (attention): ALL PASS
----
 GPU: NVIDIA RTX A6000 (sm_86)
 Kernels: rope=cuda  reduce=cuda  gemm=cuda  attention=cuda  provided=cuda
 Library: /home/jacksu/edin-mls-26-autumn/hw1-asr/build/sm_86/libasr_kernels.so
 Loading the model (about 9 GB of float32 weights)...
-Loaded in 9.4 s
+Loaded in 7.5 s
 Audio: 3.50 s, mel features (1, 128, 3000), prompt 59 tokens
-  run 1:   2889.0 ms  (13 tokens)
-  run 2:   2904.9 ms  (13 tokens)
-  run 3:   2895.8 ms  (13 tokens)
+  run 1:   1981.4 ms  (13 tokens)
+  run 2:   1984.9 ms  (13 tokens)
+  run 3:   1991.9 ms  (13 tokens)
 
-GPU time per operation, one transcription (2910.6 ms in kernels):
+GPU time per operation, one transcription (1993.3 ms in kernels):
   operation    runs on    calls   total ms   share
-  linear       cuda        2757     2461.8   84.6%
-  attention    cuda         396      416.5   14.3%
-  embedding    cuda          13       12.3    0.4%
-  rmsnorm      cuda         741        7.6    0.3%
-  softmax      cuda          13        4.6    0.2%
-  silu_mul     cuda         364        3.1    0.1%
-  rope         cuda         396        2.8    0.1%
+  linear       cuda        2757     1670.0   83.8%
+  attention    cuda         396      306.9   15.4%
+  rmsnorm      cuda         741        6.2    0.3%
+  silu_mul     cuda         364        3.2    0.2%
+  rope         cuda         396        2.6    0.1%
   layernorm    cuda          65        1.8    0.1%
+  softmax      cuda          13        1.8    0.1%
+  embedding    cuda          13        0.6    0.0%
   im2col       cuda           2        0.1    0.0%
 
-Time: 2896.6 ms per transcription (+/- 6.5 ms), 222.8 ms per token
+Time: 1986.1 ms per transcription (+/- 4.4 ms), 152.8 ms per token
 Peak GPU memory: 8.56 GiB
 Transcription: Concord returned to its place amidst the tents.
 Expected:      Concord returned to its place amidst the tents

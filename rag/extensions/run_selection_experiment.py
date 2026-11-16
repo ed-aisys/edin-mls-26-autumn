@@ -195,7 +195,7 @@ def prepare(args):
                 selection_ms = (time.perf_counter() - start) * 1000
                 if built["local_input_tokens"] > args.max_input_tokens:
                     raise ValueError(f"{qid}/{arm} exceeds preflight input ceiling")
-                row = {"query_id": qid, "split": "practice", "transcript": question, "arm": arm,
+                row = {"query_id": qid, "split": item.get("split", "practice"), "transcript": question, "arm": arm,
                        **built, "reranking_ms": rerank_ms if arm.startswith("rerank") else 0.0,
                        "context_build_ms": selection_ms,
                        "selection_ms": selection_ms + (rerank_ms if arm.startswith("rerank") else 0.0)}

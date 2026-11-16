@@ -1,0 +1,175 @@
+{
+  "summary": {
+    "split": "practice",
+    "queries": 10,
+    "skip_elm": true,
+    "mean_timing_ms": {
+      "asr_ms": 2621.7342307791114,
+      "embedding_ms": 11.46911159157753,
+      "retrieval_ms": 12.512555159628391,
+      "context_ms": 0.018810853362083435,
+      "generation_wall_ms": 0.0,
+      "end_to_end_ms": 2645.7347083836794
+    },
+    "median_timing_ms": {
+      "asr_ms": 2468.02809368819,
+      "embedding_ms": 10.751018300652504,
+      "retrieval_ms": 13.479813933372498,
+      "context_ms": 0.01821480691432953,
+      "generation_wall_ms": 0.0,
+      "end_to_end_ms": 2497.759820893407
+    }
+  },
+  "per_query": [
+    {
+      "query_id": "q_7e9a0f2716c017d2",
+      "split": "practice",
+      "transcript": "Understanding sales tax implications when purchasing items in a retail store.",
+      "answer_preview": "",
+      "timing": {
+        "asr_ms": 2359.730424359441,
+        "embedding_ms": 9.375153109431267,
+        "retrieval_ms": 22.58617989718914,
+        "context_ms": 0.019256025552749634,
+        "generation_ms": 0.0,
+        "generation_wall_ms": 0.0,
+        "end_to_end_ms": 2391.711013391614
+      }
+    },
+    {
+      "query_id": "q_ea0be00eda6ea088",
+      "split": "practice",
+      "transcript": "Factors influencing the initial stock price at market opening.",
+      "answer_preview": "",
+      "timing": {
+        "asr_ms": 2291.711948812008,
+        "embedding_ms": 9.329615160822868,
+        "retrieval_ms": 14.871103689074516,
+        "context_ms": 0.017995014786720276,
+        "generation_ms": 0.0,
+        "generation_wall_ms": 0.0,
+        "end_to_end_ms": 2315.930662676692
+      }
+    },
+    {
+      "query_id": "q_9cd791a970ab648f",
+      "split": "practice",
+      "transcript": "Timeline for fund availability when depositing credit card payments.",
+      "answer_preview": "",
+      "timing": {
+        "asr_ms": 2140.795271843672,
+        "embedding_ms": 10.590562596917152,
+        "retrieval_ms": 12.616828083992004,
+        "context_ms": 0.01697242259979248,
+        "generation_ms": 0.0,
+        "generation_wall_ms": 0.0,
+        "end_to_end_ms": 2164.0196349471807
+      }
+    },
+    {
+      "query_id": "q_20e98c45013f6cc6",
+      "split": "practice",
+      "transcript": "Interpreting a negative price-to-earnings ratio for stocks.",
+      "answer_preview": "",
+      "timing": {
+        "asr_ms": 2356.8228147923946,
+        "embedding_ms": 8.932692930102348,
+        "retrieval_ms": 14.057587832212448,
+        "context_ms": 0.023363158106803894,
+        "generation_ms": 0.0,
+        "generation_wall_ms": 0.0,
+        "end_to_end_ms": 2379.8364587128162
+      }
+    },
+    {
+      "query_id": "q_e3f1cef46917a2a5",
+      "split": "practice",
+      "transcript": "Process for adding an additional vehicle to an existing auto insurance policy with GICO.",
+      "answer_preview": "",
+      "timing": {
+        "asr_ms": 3096.4575596153736,
+        "embedding_ms": 16.49179682135582,
+        "retrieval_ms": 7.028117775917053,
+        "context_ms": 0.016352161765098572,
+        "generation_ms": 0.0,
+        "generation_wall_ms": 0.0,
+        "end_to_end_ms": 3119.9938263744116
+      }
+    },
+    {
+      "query_id": "q_fb7201191b7c1c3f",
+      "split": "practice",
+      "transcript": "Calculating return on investment, verifying accuracy of financial projections.",
+      "answer_preview": "",
+      "timing": {
+        "asr_ms": 2576.325763016939,
+        "embedding_ms": 11.49793155491352,
+        "retrieval_ms": 15.968261286616325,
+        "context_ms": 0.016672536730766296,
+        "generation_ms": 0.0,
+        "generation_wall_ms": 0.0,
+        "end_to_end_ms": 2603.8086283952
+      }
+    },
+    {
+      "query_id": "q_985b83cdba7c6114",
+      "split": "practice",
+      "transcript": "Existence of a primary residence tax exemption in Tennessee.",
+      "answer_preview": "",
+      "timing": {
+        "asr_ms": 2212.9472326487303,
+        "embedding_ms": 10.998521000146866,
+        "retrieval_ms": 6.147122010588646,
+        "context_ms": 0.018434599041938782,
+        "generation_ms": 0.0,
+        "generation_wall_ms": 0.0,
+        "end_to_end_ms": 2230.1113102585077
+      }
+    },
+    {
+      "query_id": "q_cc3a5798107d54ab",
+      "split": "practice",
+      "transcript": "Tax considerations for investing in MLPs within a Roth IRA.",
+      "answer_preview": "",
+      "timing": {
+        "asr_ms": 2579.8637866973877,
+        "embedding_ms": 10.911474004387856,
+        "retrieval_ms": 14.838945120573044,
+        "context_ms": 0.016242265701293945,
+        "generation_ms": 0.0,
+        "generation_wall_ms": 0.0,
+        "end_to_end_ms": 2605.63044808805
+      }
+    },
+    {
+      "query_id": "q_11e91c6525c562e4",
+      "split": "practice",
+      "transcript": "Where can I find historical price earnings ratios for US stock market indices?",
+      "answer_preview": "",
+      "timing": {
+        "asr_ms": 2653.573637828231,
+        "embedding_ms": 10.363072156906128,
+        "retrieval_ms": 4.109365865588188,
+        "context_ms": 0.02374500036239624,
+        "generation_ms": 0.0,
+        "generation_wall_ms": 0.0,
+        "end_to_end_ms": 2668.0698208510876
+      }
+    },
+    {
+      "query_id": "q_310adf9926fe489e",
+      "split": "practice",
+      "transcript": "Who is responsible for determining the composition of the S and P five hundred index, and what is the process?",
+      "answer_preview": "",
+      "timing": {
+        "asr_ms": 3949.113868176937,
+        "embedding_ms": 16.200296580791473,
+        "retrieval_ms": 12.902040034532547,
+        "context_ms": 0.01907534897327423,
+        "generation_ms": 0.0,
+        "generation_wall_ms": 0.0,
+        "end_to_end_ms": 3978.2352801412344
+      }
+    }
+  ]
+}

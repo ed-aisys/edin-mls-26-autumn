@@ -1,0 +1,9 @@
+{
+  "queries": 30,
+  "budget_tokens": 4096,
+  "transcript_drift_queries": 0,
+  "cuda_asr_mean_dense5_recall": 0.4401515151515152,
+  "cuda_asr_mean_budget_recall": 0.6217171717171719,
+  "reference_asr_mean_dense5_recall": 0.4401515151515152,
+  "reference_asr_mean_budget_recall": 0.6217171717171719
+}

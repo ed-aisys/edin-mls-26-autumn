@@ -13,6 +13,35 @@ These extensions operate on saved ASR transcripts and candidates; they do not ru
 - [run_selection_experiment.py](run_selection_experiment.py): prepare frozen contexts with dense/re-ranked ordering, then generate/resume paired answers with token usage and latency metadata.
 - [validate_reranker.py](validate_reranker.py): independently reproduce cached scores and check scoring direction.
 - [summarize_selection_experiment.py](summarize_selection_experiment.py): check matched coverage, tokens, selected-ID recall, observed/attributed costs and optional paired judge scores.
+- [bm25_retriever.py](bm25_retriever.py) / [compare_retrieval_routes.py](compare_retrieval_routes.py): lexical BM25 and RRF vs dense (no ELM).
+- [measure_e2e_latency.py](measure_e2e_latency.py): audio-to-answer wall-clock breakdown on a GPU node.
+- [collect_dual_transcripts.py](collect_dual_transcripts.py) / [asr_rag_four_condition.py](asr_rag_four_condition.py): CUDA vs reference transcript × dense5 vs budget recall.
+- [prepare_blind_review.py](prepare_blind_review.py): anonymised packets for manual answer review.
+
+For the completed frozen dev run and its summary-only audit, see
+[DEV_VALIDATION.md](../experiments/DEV_VALIDATION.md).
+
+### Report revision: summaries only
+
+Do not rerun dev generation/judging or tune methods from dev scores. The completed
+five-arm practice/dev summaries can be recomputed from local saved outputs:
+
+```bash
+~/mls-rag-env/bin/python rag/extensions/summarize_selection_experiment.py \
+  --run rag/results/selection-run-full --judge-prefix judge_json_ \
+  --split practice --output rag/results/selection-run-full/comparison.json
+# For dev, substitute dev-validation and --split dev.
+python3 rag/extensions/audit_report_evidence.py
+```
+
+The summary command replaces only its designated output. Judge files can be under
+the run root or `answers/`; this experiment uses the `judge_json_` prefix.
+Report generation latency uses `median_generation_ms`. Query bootstrap does not
+estimate repeated-generation/judge uncertainty. The audit script checks document
+prefixes, score discrepancies, zero-score explanations, correlations and maxima;
+its output is `rag/results/report-evidence/summary.json`. Positive openings are
+defined by whole-word `correctly`/`accurately` in the explanation's first sentence.
+These checks do not establish judge error rates or causal effects.
 
 Run model computations on allocated compute resources. From the repository root,
 after installing course assets and the RAG environment:

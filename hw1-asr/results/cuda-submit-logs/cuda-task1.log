@@ -1,0 +1,16 @@
+GPU: NVIDIA RTX A6000 (sm_86)
+Kernels: rope=cuda  reduce=torch  gemm=torch  attention=torch  provided=cuda
+Library: /home/jacksu/edin-mls-26-autumn/hw1-asr/build/sm_86/libasr_kernels.so
+Loading the model (about 9 GB of float32 weights)...
+Loaded in 7.4 s
+Audio: 3.50 s, mel features (1, 128, 3000), prompt 59 tokens
+  run 1:    481.1 ms  (13 tokens)
+  run 2:    485.4 ms  (13 tokens)
+  run 3:    482.8 ms  (13 tokens)
+
+Time: 483.1 ms per transcription (+/- 1.8 ms), 37.2 ms per token
+Peak GPU memory: 8.88 GiB
+Transcription: Concord returned to its place amidst the tents.
+Expected:      Concord returned to its place amidst the tents
+Accuracy: 100.0%
+Status: PASS
